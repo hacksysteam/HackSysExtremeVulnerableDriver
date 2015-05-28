@@ -13,7 +13,7 @@ HackSys Extreme Vulnerable Driver
 
 **HackSys Extreme Vulnerable Driver** is **intentionally** vulnerable **Windows** driver developed for security enthusiasts to learn and polish their exploitation skills at **Kernel** level. 
 
-**HackSys Vulnerable Driver** caters wide range of vulnerabilities ranging from simple `Buffer Overflows` to complex `Use After Frees` and `Pool Overflows`. This allows the researchers to explore the exploitation techniques for every implemented vulnerabilities.
+**HackSys Extreme Vulnerable Driver** caters wide range of vulnerabilities ranging from simple `Buffer Overflows` to complex `Use After Frees` and `Pool Overflows`. This allows the researchers to explore the exploitation techniques for every implemented vulnerabilities.
 
 
 Blog Post
