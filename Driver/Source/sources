@@ -1,0 +1,27 @@
+#  #     #                       #####               #######                     
+#  #     #   ##    ####  #    # #     # #   #  ####     #    ######   ##   #    #
+#  #     #  #  #  #    # #   #  #        # #  #         #    #       #  #  ##  ##
+#  ####### #    # #      ####    #####    #    ####     #    #####  #    # # ## #
+#  #     # ###### #      #  #         #   #        #    #    #      ###### #    #
+#  #     # #    # #    # #   #  #     #   #   #    #    #    #      #    # #    #
+#  #     # #    #  ####  #    #  #####    #    ####     #    ###### #    # #    #
+#
+#                       HackSys Extreme Vulnerable Driver
+
+TARGETNAME = HackSysExtremeVulnerableDriver
+TARGETPATH = drv
+TARGETTYPE = DRIVER
+
+SOURCES = PoolOverflow.c \
+          UseAfterFree.c \
+          StackOverflow.c \
+          TypeConfusion.c \
+          StackOverflowGS.c \
+          IntegerOverflow.c \
+          ArbitraryOverwrite.c \
+          NullPointerDereference.c \
+          HackSysExtremeVulnerableDriver.c \
+
+!if defined(SECURE)
+C_DEFINES=$(C_DEFINES) -DSECURE=1
+!endif

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DDKLaunchParams xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DebugConnectionString>com://COM1,baud=115200</DebugConnectionString>
+  <RemoteMachineHostname />
+  <PathOnTarget>%SystemRoot%\System32\Drivers\HackSysExtremeVulnerableDriver.sys</PathOnTarget>
+  <StartMode>LegacyStartStop</StartMode>
+  <StartModeArg>HackSysExtremeVulnerableDriver</StartModeArg>
+  <StartModeIntArg>0</StartModeIntArg>
+  <StopMode>LegacyStartStop</StopMode>
+  <StopModeArg>HackSysExtremeVulnerableDriver</StopModeArg>
+  <StopModeIntArg>0</StopModeIntArg>
+  <KeepSessionWhenDriverUnloads>false</KeepSessionWhenDriverUnloads>
+  <AutoInstallPolicy>AutoInstallInteractive</AutoInstallPolicy>
+</DDKLaunchParams>
