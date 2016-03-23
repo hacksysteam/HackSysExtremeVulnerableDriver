@@ -109,7 +109,7 @@ TODO
 2. Add the exploit support for Windows 8.1/10 x64
 3. Add `Use Of Uninitialized Variable` Vulnerability
 4. Add `Memory Disclosure` Vulnerability
-5. Add `Time-Of-Check-To-Time-Of-Use` (**TOCTTU/Race Condition**) Vulnerability
+5. Add `Time-Of-Check-To-Time-Of-Use` (**TOCTOU/Race Condition**) Vulnerability
 6. Refactor and Cleanup the driver and exploit source code
 
 
