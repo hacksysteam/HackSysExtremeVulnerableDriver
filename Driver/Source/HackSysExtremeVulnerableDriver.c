@@ -14,30 +14,27 @@ Author : Ashfaq Ansari
 Contact: ashfaq[at]payatu[dot]com
 Website: http://www.payatu.com/
 
-Copyright (C) 2011-2015 Payatu Technologies. All rights reserved.
+Copyright (C) 2011-2016 Payatu Technologies Pvt. Ltd. All rights reserved.
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of
+the GNU General Public License as published by the Free Software Foundation, either version
+3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with this program.
+If not, see <http://www.gnu.org/licenses/>.
 
-THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHORS
-OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
-STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 See the file 'LICENSE' for complete copying permission.
 
@@ -53,47 +50,47 @@ Abstract:
 #include "HackSysExtremeVulnerableDriver.h"
 
 #ifdef ALLOC_PRAGMA
-    #pragma alloc_text (INIT, DriverEntry)
-    #pragma alloc_text (PAGE, IrpCloseHandler)
-    #pragma alloc_text (PAGE, IrpUnloadHandler)
-    #pragma alloc_text (PAGE, IrpCreateHandler)
-    #pragma alloc_text (PAGE, IrpDeviceIoCtlHandler)
-    #pragma alloc_text (PAGE, IrpNotImplementedHandler)
+    #pragma alloc_text(INIT, DriverEntry)
+    #pragma alloc_text(PAGE, IrpCloseHandler)
+    #pragma alloc_text(PAGE, IrpCreateHandler)
+    #pragma alloc_text(PAGE, IrpUnloadHandler)
+    #pragma alloc_text(PAGE, IrpDeviceIoCtlHandler)
+    #pragma alloc_text(PAGE, IrpNotImplementedHandler)
 #endif // ALLOC_PRAGMA
 
 /// <summary>
 /// Driver Entry Point
 /// </summary>
-/// <param name="pDriverObject">The pointer to DRIVER_OBJECT</param>
-/// <param name="pRegistryPath">The pointer registry path</param>
+/// <param name="DriverObject">The pointer to DRIVER_OBJECT</param>
+/// <param name="RegistryPath">The pointer to Unicode string specifying registry path</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS DriverEntry(IN PDRIVER_OBJECT pDriverObject, IN PUNICODE_STRING pRegistryPath) {
-    UNICODE_STRING DeviceName, Win32Device;
-    PDEVICE_OBJECT pDeviceObject = NULL;
-    NTSTATUS status;
+NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING RegistryPath) {
     UINT32 i = 0;
+    PDEVICE_OBJECT DeviceObject = NULL;
+    NTSTATUS Status = STATUS_UNSUCCESSFUL;
+    UNICODE_STRING DeviceName, DosDeviceName = {0};
 
-    UNREFERENCED_PARAMETER(pRegistryPath);
+    UNREFERENCED_PARAMETER(RegistryPath);
     PAGED_CODE();
 
     RtlInitUnicodeString(&DeviceName, L"\\Device\\HackSysExtremeVulnerableDriver");
-    RtlInitUnicodeString(&Win32Device, L"\\DosDevices\\HackSysExtremeVulnerableDriver");
+    RtlInitUnicodeString(&DosDeviceName, L"\\DosDevices\\HackSysExtremeVulnerableDriver");
 
     // Create the device
-    status = IoCreateDevice(pDriverObject,
+    Status = IoCreateDevice(DriverObject,
                             0,
                             &DeviceName,
                             FILE_DEVICE_UNKNOWN,
                             FILE_DEVICE_SECURE_OPEN,
                             FALSE,
-                            &pDeviceObject);
+                            &DeviceObject);
 
-    if (status != STATUS_SUCCESS) {
+    if (!NT_SUCCESS(Status)) {
         // Delete the device
-        IoDeleteDevice(pDriverObject->DeviceObject);
+        IoDeleteDevice(DriverObject->DeviceObject);
 
         DbgPrint("[-] Error Initializing HackSys Extreme Vulnerable Driver\n");
-        return status;
+        return Status;
     }
 
     // Assign the IRP handlers
@@ -101,47 +98,47 @@ NTSTATUS DriverEntry(IN PDRIVER_OBJECT pDriverObject, IN PUNICODE_STRING pRegist
         // Disable the Compiler Warning: 28169
         #pragma warning(push)
         #pragma warning(disable : 28169)
-        pDriverObject->MajorFunction[i] = IrpNotImplementedHandler;
+        DriverObject->MajorFunction[i] = IrpNotImplementedHandler;
         #pragma warning(pop)
     }
 
     // Assign the IRP handlers for Create, Close and Device Control
-    pDriverObject->MajorFunction[IRP_MJ_CREATE]         = IrpCreateHandler;
-    pDriverObject->MajorFunction[IRP_MJ_CLOSE]          = IrpCloseHandler;
-    pDriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = IrpDeviceIoCtlHandler;
+    DriverObject->MajorFunction[IRP_MJ_CREATE]         = IrpCreateHandler;
+    DriverObject->MajorFunction[IRP_MJ_CLOSE]          = IrpCloseHandler;
+    DriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = IrpDeviceIoCtlHandler;
 
     // Assign the driver Unload routine
-    pDriverObject->DriverUnload = IrpUnloadHandler;
+    DriverObject->DriverUnload = IrpUnloadHandler;
 
     // Set the flags
-    pDeviceObject->Flags |= DO_DIRECT_IO;
-    pDeviceObject->Flags &= ~DO_DEVICE_INITIALIZING;
+    DeviceObject->Flags |= DO_DIRECT_IO;
+    DeviceObject->Flags &= ~DO_DEVICE_INITIALIZING;
 
     // Create the symbolic link
-    status = IoCreateSymbolicLink(&Win32Device, &DeviceName);
+    Status = IoCreateSymbolicLink(&DosDeviceName, &DeviceName);
 
     // Show the banner
     DbgPrint("%s", BANNER);
     DbgPrint("[+] HackSys Extreme Vulnerable Driver Loaded\n");
 
-    return status;
+    return Status;
 }
 
 /// <summary>
 /// IRP Create Handler
 /// </summary>
-/// <param name="pDeviceObject">The pointer to DEVICE_OBJECT</param>
-/// <param name="pIrp">The pointer to IRP</param>
+/// <param name="DeviceObject">The pointer to DEVICE_OBJECT</param>
+/// <param name="Irp">The pointer to IRP</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS IrpCreateHandler(IN PDEVICE_OBJECT pDeviceObject, IN PIRP pIrp) {
-    pIrp->IoStatus.Status = STATUS_SUCCESS;
-    pIrp->IoStatus.Information = 0;
+NTSTATUS IrpCreateHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
+    Irp->IoStatus.Information = 0;
+    Irp->IoStatus.Status = STATUS_SUCCESS;
 
-    UNREFERENCED_PARAMETER(pDeviceObject);
+    UNREFERENCED_PARAMETER(DeviceObject);
     PAGED_CODE();
 
     // Complete the request
-    IoCompleteRequest(pIrp, IO_NO_INCREMENT);
+    IoCompleteRequest(Irp, IO_NO_INCREMENT);
 
     return STATUS_SUCCESS;
 }
@@ -149,18 +146,18 @@ NTSTATUS IrpCreateHandler(IN PDEVICE_OBJECT pDeviceObject, IN PIRP pIrp) {
 /// <summary>
 /// IRP Close Handler
 /// </summary>
-/// <param name="pDeviceObject">The pointer to DEVICE_OBJECT</param>
-/// <param name="pIrp">The pointer to IRP</param>
+/// <param name="DeviceObject">The pointer to DEVICE_OBJECT</param>
+/// <param name="Irp">The pointer to IRP</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS IrpCloseHandler(IN PDEVICE_OBJECT pDeviceObject, IN PIRP pIrp) {
-    pIrp->IoStatus.Status = STATUS_SUCCESS;
-    pIrp->IoStatus.Information = 0;
+NTSTATUS IrpCloseHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
+    Irp->IoStatus.Information = 0;
+    Irp->IoStatus.Status = STATUS_SUCCESS;
 
-    UNREFERENCED_PARAMETER(pDeviceObject);
+    UNREFERENCED_PARAMETER(DeviceObject);
     PAGED_CODE();
 
     // Complete the request
-    IoCompleteRequest(pIrp, IO_NO_INCREMENT);
+    IoCompleteRequest(Irp, IO_NO_INCREMENT);
 
     return STATUS_SUCCESS;
 }
@@ -168,21 +165,20 @@ NTSTATUS IrpCloseHandler(IN PDEVICE_OBJECT pDeviceObject, IN PIRP pIrp) {
 /// <summary>
 /// IRP Unload Handler
 /// </summary>
-/// <param name="pDeviceObject">The pointer to DEVICE_OBJECT</param>
-/// <param name="pIrp">The pointer to IRP</param>
+/// <param name="DeviceObject">The pointer to DEVICE_OBJECT</param>
 /// <returns>NTSTATUS</returns>
-VOID IrpUnloadHandler(IN PDRIVER_OBJECT pDriverObject) {
-    UNICODE_STRING Win32Device;
+VOID IrpUnloadHandler(IN PDRIVER_OBJECT DriverObject) {
+    UNICODE_STRING DosDeviceName = {0};
 
     PAGED_CODE();
 
-    RtlInitUnicodeString(&Win32Device, L"\\DosDevices\\HackSysExtremeVulnerableDriver");
+    RtlInitUnicodeString(&DosDeviceName, L"\\DosDevices\\HackSysExtremeVulnerableDriver");
 
     // Delete the symbolic link
-    IoDeleteSymbolicLink(&Win32Device);
+    IoDeleteSymbolicLink(&DosDeviceName);
 
     // Delete the device
-    IoDeleteDevice(pDriverObject->DeviceObject);
+    IoDeleteDevice(DriverObject->DeviceObject);
 
     DbgPrint("[-] HackSys Extreme Vulnerable Driver Unloaded\n");
 }
@@ -190,18 +186,18 @@ VOID IrpUnloadHandler(IN PDRIVER_OBJECT pDriverObject) {
 /// <summary>
 /// IRP Not Implemented Handler
 /// </summary>
-/// <param name="pDeviceObject">The pointer to DEVICE_OBJECT</param>
-/// <param name="pIrp">The pointer to IRP</param>
+/// <param name="DeviceObject">The pointer to DEVICE_OBJECT</param>
+/// <param name="Irp">The pointer to IRP</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS IrpNotImplementedHandler(IN PDEVICE_OBJECT pDeviceObject, IN PIRP pIrp) {
-    pIrp->IoStatus.Status = STATUS_NOT_SUPPORTED;
-    pIrp->IoStatus.Information = 0;
+NTSTATUS IrpNotImplementedHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
+    Irp->IoStatus.Information = 0;
+    Irp->IoStatus.Status = STATUS_NOT_SUPPORTED;
 
-    UNREFERENCED_PARAMETER(pDeviceObject);
+    UNREFERENCED_PARAMETER(DeviceObject);
     PAGED_CODE();
 
     // Complete the request
-    IoCompleteRequest(pIrp, IO_NO_INCREMENT);
+    IoCompleteRequest(Irp, IO_NO_INCREMENT);
 
     return STATUS_NOT_SUPPORTED;
 }
@@ -209,89 +205,94 @@ NTSTATUS IrpNotImplementedHandler(IN PDEVICE_OBJECT pDeviceObject, IN PIRP pIrp)
 /// <summary>
 /// IRP Device IoCtl Handler
 /// </summary>
-/// <param name="pDeviceObject">The pointer to DEVICE_OBJECT</param>
-/// <param name="pIrp">The pointer to IRP</param>
+/// <param name="DeviceObject">The pointer to DEVICE_OBJECT</param>
+/// <param name="Irp">The pointer to IRP</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT pDeviceObject, IN PIRP pIrp) {
-    NTSTATUS status = STATUS_NOT_SUPPORTED;
-    PIO_STACK_LOCATION pIoStackIRP = NULL;
-    ULONG ioControlCode = 0;
+NTSTATUS IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
+    ULONG IoControlCode = 0;
+    PIO_STACK_LOCATION IrpSp = NULL;
+    NTSTATUS Status = STATUS_NOT_SUPPORTED;
 
-    UNREFERENCED_PARAMETER(pDeviceObject);
+    UNREFERENCED_PARAMETER(DeviceObject);
     PAGED_CODE();
 
-    pIoStackIRP = IoGetCurrentIrpStackLocation(pIrp);
-    ioControlCode = pIoStackIRP->Parameters.DeviceIoControl.IoControlCode;
+    IrpSp = IoGetCurrentIrpStackLocation(Irp);
+    IoControlCode = IrpSp->Parameters.DeviceIoControl.IoControlCode;
 
-    if (pIoStackIRP) {
-        switch (ioControlCode) {
+    if (IrpSp) {
+        switch (IoControlCode) {
             case HACKSYS_EVD_IOCTL_STACK_OVERFLOW:
                 DbgPrint("****** HACKSYS_EVD_STACKOVERFLOW ******\n");
-                status = StackOverflowIoctlHandler(pIrp, pIoStackIRP);
+                Status = StackOverflowIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_STACKOVERFLOW ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_STACK_OVERFLOW_GS:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_STACK_OVERFLOW_GS ******\n");
-                status = StackOverflowGSIoctlHandler(pIrp, pIoStackIRP);
+                Status = StackOverflowGSIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_STACK_OVERFLOW_GS ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_ARBITRARY_OVERWRITE:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_ARBITRARY_OVERWRITE ******\n");
-                status = ArbitraryOverwriteIoctlHandler(pIrp, pIoStackIRP);
+                Status = ArbitraryOverwriteIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_ARBITRARY_OVERWRITE ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_POOL_OVERFLOW:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_POOL_OVERFLOW ******\n");
-                status = PoolOverflowIoctlHandler(pIrp, pIoStackIRP);
+                Status = PoolOverflowIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_POOL_OVERFLOW ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_CREATE_UAF_OBJECT:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_CREATE_UAF_OBJECT ******\n");
-                status = CreateUaFObjectIoctlHandler(pIrp, pIoStackIRP);
+                Status = CreateUaFObjectIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_CREATE_UAF_OBJECT ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_USE_UAF_OBJECT:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_USE_UAF_OBJECT ******\n");
-                status = UseUaFObjectIoctlHandler(pIrp, pIoStackIRP);
+                Status = UseUaFObjectIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_USE_UAF_OBJECT ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_FREE_UAF_OBJECT:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_FREE_UAF_OBJECT ******\n");
-                status = FreeUaFObjectIoctlHandler(pIrp, pIoStackIRP);
+                Status = FreeUaFObjectIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_FREE_UAF_OBJECT ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_CREATE_FAKE_OBJECT:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_CREATE_FAKE_OBJECT ******\n");
-                status = CreateFakeObjectIoctlHandler(pIrp, pIoStackIRP);
+                Status = CreateFakeObjectIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_CREATE_FAKE_OBJECT ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_TYPE_CONFUSION:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_TYPE_CONFUSION ******\n");
-                status = TypeConfusionIoctlHandler(pIrp, pIoStackIRP);
+                Status = TypeConfusionIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_TYPE_CONFUSION ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_INTEGER_OVERFLOW:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_INTEGER_OVERFLOW ******\n");
-                status = IntegerOverflowIoctlHandler(pIrp, pIoStackIRP);
+                Status = IntegerOverflowIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_INTEGER_OVERFLOW ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_NULL_POINTER_DEREFERENCE:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_NULL_POINTER_DEREFERENCE ******\n");
-                status = NullPointerDereferenceIoctlHandler(pIrp, pIoStackIRP);
+                Status = NullPointerDereferenceIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_NULL_POINTER_DEREFERENCE ******\n");
                 break;
+            case HACKSYS_EVD_IOCTL_UNINITIALIZED_VARIABLE:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_UNINITIALIZED_VARIABLE ******\n");
+                Status = UninitializedVariableIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_UNINITIALIZED_VARIABLE ******\n");
+                break;
             default:
-                DbgPrint("[-] Invalid IOCTL Code: 0x%X\n", ioControlCode);
-                status = STATUS_INVALID_DEVICE_REQUEST;
+                DbgPrint("[-] Invalid IOCTL Code: 0x%X\n", IoControlCode);
+                Status = STATUS_INVALID_DEVICE_REQUEST;
                 break;
         }
     }
 
-    pIrp->IoStatus.Status = status;
-    pIrp->IoStatus.Information = 0;
+    Irp->IoStatus.Status = Status;
+    Irp->IoStatus.Information = 0;
 
     // Complete the request
-    IoCompleteRequest(pIrp, IO_NO_INCREMENT);
+    IoCompleteRequest(Irp, IO_NO_INCREMENT);
 
-    return status;
+    return Status;
 }

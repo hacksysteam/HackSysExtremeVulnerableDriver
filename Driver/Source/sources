@@ -20,6 +20,7 @@ SOURCES = PoolOverflow.c \
           StackOverflowGS.c \
           IntegerOverflow.c \
           ArbitraryOverwrite.c \
+          UninitializedVariable.c \
           NullPointerDereference.c \
           HackSysExtremeVulnerableDriver.c \
 

@@ -57,6 +57,7 @@ Vulnerabilities Implemented
 * **Integer Overflow**
 * **Stack Overflow GS**
 * **Arbitrary Overwrite**
+* **Uninitialized Variable**
 * **Null Pointer Dereference** 
 
 
@@ -93,6 +94,7 @@ Sessions Conducted
 * [Windows Kernel Exploitation 3](http://null.co.in/event_sessions/226-windows-kernel-exploitation-3)
 * [Windows Kernel Exploitation 4](http://null.co.in/event_sessions/234-windows-kernel-exploitation-4)
 * [Windows Kernel Exploitation 5](http://null.co.in/event_sessions/309-windows-kernel-exploitation-5)
+* [Windows Kernel Exploitation 6](https://null.co.in/event_sessions/482-windows-kernel-exploitation-6)
 
 
 Workshops Conducted
@@ -105,12 +107,11 @@ Workshops Conducted
 TODO
 ----
 
-1. Test the Driver on Windows 8.1/10 x64
-2. Add the exploit support for Windows 8.1/10 x64
-3. Add `Use Of Uninitialized Variable` Vulnerability
-4. Add `Memory Disclosure` Vulnerability
-5. Add `Time-Of-Check-To-Time-Of-Use` (**TOCTOU/Race Condition**) Vulnerability
-6. Refactor and Cleanup the driver and exploit source code
+1. Test the Driver on Windows 10 x64
+2. Add the exploit support for Windows 10 x64
+3. Add `Memory Disclosure` Vulnerability
+4. Add `Time-Of-Check-To-Time-Of-Use` (**TOCTOU/Race Condition**) Vulnerability
+5. Refactor and clean-up the driver and exploit source code
 
 
 License

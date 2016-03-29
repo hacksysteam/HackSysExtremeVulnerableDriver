@@ -42,6 +42,9 @@
     <ClCompile Include="HackSysExtremeVulnerableDriver.c">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="UninitializedVariable.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ProjectDir)\sources" />
@@ -75,6 +78,9 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="HackSysExtremeVulnerableDriver.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="UninitializedVariable.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

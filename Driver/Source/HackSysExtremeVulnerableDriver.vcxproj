@@ -75,6 +75,7 @@ build</NMakeReBuildCommandLine>
     <ClCompile Include="StackOverflow.c" />
     <ClCompile Include="StackOverflowGS.c" />
     <ClCompile Include="TypeConfusion.c" />
+    <ClCompile Include="UninitializedVariable.c" />
     <ClCompile Include="UseAfterFree.c" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +91,7 @@ build</NMakeReBuildCommandLine>
     <ClInclude Include="StackOverflow.h" />
     <ClInclude Include="StackOverflowGS.h" />
     <ClInclude Include="TypeConfusion.h" />
+    <ClInclude Include="UninitializedVariable.h" />
     <ClInclude Include="UseAfterFree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

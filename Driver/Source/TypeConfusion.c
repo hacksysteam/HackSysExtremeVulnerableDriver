@@ -14,30 +14,27 @@ Author : Ashfaq Ansari
 Contact: ashfaq[at]payatu[dot]com
 Website: http://www.payatu.com/
 
-Copyright (C) 2011-2015 Payatu Technologies. All rights reserved.
+Copyright (C) 2011-2016 Payatu Technologies Pvt. Ltd. All rights reserved.
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of
+the GNU General Public License as published by the Free Software Foundation, either version
+3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with this program.
+If not, see <http://www.gnu.org/licenses/>.
 
-THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHORS
-OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
-STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 See the file 'LICENSE' for complete copying permission.
 
@@ -46,7 +43,8 @@ Module Name:
 
 Abstract:
     This module implements the functions to demonstrate
-    Type Confusion vulnerability.
+    Type Confusion vulnerability due to improper use of
+    UNION construct.
 
 --*/
 
@@ -73,122 +71,126 @@ VOID TypeConfusionObjectCallback() {
 /// <summary>
 /// Type Confusion Object Initializer
 /// </summary>
-/// <param name="pTypeConfusionKernelObject">The pointer to TYPE_CONFUSION_KERNEL_OBJECT object</param>
+/// <param name="KernelTypeConfusionObject">The pointer to KERNEL_TYPE_CONFUSION_OBJECT object</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS TypeConfusionObjectInitializer(PTYPE_CONFUSION_KERNEL_OBJECT pTypeConfusionKernelObject) {
-    NTSTATUS status = STATUS_SUCCESS;
+NTSTATUS TypeConfusionObjectInitializer(PKERNEL_TYPE_CONFUSION_OBJECT KernelTypeConfusionObject) {
+    NTSTATUS Status = STATUS_SUCCESS;
 
     PAGED_CODE();
 
-    DbgPrint("[+] pTypeConfusionKernelObject->pCallback: 0x%p\n", pTypeConfusionKernelObject->pCallback);
+    DbgPrint("[+] KernelTypeConfusionObject->Callback: 0x%p\n", KernelTypeConfusionObject->Callback);
+    DbgPrint("[+] Calling Callback\n");
 
-    pTypeConfusionKernelObject->pCallback();
+    KernelTypeConfusionObject->Callback();
 
-    DbgPrint("[+] Type Confusion Object Initialized\n");
+    DbgPrint("[+] Kernel Type Confusion Object Initialized\n");
 
-    return status;
+    return Status;
 }
 
 /// <summary>
 /// Trigger the Type Confusion Vulnerability
 /// </summary>
-/// <param name="pTypeConfusionUserObject">The pointer to TYPE_CONFUSION_USER_OBJECT object</param>
+/// <param name="UserTypeConfusionObject">The pointer to USER_TYPE_CONFUSION_OBJECT object</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS TriggerTypeConfusion(IN PTYPE_CONFUSION_USER_OBJECT pTypeConfusionUserObject) {
-    NTSTATUS status = STATUS_UNSUCCESSFUL;
-    PTYPE_CONFUSION_KERNEL_OBJECT pTypeConfusionKernelObject = NULL;
+NTSTATUS TriggerTypeConfusion(IN PUSER_TYPE_CONFUSION_OBJECT UserTypeConfusionObject) {
+    NTSTATUS Status = STATUS_UNSUCCESSFUL;
+    PKERNEL_TYPE_CONFUSION_OBJECT KernelTypeConfusionObject = NULL;
 
     PAGED_CODE();
 
     __try {
-        // Verify if the buffer resides in User Mode
-        ProbeForRead(pTypeConfusionUserObject,
-                     sizeof(TYPE_CONFUSION_USER_OBJECT),
-                     (ULONG)__alignof(TYPE_CONFUSION_USER_OBJECT));
+        // Verify if the buffer resides in user mode
+        ProbeForRead(UserTypeConfusionObject,
+                     sizeof(USER_TYPE_CONFUSION_OBJECT),
+                     (ULONG)__alignof(USER_TYPE_CONFUSION_OBJECT));
 
-        // Allocate Pool Memory
-        pTypeConfusionKernelObject = (PTYPE_CONFUSION_KERNEL_OBJECT)
-                                      ExAllocatePoolWithTag(NonPagedPool,
-                                                            sizeof(TYPE_CONFUSION_KERNEL_OBJECT),
-                                                            (ULONG)POOL_TAG);
+        // Allocate Pool chunk
+        KernelTypeConfusionObject = (PKERNEL_TYPE_CONFUSION_OBJECT)
+                                     ExAllocatePoolWithTag(NonPagedPool,
+                                                           sizeof(KERNEL_TYPE_CONFUSION_OBJECT),
+                                                           (ULONG)POOL_TAG);
 
-        if (!pTypeConfusionKernelObject) {
-            // Unable to allocate Pool Memory with Tag
-            DbgPrint("[-] Unable To Allocate Pool Memory\n");
+        if (!KernelTypeConfusionObject) {
+            // Unable to allocate Pool chunk
+            DbgPrint("[-] Unable to allocate Pool chunk\n");
 
-            status = STATUS_NO_MEMORY;
-            return status;
+            Status = STATUS_NO_MEMORY;
+            return Status;
         }
         else {
-            DbgPrint("[+] Pool Address: 0x%p\n", pTypeConfusionKernelObject);
-            DbgPrint("[+] Pool Type: %s\n", STRINGIFY(NonPagedPool));
-            DbgPrint("[+] Pool Size: 0x%X\n", sizeof(TYPE_CONFUSION_KERNEL_OBJECT));
             DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
+            DbgPrint("[+] Pool Type: %s\n", STRINGIFY(NonPagedPool));
+            DbgPrint("[+] Pool Size: 0x%X\n", sizeof(KERNEL_TYPE_CONFUSION_OBJECT));
+            DbgPrint("[+] Pool Chunk: 0x%p\n", KernelTypeConfusionObject);
         }
 
-        DbgPrint("[+] pTypeConfusionUserObject: 0x%p\n", pTypeConfusionUserObject);
-        DbgPrint("[+] pTypeConfusionKernelObject: 0x%p\n", pTypeConfusionKernelObject);
-        DbgPrint("[+] pTypeConfusionKernelObject Size: 0x%X\n", sizeof(TYPE_CONFUSION_KERNEL_OBJECT));
+        DbgPrint("[+] UserTypeConfusionObject: 0x%p\n", UserTypeConfusionObject);
+        DbgPrint("[+] KernelTypeConfusionObject: 0x%p\n", KernelTypeConfusionObject);
+        DbgPrint("[+] KernelTypeConfusionObject Size: 0x%X\n", sizeof(KERNEL_TYPE_CONFUSION_OBJECT));
 
-        pTypeConfusionKernelObject->objectID = pTypeConfusionUserObject->objectID;
-        DbgPrint("[+] pTypeConfusionKernelObject->objectID: 0x%p\n", pTypeConfusionKernelObject->objectID);
+        KernelTypeConfusionObject->ObjectID = UserTypeConfusionObject->ObjectID;
+        KernelTypeConfusionObject->ObjectType = UserTypeConfusionObject->ObjectType;
 
-        pTypeConfusionKernelObject->objectType = pTypeConfusionUserObject->objectType;
-        DbgPrint("[+] pTypeConfusionKernelObject->objectType: 0x%p\n", pTypeConfusionKernelObject->objectType);
+        DbgPrint("[+] KernelTypeConfusionObject->ObjectID: 0x%p\n", KernelTypeConfusionObject->ObjectID);
+        DbgPrint("[+] KernelTypeConfusionObject->ObjectType: 0x%p\n", KernelTypeConfusionObject->ObjectType);
 
-        #ifdef SECURE
-            // Secure Note: This is secure because the developer is properly setting 'pCallback' 
-            // member of the TYPE_CONFUSION_KERNEL_OBJECT structure before passing the pointer to 
-            // itself to TypeConfusionObjectInitializer() function as parameter
-            pTypeConfusionKernelObject->pCallback = &TypeConfusionObjectCallback;
-            status = TypeConfusionObjectInitializer(pTypeConfusionKernelObject);
-        #else
-            DbgPrint("[+] Triggering Type Confusion\n");
 
-            // Vulnerability Note: This is a vanilla Type Confusion vulnerability due to improper 
-            // use of the UNION construct. The developer has not set the 'pCallback' member of the 
-            // TYPE_CONFUSION_KERNEL_OBJECT structure before passing the pointer to itself to 
-            // TypeConfusionObjectInitializer() function as parameter
-            status = TypeConfusionObjectInitializer(pTypeConfusionKernelObject);
-        #endif
+#ifdef SECURE
+        // Secure Note: This is secure because the developer is properly setting 'Callback'
+        // member of the 'KERNEL_TYPE_CONFUSION_OBJECT' structure before passing the pointer
+        // of 'KernelTypeConfusionObject' to 'TypeConfusionObjectInitializer()' function as
+        // parameter
+        KernelTypeConfusionObject->Callback = &TypeConfusionObjectCallback;
+        Status = TypeConfusionObjectInitializer(KernelTypeConfusionObject);
+#else
+        DbgPrint("[+] Triggering Type Confusion\n");
 
-        DbgPrint("[+] Freeing pTypeConfusionKernelObject Object\n");
-        DbgPrint("[+] Pool Address: 0x%p\n", pTypeConfusionKernelObject);
+        // Vulnerability Note: This is a vanilla Type Confusion vulnerability due to improper
+        // use of the 'UNION' construct. The developer has not set the 'Callback' member of
+        // the 'KERNEL_TYPE_CONFUSION_OBJECT' structure before passing the pointer of
+        // 'KernelTypeConfusionObject' to 'TypeConfusionObjectInitializer()' function as
+        // parameter
+        Status = TypeConfusionObjectInitializer(KernelTypeConfusionObject);
+#endif
+
+        DbgPrint("[+] Freeing KernelTypeConfusionObject Object\n");
         DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
+        DbgPrint("[+] Pool Chunk: 0x%p\n", KernelTypeConfusionObject);
 
-        // Free the allocated Pool Memory
-        ExFreePoolWithTag((PVOID)pTypeConfusionKernelObject, (ULONG)POOL_TAG);
-        pTypeConfusionKernelObject = NULL;
+        // Free the allocated Pool chunk
+        ExFreePoolWithTag((PVOID)KernelTypeConfusionObject, (ULONG)POOL_TAG);
+        KernelTypeConfusionObject = NULL;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
-        status = GetExceptionCode();
-        DbgPrint("[-] Exception Code: 0x%X\n", status);
+        Status = GetExceptionCode();
+        DbgPrint("[-] Exception Code: 0x%X\n", Status);
     }
 
-    return status;
+    return Status;
 }
 
 /// <summary>
 /// Type Confusion Ioctl Handler
 /// </summary>
-/// <param name="pIrp">The pointer to IRP</param>
-/// <param name="pIoStackIrp">The pointer to IO_STACK_LOCATION structure</param>
+/// <param name="Irp">The pointer to IRP</param>
+/// <param name="IrpSp">The pointer to IO_STACK_LOCATION structure</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS TypeConfusionIoctlHandler(IN PIRP pIrp, IN PIO_STACK_LOCATION pIoStackIrp) {
-    NTSTATUS status = STATUS_UNSUCCESSFUL;
-    PTYPE_CONFUSION_USER_OBJECT pTypeConfusionUserObject = NULL;
+NTSTATUS TypeConfusionIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) {
+    NTSTATUS Status = STATUS_UNSUCCESSFUL;
+    PUSER_TYPE_CONFUSION_OBJECT UserTypeConfusionObject = NULL;
 
-    UNREFERENCED_PARAMETER(pIrp);
+    UNREFERENCED_PARAMETER(Irp);
     PAGED_CODE();
 
-    pTypeConfusionUserObject = (PTYPE_CONFUSION_USER_OBJECT)
-                                pIoStackIrp->Parameters.DeviceIoControl.Type3InputBuffer;
+    UserTypeConfusionObject = (PUSER_TYPE_CONFUSION_OBJECT)
+                               IrpSp->Parameters.DeviceIoControl.Type3InputBuffer;
 
-    if (pTypeConfusionUserObject) {
-        status = TriggerTypeConfusion(pTypeConfusionUserObject);
+    if (UserTypeConfusionObject) {
+        Status = TriggerTypeConfusion(UserTypeConfusionObject);
     }
 
-    return status;
+    return Status;
 }
 
 #pragma auto_inline()
