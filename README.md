@@ -32,7 +32,7 @@ Author
 
 > ![Payatu Technologies](http://www.payatu.com/wp-content/uploads/2015/04/Payatu_Logo.png "Payatu Technologies Pvt. Ltd.")
 
-> [http://www.payatu.com/](http://www.payatu.com/wp-content/uploads/2015/04/Payatu_Logo.png "Payatu Technologies Pvt. Ltd.")
+> [http://www.payatu.com/](http://www.payatu.com/ "Payatu Technologies Pvt. Ltd.")
 
 
 Screenshots
