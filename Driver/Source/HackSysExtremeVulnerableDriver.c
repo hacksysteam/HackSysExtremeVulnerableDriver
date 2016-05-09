@@ -276,10 +276,15 @@ NTSTATUS IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
                 Status = NullPointerDereferenceIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_NULL_POINTER_DEREFERENCE ******\n");
                 break;
-            case HACKSYS_EVD_IOCTL_UNINITIALIZED_VARIABLE:
-                DbgPrint("****** HACKSYS_EVD_IOCTL_UNINITIALIZED_VARIABLE ******\n");
-                Status = UninitializedVariableIoctlHandler(Irp, IrpSp);
-                DbgPrint("****** HACKSYS_EVD_IOCTL_UNINITIALIZED_VARIABLE ******\n");
+            case HACKSYS_EVD_IOCTL_UNINITIALIZED_STACK_VARIABLE:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_UNINITIALIZED_STACK_VARIABLE ******\n");
+                Status = UninitializedStackVariableIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_UNINITIALIZED_STACK_VARIABLE ******\n");
+                break;
+            case HACKSYS_EVD_IOCTL_UNINITIALIZED_HEAP_VARIABLE:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_UNINITIALIZED_HEAP_VARIABLE ******\n");
+                Status = UninitializedHeapVariableIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_UNINITIALIZED_HEAP_VARIABLE ******\n");
                 break;
             default:
                 DbgPrint("[-] Invalid IOCTL Code: 0x%X\n", IoControlCode);

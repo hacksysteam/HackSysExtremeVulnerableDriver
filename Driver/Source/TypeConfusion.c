@@ -65,7 +65,7 @@ Abstract:
 VOID TypeConfusionObjectCallback() {
     PAGED_CODE();
 
-    DbgPrint("[+] Type Confusion Object Callback called\n");
+    DbgPrint("[+] Type Confusion Object Callback\n");
 }
 
 /// <summary>

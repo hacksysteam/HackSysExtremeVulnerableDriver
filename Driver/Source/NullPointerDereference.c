@@ -63,7 +63,7 @@ Abstract:
 VOID NullPointerDereferenceObjectCallback() {
     PAGED_CODE();
 
-    DbgPrint("[+] Null Pointer Dereference Object Callback called\n");
+    DbgPrint("[+] Null Pointer Dereference Object Callback\n");
 }
 
 /// <summary>

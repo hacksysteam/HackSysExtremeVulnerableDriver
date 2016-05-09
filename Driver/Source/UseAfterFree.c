@@ -71,7 +71,7 @@ PUSE_AFTER_FREE g_UseAfterFreeObject = NULL;
 VOID UaFObjectCallback() {
     PAGED_CODE();
 
-    DbgPrint("[+] UseAfter Free Object Callback called\n");
+    DbgPrint("[+] UseAfter Free Object Callback\n");
 }
 
 /// <summary>

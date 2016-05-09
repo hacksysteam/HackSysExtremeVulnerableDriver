@@ -72,7 +72,8 @@ Abstract:
     NTSTATUS    StackOverflowGSIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    CreateFakeObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    ArbitraryOverwriteIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    UninitializedVariableIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    NullPointerDereferenceIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
+    NTSTATUS    UninitializedHeapVariableIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
+    NTSTATUS    UninitializedStackVariableIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
 
 #endif //__COMMON_H__

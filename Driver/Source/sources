@@ -20,8 +20,9 @@ SOURCES = PoolOverflow.c \
           StackOverflowGS.c \
           IntegerOverflow.c \
           ArbitraryOverwrite.c \
-          UninitializedVariable.c \
           NullPointerDereference.c \
+          UninitializedHeapVariable.c \
+          UninitializedStackVariable.c \
           HackSysExtremeVulnerableDriver.c \
 
 !if defined(SECURE)
