@@ -57,8 +57,9 @@ Vulnerabilities Implemented
 * **Integer Overflow**
 * **Stack Overflow GS**
 * **Arbitrary Overwrite**
-* **Uninitialized Variable**
-* **Null Pointer Dereference** 
+* **Null Pointer Dereference**
+* **Uninitialized Heap Variable**
+* **Uninitialized Stack Variable**
 
 
 Building Driver
