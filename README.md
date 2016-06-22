@@ -96,6 +96,7 @@ Sessions Conducted
 * [Windows Kernel Exploitation 4](http://null.co.in/event_sessions/234-windows-kernel-exploitation-4)
 * [Windows Kernel Exploitation 5](http://null.co.in/event_sessions/309-windows-kernel-exploitation-5)
 * [Windows Kernel Exploitation 6](https://null.co.in/event_sessions/482-windows-kernel-exploitation-6)
+* [Windows Kernel Exploitation 7](https://null.co.in/event_sessions/845-windows-kernel-exploitation-7)
 
 
 Workshops Conducted
