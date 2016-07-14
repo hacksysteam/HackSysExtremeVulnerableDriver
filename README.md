@@ -77,7 +77,7 @@ Building Driver
 
 Installing Driver
 -----------------
-Use [**OSR Driver Loader**](https://www.osronline.com/article.cfm?article=157) to install **HackSys Extreme Vulnerable Driver**
+Use [OSR Driver Loader](https://www.osronline.com/article.cfm?article=157) to install **HackSys Extreme Vulnerable Driver**
 
 
 Testing
