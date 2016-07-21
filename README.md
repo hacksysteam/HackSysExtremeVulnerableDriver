@@ -30,6 +30,25 @@ Blog Post
 [http://www.payatu.com/hacksys-extreme-vulnerable-driver/](http://www.payatu.com/hacksys-extreme-vulnerable-driver/)
 
 
+External Posts/Research
+-----------------------
+[http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/](http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/)
+
+[http://whitehatters.academy/intro-to-windows-kernel-exploitation-2-windows-drivers/](http://whitehatters.academy/intro-to-windows-kernel-exploitation-2-windows-drivers/)
+
+[http://whitehatters.academy/intro-to-windows-kernel-exploitation-3-my-first-driver-exploit/](http://whitehatters.academy/intro-to-windows-kernel-exploitation-3-my-first-driver-exploit/)
+
+[http://whitehatters.academy/intro-to-windows-kernel-exploitation-more-of-the-hacksys-driver/](http://whitehatters.academy/intro-to-windows-kernel-exploitation-more-of-the-hacksys-driver/)
+
+[https://sizzop.github.io/2016/07/05/kernel-hacking-with-hevd-part-1.html](https://sizzop.github.io/2016/07/05/kernel-hacking-with-hevd-part-1.html)
+
+[https://sizzop.github.io/2016/07/06/kernel-hacking-with-hevd-part-2.html](https://sizzop.github.io/2016/07/06/kernel-hacking-with-hevd-part-2.html)
+
+[https://sizzop.github.io/2016/07/07/kernel-hacking-with-hevd-part-3.html](https://sizzop.github.io/2016/07/07/kernel-hacking-with-hevd-part-3.html)
+
+[https://sizzop.github.io/2016/07/08/kernel-hacking-with-hevd-part-4.html](https://sizzop.github.io/2016/07/08/kernel-hacking-with-hevd-part-4.html)
+
+
 Author
 ------
 > **Ashfaq Ansari**
