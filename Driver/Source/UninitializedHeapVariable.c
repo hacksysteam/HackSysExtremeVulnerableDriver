@@ -87,7 +87,7 @@ NTSTATUS TriggerUninitializedHeapVariable(IN PVOID UserBuffer) {
 
         // Allocate Pool chunk
         UninitializedHeapVariable = (PUNINITIALIZED_HEAP_VARIABLE)
-                                     ExAllocatePoolWithTag(NonPagedPool,
+                                     ExAllocatePoolWithTag(PagedPool,
                                                            sizeof(UNINITIALIZED_HEAP_VARIABLE),
                                                            (ULONG)POOL_TAG);
 
@@ -115,7 +115,14 @@ NTSTATUS TriggerUninitializedHeapVariable(IN PVOID UserBuffer) {
         if (UserValue == MagicValue) {
             UninitializedHeapVariable->Value = UserValue;
             UninitializedHeapVariable->Callback = &UninitializedHeapVariableObjectCallback;
+
+            // Fill the buffer with ASCII 'A'
+            RtlFillMemory((PVOID)UninitializedHeapVariable->Buffer, sizeof(UninitializedHeapVariable->Buffer), 0x41);
+
+            // Null terminate the char buffer
+            UninitializedHeapVariable->Buffer[(sizeof(UninitializedHeapVariable->Buffer) / sizeof(ULONG)) - 1] = '\0';
         }
+#ifdef SECURE
         else {
             DbgPrint("[+] Freeing UninitializedHeapVariable Object\n");
             DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
@@ -124,19 +131,18 @@ NTSTATUS TriggerUninitializedHeapVariable(IN PVOID UserBuffer) {
             // Free the allocated Pool chunk
             ExFreePoolWithTag((PVOID)UninitializedHeapVariable, (ULONG)POOL_TAG);
 
-#ifdef SECURE
             // Secure Note: This is secure because the developer is setting 'UninitializedHeapVariable'
             // to NULL and checks for NULL pointer before calling the callback
 
             // Set to NULL to avoid dangling pointer
             UninitializedHeapVariable = NULL;
+        }
 #else
             // Vulnerability Note: This is a vanilla Uninitialized Heap Variable vulnerability
-            // because the developer is not setting 'UninitializedHeapVariable' to NULL when
-            // 'MagicValue' does not match 'UserValue'
+            // because the developer is not setting 'Value' & 'Callback' to definite known value
+            // before calling the 'Callback'
             DbgPrint("[+] Triggering Uninitialized Heap Variable Vulnerability\n");
 #endif
-        }
 
         // Call the callback function
         if (UninitializedHeapVariable) {

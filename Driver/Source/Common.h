@@ -67,10 +67,10 @@ Abstract:
     NTSTATUS    FreeUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    TypeConfusionIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    StackOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    CreateUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    IntegerOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    StackOverflowGSIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    CreateFakeObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
+    NTSTATUS    AllocateUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
+    NTSTATUS    AllocateFakeObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    ArbitraryOverwriteIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    NullPointerDereferenceIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    UninitializedHeapVariableIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);

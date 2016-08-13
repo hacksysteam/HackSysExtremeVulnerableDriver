@@ -241,10 +241,10 @@ NTSTATUS IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
                 Status = PoolOverflowIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_POOL_OVERFLOW ******\n");
                 break;
-            case HACKSYS_EVD_IOCTL_CREATE_UAF_OBJECT:
-                DbgPrint("****** HACKSYS_EVD_IOCTL_CREATE_UAF_OBJECT ******\n");
-                Status = CreateUaFObjectIoctlHandler(Irp, IrpSp);
-                DbgPrint("****** HACKSYS_EVD_IOCTL_CREATE_UAF_OBJECT ******\n");
+            case HACKSYS_EVD_IOCTL_ALLOCATE_UAF_OBJECT:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_ALLOCATE_UAF_OBJECT ******\n");
+                Status = AllocateUaFObjectIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_ALLOCATE_UAF_OBJECT ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_USE_UAF_OBJECT:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_USE_UAF_OBJECT ******\n");
@@ -256,10 +256,10 @@ NTSTATUS IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
                 Status = FreeUaFObjectIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_FREE_UAF_OBJECT ******\n");
                 break;
-            case HACKSYS_EVD_IOCTL_CREATE_FAKE_OBJECT:
-                DbgPrint("****** HACKSYS_EVD_IOCTL_CREATE_FAKE_OBJECT ******\n");
-                Status = CreateFakeObjectIoctlHandler(Irp, IrpSp);
-                DbgPrint("****** HACKSYS_EVD_IOCTL_CREATE_FAKE_OBJECT ******\n");
+            case HACKSYS_EVD_IOCTL_ALLOCATE_FAKE_OBJECT:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_ALLOCATE_FAKE_OBJECT ******\n");
+                Status = AllocateFakeObjectIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_ALLOCATE_FAKE_OBJECT ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_TYPE_CONFUSION:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_TYPE_CONFUSION ******\n");

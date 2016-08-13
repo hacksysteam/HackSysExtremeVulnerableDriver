@@ -52,13 +52,13 @@ Abstract:
 #ifdef ALLOC_PRAGMA
     #pragma alloc_text(PAGE, UseUaFObject)
     #pragma alloc_text(PAGE, FreeUaFObject)
-    #pragma alloc_text(PAGE, CreateUaFObject)
-    #pragma alloc_text(PAGE, CreateFakeObject)
     #pragma alloc_text(PAGE, UaFObjectCallback)
+    #pragma alloc_text(PAGE, AllocateUaFObject)
+    #pragma alloc_text(PAGE, AllocateFakeObject)
     #pragma alloc_text(PAGE, UseUaFObjectIoctlHandler)
     #pragma alloc_text(PAGE, FreeUaFObjectIoctlHandler)
-    #pragma alloc_text(PAGE, CreateUaFObjectIoctlHandler)
-    #pragma alloc_text(PAGE, CreateFakeObjectIoctlHandler)
+    #pragma alloc_text(PAGE, AllocateUaFObjectIoctlHandler)
+    #pragma alloc_text(PAGE, AllocateFakeObjectIoctlHandler)
 #endif // ALLOC_PRAGMA
 
 #pragma auto_inline(off)
@@ -75,17 +75,17 @@ VOID UaFObjectCallback() {
 }
 
 /// <summary>
-/// Create and store the UaF object
+/// Allocate the UaF object
 /// </summary>
 /// <returns>NTSTATUS</returns>
-NTSTATUS CreateUaFObject() {
+NTSTATUS AllocateUaFObject() {
     NTSTATUS Status = STATUS_SUCCESS;
     PUSE_AFTER_FREE UseAfterFree = NULL;
 
     PAGED_CODE();
 
     __try {
-        DbgPrint("[+] Creating UaF Object\n");
+        DbgPrint("[+] Allocating UaF Object\n");
 
         // Allocate Pool chunk
         UseAfterFree = (PUSE_AFTER_FREE)ExAllocatePoolWithTag(NonPagedPool,
@@ -202,11 +202,11 @@ NTSTATUS FreeUaFObject() {
 }
 
 /// <summary>
-/// Create and store the Fake object
+/// Allocate the Fake object
 /// </summary>
 /// <param name="UserFakeObject">The pointer to FAKE_OBJECT structure</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS CreateFakeObject(IN PFAKE_OBJECT UserFakeObject) {
+NTSTATUS AllocateFakeObject(IN PFAKE_OBJECT UserFakeObject) {
     NTSTATUS Status = STATUS_SUCCESS;
     PFAKE_OBJECT KernelFakeObject = NULL;
 
@@ -254,19 +254,19 @@ NTSTATUS CreateFakeObject(IN PFAKE_OBJECT UserFakeObject) {
 }
 
 /// <summary>
-/// Create UaF Object Ioctl Handler
+/// Allocate UaF Object Ioctl Handler
 /// </summary>
 /// <param name="Irp">The pointer to IRP.</param>
 /// <param name="IrpSp">The pointer to IO_STACK_LOCATION structure</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS CreateUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) {
+NTSTATUS AllocateUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) {
     NTSTATUS Status = STATUS_UNSUCCESSFUL;
 
     UNREFERENCED_PARAMETER(Irp);
     UNREFERENCED_PARAMETER(IrpSp);
     PAGED_CODE();
 
-    Status = CreateUaFObject();
+    Status = AllocateUaFObject();
 
     return Status;
 }
@@ -308,12 +308,12 @@ NTSTATUS FreeUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) {
 }
 
 /// <summary>
-/// Create Fake Object Ioctl Handler
+/// Allocate Fake Object Ioctl Handler
 /// </summary>
 /// <param name="Irp">The pointer to IRP</param>
 /// <param name="IrpSp">The pointer to IO_STACK_LOCATION structure</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS CreateFakeObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) {
+NTSTATUS AllocateFakeObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) {
     PFAKE_OBJECT UserFakeObject = NULL;
     NTSTATUS Status = STATUS_UNSUCCESSFUL;
 
@@ -323,7 +323,7 @@ NTSTATUS CreateFakeObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) 
     UserFakeObject = (PFAKE_OBJECT)IrpSp->Parameters.DeviceIoControl.Type3InputBuffer;
 
     if (UserFakeObject) {
-        Status = CreateFakeObject(UserFakeObject);
+        Status = AllocateFakeObject(UserFakeObject);
     }
 
     return Status;

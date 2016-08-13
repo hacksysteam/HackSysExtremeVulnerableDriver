@@ -65,8 +65,8 @@ Abstract:
 
     NTSTATUS    UseUaFObject();
     NTSTATUS    FreeUaFObject();
-    NTSTATUS    CreateUaFObject();
+    NTSTATUS    AllocateUaFObject();
     VOID        UaFObjectCallback();
-    NTSTATUS    CreateFakeObject(IN PFAKE_OBJECT UserFakeObject);
+    NTSTATUS    AllocateFakeObject(IN PFAKE_OBJECT UserFakeObject);
 
 #endif  //__USE_AFTER_FREE_H__
