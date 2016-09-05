@@ -100,7 +100,7 @@ NTSTATUS TriggerUninitializedHeapVariable(IN PVOID UserBuffer) {
         }
         else {
             DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
-            DbgPrint("[+] Pool Type: %s\n", STRINGIFY(NonPagedPool));
+            DbgPrint("[+] Pool Type: %s\n", STRINGIFY(PagedPool));
             DbgPrint("[+] Pool Size: 0x%X\n", sizeof(UNINITIALIZED_HEAP_VARIABLE));
             DbgPrint("[+] Pool Chunk: 0x%p\n", UninitializedHeapVariable);
         }
