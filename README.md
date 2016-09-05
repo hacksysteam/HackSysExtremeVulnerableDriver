@@ -30,8 +30,8 @@ Blog Post
 [http://www.payatu.com/hacksys-extreme-vulnerable-driver/](http://www.payatu.com/hacksys-extreme-vulnerable-driver/)
 
 
-External Researchs
-------------------
+External Researches
+-------------------
 [http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/](http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/)
 
 [http://whitehatters.academy/intro-to-windows-kernel-exploitation-2-windows-drivers/](http://whitehatters.academy/intro-to-windows-kernel-exploitation-2-windows-drivers/)
