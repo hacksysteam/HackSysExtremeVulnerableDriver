@@ -62,6 +62,8 @@ Abstract:
 /// <param name="UserWriteWhatWhere">The pointer to WRITE_WHAT_WHERE structure</param>
 /// <returns>NTSTATUS</returns>
 NTSTATUS TriggerArbitraryOverwrite(IN PWRITE_WHAT_WHERE UserWriteWhatWhere) {
+    PULONG What = NULL;
+    PULONG Where = NULL;
     NTSTATUS Status = STATUS_SUCCESS;
 
     PAGED_CODE();
@@ -72,23 +74,22 @@ NTSTATUS TriggerArbitraryOverwrite(IN PWRITE_WHAT_WHERE UserWriteWhatWhere) {
                      sizeof(WRITE_WHAT_WHERE),
                      (ULONG)__alignof(WRITE_WHAT_WHERE));
 
+        What = UserWriteWhatWhere->What;
+        Where = UserWriteWhatWhere->Where;
+
         DbgPrint("[+] UserWriteWhatWhere: 0x%p\n", UserWriteWhatWhere);
         DbgPrint("[+] WRITE_WHAT_WHERE Size: 0x%X\n", sizeof(WRITE_WHAT_WHERE));
-        DbgPrint("[+] UserWriteWhatWhere->What: 0x%p\n", UserWriteWhatWhere->What);
-        DbgPrint("[+] UserWriteWhatWhere->Where: 0x%p\n", UserWriteWhatWhere->Where);
+        DbgPrint("[+] UserWriteWhatWhere->What: 0x%p\n", What);
+        DbgPrint("[+] UserWriteWhatWhere->Where: 0x%p\n", Where);
 
 #ifdef SECURE
         // Secure Note: This is secure because the developer is properly validating if address
         // pointed by 'Where' and 'What' value resides in User mode by calling ProbeForRead()
         // routine before performing the write operation
-        ProbeForRead((PVOID)UserWriteWhatWhere->Where,
-                     sizeof(PULONG),
-                     (ULONG)__alignof(PULONG));
-        ProbeForRead((PVOID)UserWriteWhatWhere->What,
-                     sizeof(PULONG),
-                     (ULONG)__alignof(PULONG));
+        ProbeForRead((PVOID)Where, sizeof(PULONG), (ULONG)__alignof(PULONG));
+        ProbeForRead((PVOID)What, sizeof(PULONG), (ULONG)__alignof(PULONG));
 
-        *(UserWriteWhatWhere->Where) = *(UserWriteWhatWhere->What);
+        *(Where) = *(What);
 #else
         DbgPrint("[+] Triggering Arbitrary Overwrite\n");
 
@@ -96,7 +97,7 @@ NTSTATUS TriggerArbitraryOverwrite(IN PWRITE_WHAT_WHERE UserWriteWhatWhere) {
         // because the developer is writing the value pointed by 'What' to memory location
         // pointed by 'Where' without properly validating if the values pointed by 'Where'
         // and 'What' resides in User mode
-        *(UserWriteWhatWhere->Where) = *(UserWriteWhatWhere->What);
+        *(Where) = *(What);
 #endif
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
