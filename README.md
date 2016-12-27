@@ -36,6 +36,8 @@ External Exploits
 
 [https://github.com/sizzop/HEVD-Exploits](https://github.com/sizzop/HEVD-Exploits)
 
+[https://github.com/badd1e/bug-free-adventure](https://github.com/badd1e/bug-free-adventure)
+
 [https://github.com/FuzzySecurity/HackSysTeam-PSKernelPwn](https://github.com/FuzzySecurity/HackSysTeam-PSKernelPwn)
 
 [https://github.com/theevilbit/exploits/tree/master/HEVD](https://github.com/theevilbit/exploits/tree/master/HEVD)
