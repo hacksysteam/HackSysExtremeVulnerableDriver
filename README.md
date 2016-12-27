@@ -16,10 +16,8 @@ HackSys Extreme Vulnerable Driver
 **HackSys Extreme Vulnerable Driver** caters wide range of vulnerabilities ranging from simple `Buffer Overflows` to complex `Use After Frees` and `Pool Overflows`. This allows the researchers to explore the exploitation techniques for every implemented vulnerabilities.
 
 
-Black Hat Arsenal 2016 
+Black Hat Arsenal 2016 [![Black Hat Arsenal](https://www.toolswatch.org/badges/arsenal/2016.svg)](https://www.blackhat.com/asia-16/arsenal.html#hacksys-extreme-vulnerable-driver)
 ----------------------
-[![Black Hat Arsenal](https://www.toolswatch.org/badges/arsenal/2016.svg)](https://www.blackhat.com/asia-16/arsenal.html#hacksys-extreme-vulnerable-driver)
-
 [Presentation](https://www.blackhat.com/docs/asia-16/materials/arsenal/asia-16-Ansari-HackSys-Extreme-Vulnerable-Driver.pdf)
 
 [White Paper](https://www.blackhat.com/docs/asia-16/materials/arsenal/asia-16-Ansari-HackSys-Extreme-Vulnerable-Driver-wp.pdf)
@@ -28,6 +26,19 @@ Black Hat Arsenal 2016
 Blog Post
 ---------
 [http://www.payatu.com/hacksys-extreme-vulnerable-driver/](http://www.payatu.com/hacksys-extreme-vulnerable-driver/)
+
+
+External Exploits
+-----------------
+[https://github.com/sam-b/HackSysDriverExploits](https://github.com/sam-b/HackSysDriverExploits)
+
+[https://github.com/sizzop/HEVD-Exploits](https://github.com/sizzop/HEVD-Exploits)
+
+[https://github.com/FuzzySecurity/HackSysTeam-PSKernelPwn](https://github.com/FuzzySecurity/HackSysTeam-PSKernelPwn)
+
+[https://github.com/theevilbit/exploits/tree/master/HEVD](https://github.com/theevilbit/exploits/tree/master/HEVD)
+
+[https://github.com/GradiusX/HEVD-Python-Solutions](https://github.com/GradiusX/HEVD-Python-Solutions)
 
 
 External Researches
