@@ -44,6 +44,8 @@ External Exploits
 
 [https://github.com/GradiusX/HEVD-Python-Solutions](https://github.com/GradiusX/HEVD-Python-Solutions)
 
+[http://pastebin.com/ALKdpDsF](http://pastebin.com/ALKdpDsF)
+
 
 External Researches
 -------------------
@@ -70,6 +72,10 @@ External Researches
 [https://www.fuzzysecurity.com/tutorials/expDev/16.html](https://www.fuzzysecurity.com/tutorials/expDev/16.html)
 
 [https://www.fuzzysecurity.com/tutorials/expDev/17.html](https://www.fuzzysecurity.com/tutorials/expDev/17.html)
+
+[https://www.fuzzysecurity.com/tutorials/expDev/18.html](https://www.fuzzysecurity.com/tutorials/expDev/18.html)
+
+[https://www.fuzzysecurity.com/tutorials/expDev/19.html](https://www.fuzzysecurity.com/tutorials/expDev/19.html)
 
 [http://dokydoky.tistory.com/445](http://dokydoky.tistory.com/445)
 
