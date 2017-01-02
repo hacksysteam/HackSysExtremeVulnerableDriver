@@ -77,6 +77,8 @@ External Researches
 
 [https://www.fuzzysecurity.com/tutorials/expDev/19.html](https://www.fuzzysecurity.com/tutorials/expDev/19.html)
 
+[https://www.fuzzysecurity.com/tutorials/expDev/20.html](https://www.fuzzysecurity.com/tutorials/expDev/20.html)
+
 [http://dokydoky.tistory.com/445](http://dokydoky.tistory.com/445)
 
 
