@@ -50,8 +50,8 @@ artifacts/
 *.obj
 *.pch
 *.pdb
-!Driver/Compiled/Secure/HackSysExtremeVulnerableDriver.pdb
-!Driver/Compiled/Vulnerable/HackSysExtremeVulnerableDriver.pdb
+!Driver/Compiled/Secure/HEVD.pdb
+!Driver/Compiled/Vulnerable/HEVD.pdb
 !Exploit/Complied/HackSysEVDExploit.pdb
 *.pgc
 *.pgd
