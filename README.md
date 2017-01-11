@@ -108,6 +108,7 @@ Screenshots
 
 Vulnerabilities Implemented
 ---------------------------
+* **Double Fetch**
 * **Pool Overflow**
 * **Use After Free**
 * **Type Confusion**
