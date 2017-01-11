@@ -124,8 +124,8 @@ Vulnerabilities Implemented
 Building Driver
 ---------------
 1. [Install Windows Driver Kit](https://www.microsoft.com/en-in/download/details.aspx?id=11800)
-2. Change `%localSymbolServerPath%` in `Build_HEVD_Secure.bat` and `Build_HEVD_Vulnerable.bat` driver builder
-3. Run the appropriate driver builder `Build_HEVD_Secure.bat` or `Build_HEVD_Vulnerable.bat`
+2. Change `%localSymbolServerPath%` in `Build_HEVD_Secure_x86.bat` and `Build_HEVD_Vulnerable_x86.bat` driver builder
+3. Run the appropriate driver builder `Build_HEVD_Secure_x86.bat` or `Build_HEVD_Vulnerable_x86.bat`
 
 
 Installing Driver
