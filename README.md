@@ -36,11 +36,15 @@ External Exploits
 
 [https://github.com/sizzop/HEVD-Exploits](https://github.com/sizzop/HEVD-Exploits)
 
+[https://github.com/badd1e/bug-free-adventure](https://github.com/badd1e/bug-free-adventure)
+
 [https://github.com/FuzzySecurity/HackSysTeam-PSKernelPwn](https://github.com/FuzzySecurity/HackSysTeam-PSKernelPwn)
 
 [https://github.com/theevilbit/exploits/tree/master/HEVD](https://github.com/theevilbit/exploits/tree/master/HEVD)
 
 [https://github.com/GradiusX/HEVD-Python-Solutions](https://github.com/GradiusX/HEVD-Python-Solutions)
+
+[http://pastebin.com/ALKdpDsF](http://pastebin.com/ALKdpDsF)
 
 
 External Researches
@@ -68,6 +72,12 @@ External Researches
 [https://www.fuzzysecurity.com/tutorials/expDev/16.html](https://www.fuzzysecurity.com/tutorials/expDev/16.html)
 
 [https://www.fuzzysecurity.com/tutorials/expDev/17.html](https://www.fuzzysecurity.com/tutorials/expDev/17.html)
+
+[https://www.fuzzysecurity.com/tutorials/expDev/18.html](https://www.fuzzysecurity.com/tutorials/expDev/18.html)
+
+[https://www.fuzzysecurity.com/tutorials/expDev/19.html](https://www.fuzzysecurity.com/tutorials/expDev/19.html)
+
+[https://www.fuzzysecurity.com/tutorials/expDev/20.html](https://www.fuzzysecurity.com/tutorials/expDev/20.html)
 
 [http://dokydoky.tistory.com/445](http://dokydoky.tistory.com/445)
 
