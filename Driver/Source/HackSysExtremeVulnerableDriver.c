@@ -286,6 +286,11 @@ NTSTATUS IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
                 Status = UninitializedHeapVariableIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_UNINITIALIZED_HEAP_VARIABLE ******\n");
                 break;
+            case HACKSYS_EVD_IOCTL_DOUBLE_FETCH:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_DOUBLE_FETCH ******\n");
+                Status = DoubleFetchIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_DOUBLE_FETCH ******\n");
+                break;
             default:
                 DbgPrint("[-] Invalid IOCTL Code: 0x%X\n", IoControlCode);
                 Status = STATUS_INVALID_DEVICE_REQUEST;

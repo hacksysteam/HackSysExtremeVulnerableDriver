@@ -62,6 +62,7 @@ Abstract:
 
     typedef void (*FunctionPointer)();
 
+    NTSTATUS    DoubleFetchIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    PoolOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    UseUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
     NTSTATUS    FreeUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);

@@ -9,11 +9,12 @@
 #   HackSys Extreme Vulnerable Driver
 #
 
-TARGETNAME = HackSysExtremeVulnerableDriver
+TARGETNAME = HEVD
 TARGETPATH = drv
 TARGETTYPE = DRIVER
 
-SOURCES = PoolOverflow.c \
+SOURCES = DoubleFetch.c \
+          PoolOverflow.c \
           UseAfterFree.c \
           StackOverflow.c \
           TypeConfusion.c \

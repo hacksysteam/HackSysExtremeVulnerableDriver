@@ -68,6 +68,7 @@ build</NMakeReBuildCommandLine>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArbitraryOverwrite.c" />
+    <ClCompile Include="DoubleFetch.c" />
     <ClCompile Include="HackSysExtremeVulnerableDriver.c" />
     <ClCompile Include="IntegerOverflow.c" />
     <ClCompile Include="NullPointerDereference.c" />
@@ -85,6 +86,7 @@ build</NMakeReBuildCommandLine>
   <ItemGroup>
     <ClInclude Include="ArbitraryOverwrite.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="DoubleFetch.h" />
     <ClInclude Include="HackSysExtremeVulnerableDriver.h" />
     <ClInclude Include="IntegerOverflow.h" />
     <ClInclude Include="NullPointerDereference.h" />
