@@ -16,14 +16,10 @@ set currentDir=%cd%
 REM store the local symbol server path
 set localSymbolServerPath=C:\Xtra\Symbols\Custom\
 
-REM set the environment variable
 echo.
-echo.
-echo ******************************************
-@call %WDKPATH%\bin\setenv.bat %WDKPATH%\ fre x86 WIN7
-echo ******************************************
+@call %WDKPATH%\bin\setenv.bat %WDKPATH%\ fre x86 WIN7 no_oacr
 
-cd %currentDir%
+cd %currentDir%\..\Driver
 
 echo.
 echo ******************************************
@@ -32,7 +28,7 @@ echo                  Secure
 echo ******************************************
 echo.
 set SECURE=1
-rmdir /S /Q drv
+rmdir /S /Q drv\secure\i386
 build /cCzg
 echo ******************************************
 echo.
@@ -63,7 +59,7 @@ echo Transferring Driver Symbols to Symbol Store
 echo ******************************************
 cd "C:\Program Files\Debugging Tools for Windows (x86)"
 echo.
-symstore.exe add /r /f %currentDir%\drv\i386\ /s %localSymbolServerPath% /t "DriverSymbols" /v "1.0"
+symstore.exe add /r /f %currentDir%\..\compile\drv\secure\i386\ /s %localSymbolServerPath% /t "DriverSymbols" /v "1.0"
 echo ******************************************
 echo.
 echo ******************************************
