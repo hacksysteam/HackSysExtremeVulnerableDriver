@@ -1,0 +1,31 @@
+#
+# ##     ## ######## ##     ## ########  
+# ##     ## ##       ##     ## ##     ## 
+# ##     ## ##       ##     ## ##     ## 
+# ######### ######   ##     ## ##     ## 
+# ##     ## ##        ##   ##  ##     ## 
+# ##     ## ##         ## ##   ##     ## 
+# ##     ## ########    ###    ########  
+#   HackSys Extreme Vulnerable Driver
+#
+
+TARGETNAME = HEVD
+TARGETPATH = drv
+TARGETTYPE = DRIVER
+
+SOURCES = DoubleFetch.c \
+          PoolOverflow.c \
+          UseAfterFree.c \
+          StackOverflow.c \
+          TypeConfusion.c \
+          StackOverflowGS.c \
+          IntegerOverflow.c \
+          ArbitraryOverwrite.c \
+          NullPointerDereference.c \
+          UninitializedHeapVariable.c \
+          UninitializedStackVariable.c \
+          HackSysExtremeVulnerableDriver.c \
+
+!if defined(SECURE)
+C_DEFINES=$(C_DEFINES) -DSECURE=1
+!endif
