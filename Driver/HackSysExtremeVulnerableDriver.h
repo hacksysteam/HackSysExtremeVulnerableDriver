@@ -79,7 +79,7 @@ Abstract:
          " ##     ## ##         ## ##   ##     ## \n" \
          " ##     ## ########    ###    ########  \n" \
          "   HackSys Extreme Vulnerable Driver    \n" \
-         "             Version: 1.10              \n")
+         "             Version: 1.20              \n")
 
     DRIVER_INITIALIZE    DriverEntry;
     DRIVER_UNLOAD        IrpUnloadHandler;
