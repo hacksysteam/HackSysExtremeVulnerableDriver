@@ -128,6 +128,15 @@ Building Driver
 3. Run the appropriate driver builder `Build_HEVD_Secure_x86.bat` or `Build_HEVD_Vulnerable_x86.bat`
 
 
+Download
+--------
+If you do not want to build HackSys Extreme Vulnerable Driver from source, you can download pre-build
+executables for the latest release:
+
+&nbsp;&nbsp;&nbsp;&nbsp;[HEVD.zip]
+    (https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases/download/v1.20/HEVD.1.20.zip)
+
+
 Installing Driver
 -----------------
 Use [OSR Driver Loader](https://www.osronline.com/article.cfm?article=157) to install **HackSys Extreme Vulnerable Driver**
