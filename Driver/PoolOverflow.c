@@ -102,7 +102,7 @@ NTSTATUS TriggerPoolOverflow(IN PVOID UserBuffer, IN SIZE_T Size) {
         // Secure Note: This is secure because the developer is passing a size
         // equal to size of the allocated Pool chunk to RtlCopyMemory()/memcpy().
         // Hence, there will be no overflow
-        RtlCopyMemory(KernelBuffer, UserBuffer, (SIZE_T)BUFFER_SIZE);
+        RtlCopyMemory(KernelBuffer, UserBuffer, (SIZE_T)POOL_BUFFER_SIZE);
 #else
         DbgPrint("[+] Triggering Pool Overflow\n");
 
