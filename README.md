@@ -130,7 +130,7 @@ Building Driver
 
 Download
 --------
-If you do not want to build **HackSys Extreme Vulnerable Driver** from source, you can download pre-build
+If you do not want to build **HackSys Extreme Vulnerable Driver** from source, you could download pre-built
 executables for the latest release:
 
 &nbsp;&nbsp;&nbsp;&nbsp;[HEVD.zip]
