@@ -86,9 +86,9 @@ NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING Registry
                             &DeviceObject);
 
     if (!NT_SUCCESS(Status)) {
-        if (DriverObject->DeviceObject) {
+        if (DeviceObject) {
             // Delete the device
-            IoDeleteDevice(DriverObject->DeviceObject);
+            IoDeleteDevice(DeviceObject);
         }
 
         DbgPrint("[-] Error Initializing HackSys Extreme Vulnerable Driver\n");
