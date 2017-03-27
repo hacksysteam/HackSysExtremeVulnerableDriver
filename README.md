@@ -46,6 +46,18 @@ External Exploits
 
 [http://pastebin.com/ALKdpDsF](http://pastebin.com/ALKdpDsF)
 
+[https://github.com/Cn33liz/HSEVD-StackOverflow](https://github.com/Cn33liz/HSEVD-StackOverflow)
+
+[https://github.com/Cn33liz/HSEVD-StackOverflowX64](https://github.com/Cn33liz/HSEVD-StackOverflowX64)
+
+[https://github.com/Cn33liz/HSEVD-StackCookieBypass](https://github.com/Cn33liz/HSEVD-StackCookieBypass)
+
+[https://github.com/Cn33liz/HSEVD-ArbitraryOverwrite](https://github.com/Cn33liz/HSEVD-ArbitraryOverwrite)
+
+[https://github.com/Cn33liz/HSEVD-ArbitraryOverwriteGDI](https://github.com/Cn33liz/HSEVD-ArbitraryOverwriteGDI)
+
+[https://github.com/Cn33liz/HSEVD-StackOverflowGDI](https://github.com/Cn33liz/HSEVD-StackOverflowGDI)
+
 
 External Researches
 -------------------
