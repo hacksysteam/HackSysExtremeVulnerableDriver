@@ -55,14 +55,14 @@ Abstract:
     #include "Common.h"
 
     typedef struct _USER_TYPE_CONFUSION_OBJECT {
-      ULONG_PTR ObjectID;
-      ULONG_PTR ObjectType;
+        ULONG_PTR ObjectID;
+        ULONG_PTR ObjectType;
     } USER_TYPE_CONFUSION_OBJECT, *PUSER_TYPE_CONFUSION_OBJECT;
   
     typedef struct _KERNEL_TYPE_CONFUSION_OBJECT {
-      ULONG_PTR ObjectID;
+        ULONG_PTR ObjectID;
         union {
-      ULONG_PTR ObjectType;
+            ULONG_PTR ObjectType;
             FunctionPointer Callback;
         };
     } KERNEL_TYPE_CONFUSION_OBJECT, *PKERNEL_TYPE_CONFUSION_OBJECT;
