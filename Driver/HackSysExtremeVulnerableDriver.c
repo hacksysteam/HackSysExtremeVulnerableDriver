@@ -51,9 +51,8 @@ Abstract:
 
 #ifdef ALLOC_PRAGMA
     #pragma alloc_text(INIT, DriverEntry)
-    #pragma alloc_text(PAGE, IrpCloseHandler)
-    #pragma alloc_text(PAGE, IrpCreateHandler)
     #pragma alloc_text(PAGE, IrpUnloadHandler)
+    #pragma alloc_text(PAGE, IrpCreateCloseHandler)
     #pragma alloc_text(PAGE, IrpDeviceIoCtlHandler)
     #pragma alloc_text(PAGE, IrpNotImplementedHandler)
 #endif // ALLOC_PRAGMA
@@ -105,8 +104,8 @@ NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING Registry
     }
 
     // Assign the IRP handlers for Create, Close and Device Control
-    DriverObject->MajorFunction[IRP_MJ_CREATE]         = IrpCreateHandler;
-    DriverObject->MajorFunction[IRP_MJ_CLOSE]          = IrpCloseHandler;
+    DriverObject->MajorFunction[IRP_MJ_CREATE]         = IrpCreateCloseHandler;
+    DriverObject->MajorFunction[IRP_MJ_CLOSE]          = IrpCreateCloseHandler;
     DriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = IrpDeviceIoCtlHandler;
 
     // Assign the driver Unload routine
@@ -127,31 +126,12 @@ NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING Registry
 }
 
 /// <summary>
-/// IRP Create Handler
+/// IRP Create Close Handler
 /// </summary>
 /// <param name="DeviceObject">The pointer to DEVICE_OBJECT</param>
 /// <param name="Irp">The pointer to IRP</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS IrpCreateHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
-    Irp->IoStatus.Information = 0;
-    Irp->IoStatus.Status = STATUS_SUCCESS;
-
-    UNREFERENCED_PARAMETER(DeviceObject);
-    PAGED_CODE();
-
-    // Complete the request
-    IoCompleteRequest(Irp, IO_NO_INCREMENT);
-
-    return STATUS_SUCCESS;
-}
-
-/// <summary>
-/// IRP Close Handler
-/// </summary>
-/// <param name="DeviceObject">The pointer to DEVICE_OBJECT</param>
-/// <param name="Irp">The pointer to IRP</param>
-/// <returns>NTSTATUS</returns>
-NTSTATUS IrpCloseHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
+NTSTATUS IrpCreateCloseHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
     Irp->IoStatus.Information = 0;
     Irp->IoStatus.Status = STATUS_SUCCESS;
 

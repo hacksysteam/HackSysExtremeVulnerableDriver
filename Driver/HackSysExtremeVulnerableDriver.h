@@ -85,13 +85,12 @@ Abstract:
     DRIVER_UNLOAD        IrpUnloadHandler;
     DRIVER_DISPATCH      IrpNotImplementedHandler;
 
-    __drv_dispatchType(IRP_MJ_CREATE)            DRIVER_DISPATCH    IrpCreateHandler;
-    __drv_dispatchType(IRP_MJ_CLOSE)             DRIVER_DISPATCH    IrpCloseHandler;
+    __drv_dispatchType(IRP_MJ_CREATE)
+        __drv_dispatchType(IRP_MJ_CLOSE)         DRIVER_DISPATCH    IrpCreateCloseHandler;
     __drv_dispatchType(IRP_MJ_DEVICE_CONTROL)    DRIVER_DISPATCH    IrpDeviceIoCtlHandler;
 
     VOID        IrpUnloadHandler(IN PDRIVER_OBJECT DriverObject);
-    NTSTATUS    IrpCloseHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
-    NTSTATUS    IrpCreateHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
+    NTSTATUS    IrpCreateCloseHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
     NTSTATUS    IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
     NTSTATUS    IrpNotImplementedHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp);
     NTSTATUS    DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING RegistryPath);
