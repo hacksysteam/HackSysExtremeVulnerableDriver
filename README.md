@@ -145,8 +145,7 @@ Download
 If you do not want to build **HackSys Extreme Vulnerable Driver** from source, you could download pre-built
 executables for the latest release:
 
-&nbsp;&nbsp;&nbsp;&nbsp;[HEVD.zip]
-    (https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases/download/v1.20/HEVD.1.20.zip)
+&nbsp;&nbsp;&nbsp;&nbsp;[HEVD.zip](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases/download/v1.20/HEVD.1.20.zip)
 
 
 Installing Driver
