@@ -62,8 +62,8 @@ Abstract:
 /// <param name="UserWriteWhatWhere">The pointer to WRITE_WHAT_WHERE structure</param>
 /// <returns>NTSTATUS</returns>
 NTSTATUS TriggerArbitraryOverwrite(IN PWRITE_WHAT_WHERE UserWriteWhatWhere) {
-    PULONG What = NULL;
-    PULONG Where = NULL;
+    PULONG_PTR What = NULL;
+    PULONG_PTR Where = NULL;
     NTSTATUS Status = STATUS_SUCCESS;
 
     PAGED_CODE();
@@ -86,8 +86,8 @@ NTSTATUS TriggerArbitraryOverwrite(IN PWRITE_WHAT_WHERE UserWriteWhatWhere) {
         // Secure Note: This is secure because the developer is properly validating if address
         // pointed by 'Where' and 'What' value resides in User mode by calling ProbeForRead()
         // routine before performing the write operation
-        ProbeForRead((PVOID)Where, sizeof(PULONG), (ULONG)__alignof(PULONG));
-        ProbeForRead((PVOID)What, sizeof(PULONG), (ULONG)__alignof(PULONG));
+        ProbeForRead((PVOID)Where, sizeof(PULONG_PTR), (ULONG)__alignof(PULONG_PTR));
+        ProbeForRead((PVOID)What, sizeof(PULONG_PTR), (ULONG)__alignof(PULONG_PTR));
 
         *(Where) = *(What);
 #else

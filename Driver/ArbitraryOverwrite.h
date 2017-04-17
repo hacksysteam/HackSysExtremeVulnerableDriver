@@ -55,8 +55,8 @@ Abstract:
     #include "Common.h"
 
     typedef struct _WRITE_WHAT_WHERE {
-        PULONG What;
-        PULONG Where;
+        PULONG_PTR What;
+        PULONG_PTR Where;
     } WRITE_WHAT_WHERE, *PWRITE_WHAT_WHERE;
 
     NTSTATUS    TriggerArbitraryOverwrite(IN PWRITE_WHAT_WHERE UserWriteWhatWhere);
