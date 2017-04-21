@@ -72,8 +72,8 @@ VOID UninitializedHeapVariableObjectCallback() {
 /// <param name="UserBuffer">The pointer to user mode buffer</param>
 /// <returns>NTSTATUS</returns>
 NTSTATUS TriggerUninitializedHeapVariable(IN PVOID UserBuffer) {
-    ULONG UserValue = 0;
-    ULONG MagicValue = 0xBAD0B0B0;
+    ULONG_PTR UserValue = 0;
+    ULONG_PTR MagicValue = 0xBAD0B0B0;
     NTSTATUS Status = STATUS_SUCCESS;
     PUNINITIALIZED_HEAP_VARIABLE UninitializedHeapVariable = NULL;
 
@@ -106,7 +106,7 @@ NTSTATUS TriggerUninitializedHeapVariable(IN PVOID UserBuffer) {
         }
 
         // Get the value from user mode
-        UserValue = *(PULONG)UserBuffer;
+        UserValue = *(PULONG_PTR)UserBuffer;
 
         DbgPrint("[+] UserValue: 0x%p\n", UserValue);
         DbgPrint("[+] UninitializedHeapVariable Address: 0x%p\n", &UninitializedHeapVariable);
@@ -120,7 +120,7 @@ NTSTATUS TriggerUninitializedHeapVariable(IN PVOID UserBuffer) {
             RtlFillMemory((PVOID)UninitializedHeapVariable->Buffer, sizeof(UninitializedHeapVariable->Buffer), 0x41);
 
             // Null terminate the char buffer
-            UninitializedHeapVariable->Buffer[(sizeof(UninitializedHeapVariable->Buffer) / sizeof(ULONG)) - 1] = '\0';
+            UninitializedHeapVariable->Buffer[(sizeof(UninitializedHeapVariable->Buffer) / sizeof(ULONG_PTR)) - 1] = '\0';
         }
 #ifdef SECURE
         else {

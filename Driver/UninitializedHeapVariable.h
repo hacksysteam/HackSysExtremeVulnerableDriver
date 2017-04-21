@@ -55,9 +55,9 @@ Abstract:
     #include "Common.h"
 
     typedef struct _UNINITIALIZED_HEAP_VARIABLE {
-        ULONG Value;
+        ULONG_PTR Value;
         FunctionPointer Callback;
-        ULONG Buffer[58];
+        ULONG_PTR Buffer[58];
     } UNINITIALIZED_HEAP_VARIABLE, *PUNINITIALIZED_HEAP_VARIABLE;
 
     VOID        UninitializedHeapVariableObjectCallback();
