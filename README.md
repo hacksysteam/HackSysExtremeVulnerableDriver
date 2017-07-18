@@ -58,6 +58,8 @@ External Exploits
 
 [https://github.com/Cn33liz/HSEVD-StackOverflowGDI](https://github.com/Cn33liz/HSEVD-StackOverflowGDI)
 
+[https://github.com/Cn33liz/HSEVD-ArbitraryOverwriteLowIL](https://github.com/Cn33liz/HSEVD-ArbitraryOverwriteLowIL)
+
 
 External Researches
 -------------------
@@ -92,6 +94,20 @@ External Researches
 [https://www.fuzzysecurity.com/tutorials/expDev/20.html](https://www.fuzzysecurity.com/tutorials/expDev/20.html)
 
 [http://dokydoky.tistory.com/445](http://dokydoky.tistory.com/445)
+
+[https://hshrzd.wordpress.com/2017/05/28/starting-with-windows-kernel-exploitation-part-1-setting-up-the-lab/](https://hshrzd.wordpress.com/2017/05/28/starting-with-windows-kernel-exploitation-part-1-setting-up-the-lab/)
+
+[https://hshrzd.wordpress.com/2017/06/05/starting-with-windows-kernel-exploitation-part-2/](https://hshrzd.wordpress.com/2017/06/05/starting-with-windows-kernel-exploitation-part-2/)
+
+[https://hshrzd.wordpress.com/2017/06/22/starting-with-windows-kernel-exploitation-part-3-stealing-the-access-token/](https://hshrzd.wordpress.com/2017/06/22/starting-with-windows-kernel-exploitation-part-3-stealing-the-access-token/)
+
+[https://osandamalith.com/2017/04/05/windows-kernel-exploitation-stack-overflow/](https://osandamalith.com/2017/04/05/windows-kernel-exploitation-stack-overflow/)
+
+[https://osandamalith.com/2017/06/14/windows-kernel-exploitation-arbitrary-overwrite/](https://osandamalith.com/2017/06/14/windows-kernel-exploitation-arbitrary-overwrite/)
+
+[https://osandamalith.com/2017/06/22/windows-kernel-exploitation-null-pointer-dereference/](https://osandamalith.com/2017/06/22/windows-kernel-exploitation-null-pointer-dereference/)
+
+[http://dali-mrabet1.rhcloud.com/windows-kernel-exploitation-arbitrary-memory-overwrite-hevd-challenges/](http://dali-mrabet1.rhcloud.com/windows-kernel-exploitation-arbitrary-memory-overwrite-hevd-challenges/)
 
 
 Author
