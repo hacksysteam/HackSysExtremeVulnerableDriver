@@ -60,6 +60,8 @@ External Exploits
 
 [https://github.com/Cn33liz/HSEVD-ArbitraryOverwriteLowIL](https://github.com/Cn33liz/HSEVD-ArbitraryOverwriteLowIL)
 
+[https://github.com/mgeeky/HEVD_Kernel_Exploit](https://github.com/mgeeky/HEVD_Kernel_Exploit)
+
 
 External Researches
 -------------------
