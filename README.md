@@ -62,6 +62,8 @@ External Exploits
 
 [https://github.com/mgeeky/HEVD_Kernel_Exploit](https://github.com/mgeeky/HEVD_Kernel_Exploit)
 
+[https://github.com/tekwizz123/HEVD-Exploit-Solutions](https://github.com/tekwizz123/HEVD-Exploit-Solutions)
+
 
 External Researches
 -------------------
