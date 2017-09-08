@@ -113,6 +113,14 @@ External Researches
 
 [http://dali-mrabet1.rhcloud.com/windows-kernel-exploitation-arbitrary-memory-overwrite-hevd-challenges/](http://dali-mrabet1.rhcloud.com/windows-kernel-exploitation-arbitrary-memory-overwrite-hevd-challenges/)
 
+[https://blahcat.github.io/2017/08/31/arbitrary-write-primitive-in-windows-kernel-hevd/](https://blahcat.github.io/2017/08/31/arbitrary-write-primitive-in-windows-kernel-hevd/)
+
+[https://klue.github.io/blog/2017/09/hevd_stack_gs/](https://klue.github.io/blog/2017/09/hevd_stack_gs/)
+
+[https://glennmcgui.re/introduction-to-windows-kernel-exploitation-pt-1/](https://glennmcgui.re/introduction-to-windows-kernel-exploitation-pt-1/)
+
+[https://glennmcgui.re/introduction-to-windows-kernel-driver-exploitation-pt-2/](https://glennmcgui.re/introduction-to-windows-kernel-driver-exploitation-pt-2/)
+
 
 Author
 ------
@@ -151,6 +159,7 @@ Vulnerabilities Implemented
 * **Null Pointer Dereference**
 * **Uninitialized Heap Variable**
 * **Uninitialized Stack Variable**
+* **Insecure Kernel Resource Access**
 
 
 Building Driver
