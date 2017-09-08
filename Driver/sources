@@ -30,4 +30,5 @@ SOURCES = DoubleFetch.c \
           NullPointerDereference.c \
           UninitializedHeapVariable.c \
           UninitializedStackVariable.c \
+          InsecureKernelResourceAccess.c\
           HackSysExtremeVulnerableDriver.c \

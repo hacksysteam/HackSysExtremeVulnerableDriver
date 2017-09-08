@@ -70,6 +70,7 @@ build</NMakeReBuildCommandLine>
     <ClCompile Include="ArbitraryOverwrite.c" />
     <ClCompile Include="DoubleFetch.c" />
     <ClCompile Include="HackSysExtremeVulnerableDriver.c" />
+    <ClCompile Include="InsecureKernelResourceAccess.c" />
     <ClCompile Include="IntegerOverflow.c" />
     <ClCompile Include="NullPointerDereference.c" />
     <ClCompile Include="PoolOverflow.c" />
@@ -88,6 +89,7 @@ build</NMakeReBuildCommandLine>
     <ClInclude Include="Common.h" />
     <ClInclude Include="DoubleFetch.h" />
     <ClInclude Include="HackSysExtremeVulnerableDriver.h" />
+    <ClInclude Include="InsecureKernelResourceAccess.h" />
     <ClInclude Include="IntegerOverflow.h" />
     <ClInclude Include="NullPointerDereference.h" />
     <ClInclude Include="PoolOverflow.h" />

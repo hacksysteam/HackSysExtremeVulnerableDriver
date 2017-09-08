@@ -273,6 +273,11 @@ NTSTATUS IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
                 Status = DoubleFetchIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_DOUBLE_FETCH ******\n");
                 break;
+            case HACKSYS_EVD_IOCTL_INSECURE_KERNEL_FILE_ACCESS:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_INSECURE_KERNEL_FILE_ACCESS ******\n");
+                Status = InsecureKernelFileAccessIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_INSECURE_KERNEL_FILE_ACCESS ******\n");
+                break;
             default:
                 DbgPrint("[-] Invalid IOCTL Code: 0x%X\n", IoControlCode);
                 Status = STATUS_INVALID_DEVICE_REQUEST;

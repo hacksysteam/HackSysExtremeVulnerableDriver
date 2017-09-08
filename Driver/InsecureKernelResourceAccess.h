@@ -39,43 +39,21 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    Common.h
+    InsecureKernelResourceAccess.h
 
 Abstract:
-    This module implements the data structures which
-    are common to the driver modules.
+    This module implements the data structures for
+    Insecure Kernel Resource Access module.
 
 --*/
 
-#ifndef __COMMON_H__
-    #define __COMMON_H__
+#ifndef __INSECURE_KERNEL_RESOURCE_ACCESS_H__
+    #define __INSECURE_KERNEL_RESOURCE_ACCESS_H__
 
     #pragma once
 
-    #include <ntddk.h>
+    #include "Common.h"
 
-    #define POOL_TAG 'kcaH'
-    #define BUFFER_SIZE 512
+    NTSTATUS    TriggerInsecureKernelFileAccess();
 
-    #define _STRINGIFY(value) #value
-    #define STRINGIFY(value) _STRINGIFY(value)
-
-    typedef void (*FunctionPointer)();
-
-    NTSTATUS    DoubleFetchIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    PoolOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    UseUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    FreeUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    TypeConfusionIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    StackOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    IntegerOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    StackOverflowGSIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    AllocateUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    AllocateFakeObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    ArbitraryOverwriteIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    NullPointerDereferenceIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    InsecureKernelFileAccessIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    UninitializedHeapVariableIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    UninitializedStackVariableIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-
-#endif //__COMMON_H__
+#endif  //__INSECURE_KERNEL_RESOURCE_ACCESS_H__

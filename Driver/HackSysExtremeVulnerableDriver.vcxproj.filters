@@ -51,6 +51,9 @@
     <ClCompile Include="DoubleFetch.c">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="InsecureKernelResourceAccess.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ProjectDir)\sources" />
@@ -93,6 +96,9 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="DoubleFetch.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="InsecureKernelResourceAccess.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
