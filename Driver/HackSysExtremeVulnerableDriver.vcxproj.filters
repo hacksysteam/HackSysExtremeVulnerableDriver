@@ -24,9 +24,6 @@
     <ClCompile Include="ArbitraryOverwrite.c">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="PoolOverflow.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="UseAfterFree.c">
       <Filter>Source files</Filter>
     </ClCompile>
@@ -54,6 +51,18 @@
     <ClCompile Include="InsecureKernelResourceAccess.c">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="MemoryDisclosure.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="NonPagedPoolOverflow.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="PagedPoolSessionOverflow.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteNULL.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ProjectDir)\sources" />
@@ -69,9 +78,6 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="ArbitraryOverwrite.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="PoolOverflow.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="UseAfterFree.h">
@@ -99,6 +105,18 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="InsecureKernelResourceAccess.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryDisclosure.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="NonPagedPoolOverflow.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="PagedPoolSessionOverflow.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteNULL.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

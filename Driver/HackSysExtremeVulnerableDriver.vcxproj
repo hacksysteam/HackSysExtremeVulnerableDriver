@@ -72,14 +72,17 @@ build</NMakeReBuildCommandLine>
     <ClCompile Include="HackSysExtremeVulnerableDriver.c" />
     <ClCompile Include="InsecureKernelResourceAccess.c" />
     <ClCompile Include="IntegerOverflow.c" />
+    <ClCompile Include="MemoryDisclosure.c" />
     <ClCompile Include="NullPointerDereference.c" />
-    <ClCompile Include="PoolOverflow.c" />
+    <ClCompile Include="NonPagedPoolOverflow.c" />
+    <ClCompile Include="PagedPoolSessionOverflow.c" />
     <ClCompile Include="StackOverflow.c" />
     <ClCompile Include="StackOverflowGS.c" />
     <ClCompile Include="TypeConfusion.c" />
     <ClCompile Include="UninitializedHeapVariable.c" />
     <ClCompile Include="UninitializedStackVariable.c" />
     <ClCompile Include="UseAfterFree.c" />
+    <ClCompile Include="WriteNULL.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ProjectDir)\sources" />
@@ -91,14 +94,17 @@ build</NMakeReBuildCommandLine>
     <ClInclude Include="HackSysExtremeVulnerableDriver.h" />
     <ClInclude Include="InsecureKernelResourceAccess.h" />
     <ClInclude Include="IntegerOverflow.h" />
+    <ClInclude Include="MemoryDisclosure.h" />
     <ClInclude Include="NullPointerDereference.h" />
-    <ClInclude Include="PoolOverflow.h" />
+    <ClInclude Include="NonPagedPoolOverflow.h" />
+    <ClInclude Include="PagedPoolSessionOverflow.h" />
     <ClInclude Include="StackOverflow.h" />
     <ClInclude Include="StackOverflowGS.h" />
     <ClInclude Include="TypeConfusion.h" />
     <ClInclude Include="UninitializedHeapVariable.h" />
     <ClInclude Include="UninitializedStackVariable.h" />
     <ClInclude Include="UseAfterFree.h" />
+    <ClInclude Include="WriteNULL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -19,15 +19,18 @@ TARGETPATH = ..\compile\drv\secure
 TARGETPATH = ..\compile\drv\vulnerable
 !endif
 
-SOURCES = DoubleFetch.c \
-          PoolOverflow.c \
+SOURCES = WriteNULL.c \
+          DoubleFetch.c \
           UseAfterFree.c \
           StackOverflow.c \
           TypeConfusion.c \
           StackOverflowGS.c \
           IntegerOverflow.c \
+          MemoryDisclosure.c \
           ArbitraryOverwrite.c \
+          NonPagedPoolOverflow.c \
           NullPointerDereference.c \
+          PagedPoolSessionOverflow.c \
           UninitializedHeapVariable.c \
           UninitializedStackVariable.c \
           InsecureKernelResourceAccess.c\

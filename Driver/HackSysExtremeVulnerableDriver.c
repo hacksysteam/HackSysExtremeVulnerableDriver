@@ -218,10 +218,10 @@ NTSTATUS IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
                 Status = ArbitraryOverwriteIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_ARBITRARY_OVERWRITE ******\n");
                 break;
-            case HACKSYS_EVD_IOCTL_POOL_OVERFLOW:
-                DbgPrint("****** HACKSYS_EVD_IOCTL_POOL_OVERFLOW ******\n");
-                Status = PoolOverflowIoctlHandler(Irp, IrpSp);
-                DbgPrint("****** HACKSYS_EVD_IOCTL_POOL_OVERFLOW ******\n");
+            case HACKSYS_EVD_IOCTL_NON_PAGED_POOL_OVERFLOW:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_NON_PAGED_POOL_OVERFLOW ******\n");
+                Status = NonPagedPoolOverflowIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_NON_PAGED_POOL_OVERFLOW ******\n");
                 break;
             case HACKSYS_EVD_IOCTL_ALLOCATE_UAF_OBJECT:
                 DbgPrint("****** HACKSYS_EVD_IOCTL_ALLOCATE_UAF_OBJECT ******\n");
@@ -277,6 +277,21 @@ NTSTATUS IrpDeviceIoCtlHandler(IN PDEVICE_OBJECT DeviceObject, IN PIRP Irp) {
                 DbgPrint("****** HACKSYS_EVD_IOCTL_INSECURE_KERNEL_FILE_ACCESS ******\n");
                 Status = InsecureKernelFileAccessIoctlHandler(Irp, IrpSp);
                 DbgPrint("****** HACKSYS_EVD_IOCTL_INSECURE_KERNEL_FILE_ACCESS ******\n");
+                break;
+            case HACKSYS_EVD_IOCTL_MEMORY_DISCLOSURE:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_MEMORY_DISCLOSURE ******\n");
+                Status = MemoryDisclosureIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_MEMORY_DISCLOSURE ******\n");
+                break;
+            case HACKSYS_EVD_IOCTL_PAGED_POOL_SESSION:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_PAGED_POOL_SESSION ******\n");
+                Status = PagedPoolSessionOverflowIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_PAGED_POOL_SESSION ******\n");
+                break;
+            case HACKSYS_EVD_IOCTL_WRITE_NULL:
+                DbgPrint("****** HACKSYS_EVD_IOCTL_WRITE_NULL ******\n");
+                Status = WriteNULLIoctlHandler(Irp, IrpSp);
+                DbgPrint("****** HACKSYS_EVD_IOCTL_WRITE_NULL ******\n");
                 break;
             default:
                 DbgPrint("[-] Invalid IOCTL Code: 0x%X\n", IoControlCode);

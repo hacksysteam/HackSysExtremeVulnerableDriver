@@ -39,46 +39,23 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    Common.h
+    MemoryDisclosure.h
 
 Abstract:
-    This module implements the data structures which
-    are common to the driver modules.
+    This module implements the data structures for
+    Memory Disclosure module.
 
 --*/
 
-#ifndef __COMMON_H__
-    #define __COMMON_H__
+#ifndef __MEMORY_DISCLOSURE_H__
+    #define __MEMORY_DISCLOSURE_H__
 
     #pragma once
 
-    #include <ntddk.h>
+    #include "Common.h"
 
-    #define POOL_TAG 'kcaH'
-    #define BUFFER_SIZE 512
+    #define POOL_BUFFER_SIZE 504
 
-    #define _STRINGIFY(value) #value
-    #define STRINGIFY(value) _STRINGIFY(value)
+    NTSTATUS    TriggerMemoryDisclosure(IN PVOID UserOutputBuffer, IN SIZE_T Size);
 
-    typedef void (*FunctionPointer)();
-
-    NTSTATUS    WriteNULLIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    DoubleFetchIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    UseUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    FreeUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    TypeConfusionIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    StackOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    IntegerOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    StackOverflowGSIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    MemoryDisclosureIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    AllocateUaFObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    AllocateFakeObjectIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    ArbitraryOverwriteIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    NonPagedPoolOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    NullPointerDereferenceIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    PagedPoolSessionOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    InsecureKernelFileAccessIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    UninitializedHeapVariableIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-    NTSTATUS    UninitializedStackVariableIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp);
-
-#endif //__COMMON_H__
+#endif  //__MEMORY_DISCLOSURE_H__
