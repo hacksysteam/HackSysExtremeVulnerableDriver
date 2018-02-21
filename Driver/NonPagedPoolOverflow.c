@@ -39,30 +39,30 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    PoolOverflow.c
+    NonPagedPoolOverflow.c
 
 Abstract:
     This module implements the functions to demonstrate
-    Pool Overflow vulnerability.
+    buffer overflow vulnerability in Non-Paged Pool.
 
 --*/
 
-#include "PoolOverflow.h"
+#include "NonPagedPoolOverflow.h"
 
 #ifdef ALLOC_PRAGMA
-    #pragma alloc_text(PAGE, TriggerPoolOverflow)
-    #pragma alloc_text(PAGE, PoolOverflowIoctlHandler)
+    #pragma alloc_text(PAGE, TriggerNonPagedPoolOverflow)
+    #pragma alloc_text(PAGE, NonPagedPoolOverflowIoctlHandler)
 #endif // ALLOC_PRAGMA
 
 #pragma auto_inline(off)
 
 /// <summary>
-/// Trigger the Pool Overflow Vulnerability
+/// Trigger the Non-Paged Pool Overflow Vulnerability
 /// </summary>
 /// <param name="UserBuffer">The pointer to user mode buffer</param>
 /// <param name="Size">Size of the user mode buffer</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS TriggerPoolOverflow(IN PVOID UserBuffer, IN SIZE_T Size) {
+NTSTATUS TriggerNonPagedPoolOverflow(IN PVOID UserBuffer, IN SIZE_T Size) {
     PVOID KernelBuffer = NULL;
     NTSTATUS Status = STATUS_SUCCESS;
 
@@ -100,13 +100,13 @@ NTSTATUS TriggerPoolOverflow(IN PVOID UserBuffer, IN SIZE_T Size) {
 
 #ifdef SECURE
         // Secure Note: This is secure because the developer is passing a size
-        // equal to size of the allocated Pool chunk to RtlCopyMemory()/memcpy().
+        // equal to size of the allocated pool chunk to RtlCopyMemory()/memcpy().
         // Hence, there will be no overflow
         RtlCopyMemory(KernelBuffer, UserBuffer, (SIZE_T)POOL_BUFFER_SIZE);
 #else
-        DbgPrint("[+] Triggering Pool Overflow\n");
+        DbgPrint("[+] Triggering Non Paged Pool Overflow\n");
 
-        // Vulnerability Note: This is a vanilla Pool Based Overflow vulnerability
+        // Vulnerability Note: This is a vanilla pool buffer overflow vulnerability
         // because the developer is passing the user supplied value directly to
         // RtlCopyMemory()/memcpy() without validating if the size is greater or
         // equal to the size of the allocated Pool chunk
@@ -132,12 +132,12 @@ NTSTATUS TriggerPoolOverflow(IN PVOID UserBuffer, IN SIZE_T Size) {
 }
 
 /// <summary>
-/// Pool Overflow Ioctl Handler
+/// Non-Paged Pool Overflow Ioctl Handler
 /// </summary>
 /// <param name="Irp">The pointer to IRP</param>
 /// <param name="IrpSp">The pointer to IO_STACK_LOCATION structure</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS PoolOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) {
+NTSTATUS NonPagedPoolOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) {
     SIZE_T Size = 0;
     PVOID UserBuffer = NULL;
     NTSTATUS Status = STATUS_UNSUCCESSFUL;
@@ -149,7 +149,7 @@ NTSTATUS PoolOverflowIoctlHandler(IN PIRP Irp, IN PIO_STACK_LOCATION IrpSp) {
     Size = IrpSp->Parameters.DeviceIoControl.InputBufferLength;
 
     if (UserBuffer) {
-        Status = TriggerPoolOverflow(UserBuffer, Size);
+        Status = TriggerNonPagedPoolOverflow(UserBuffer, Size);
     }
 
     return Status;

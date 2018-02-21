@@ -39,16 +39,16 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    PoolOverflow.h
+    NonPagedPoolOverflow.h
 
 Abstract:
     This module implements the data structures for
-    Pool Overflow module.
+    Non-Paged Pool Overflow module.
 
 --*/
 
-#ifndef __POOL_OVERFLOW_H__
-    #define __POOL_OVERFLOW_H__
+#ifndef __NON_PAGED_POOL_OVERFLOW_H__
+    #define __NON_PAGED_POOL_OVERFLOW_H__
 
     #pragma once
 
@@ -56,6 +56,6 @@ Abstract:
 
     #define POOL_BUFFER_SIZE 504
 
-    NTSTATUS    TriggerPoolOverflow(IN PVOID UserBuffer, IN SIZE_T Size);
+    NTSTATUS    TriggerNonPagedPoolOverflow(IN PVOID UserBuffer, IN SIZE_T Size);
 
-#endif  //__POOL_OVERFLOW_H__
+#endif  //__NON_PAGED_POOL_OVERFLOW_H__
