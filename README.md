@@ -148,12 +148,14 @@ Screenshots
 
 Vulnerabilities Implemented
 ---------------------------
+* **Write NULL**
 * **Double Fetch**
 * **Pool Overflow**
 * **Use After Free**
 * **Type Confusion**
 * **Stack Overflow**
 * **Integer Overflow**
+* **Memory Disclosure**
 * **Stack Overflow GS**
 * **Arbitrary Overwrite**
 * **Null Pointer Dereference**
