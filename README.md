@@ -69,11 +69,10 @@ External Researches
 -------------------
 [http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/](http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/)
 
-[http://whitehatters.academy/intro-to-windows-kernel-exploitation-2-windows-drivers/](http://whitehatters.academy/intro-to-windows-kernel-exploitation-2-windows-drivers/)
-
-[http://whitehatters.academy/intro-to-windows-kernel-exploitation-3-my-first-driver-exploit/](http://whitehatters.academy/intro-to-windows-kernel-exploitation-3-my-first-driver-exploit/)
-
-[http://whitehatters.academy/intro-to-windows-kernel-exploitation-more-of-the-hacksys-driver/](http://whitehatters.academy/intro-to-windows-kernel-exploitation-more-of-the-hacksys-driver/)
+[http://samdb.xyz/2016/01/16/intro_to_kernel_exploitation_part_0.html](http://samdb.xyz/2016/01/16/intro_to_kernel_exploitation_part_0.html)
+[http://samdb.xyz/2016/01/17/intro_to_kernel_exploitation_part_1.html](http://samdb.xyz/2016/01/17/intro_to_kernel_exploitation_part_1.html) 
+[http://samdb.xyz/2016/01/18/intro_to_kernel_exploitation_part_2.html](http://samdb.xyz/2016/01/18/intro_to_kernel_exploitation_part_2.html)
+[http://samdb.xyz/2017/06/22/intro_to_kernel_exploitation_part_3.html](http://samdb.xyz/2017/06/22/intro_to_kernel_exploitation_part_3.html)
 
 [https://sizzop.github.io/2016/07/05/kernel-hacking-with-hevd-part-1.html](https://sizzop.github.io/2016/07/05/kernel-hacking-with-hevd-part-1.html)
 
