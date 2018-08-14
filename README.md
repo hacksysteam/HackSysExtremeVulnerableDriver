@@ -70,8 +70,11 @@ External Researches
 [http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/](http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/)
 
 [http://samdb.xyz/2016/01/16/intro_to_kernel_exploitation_part_0.html](http://samdb.xyz/2016/01/16/intro_to_kernel_exploitation_part_0.html)
-[http://samdb.xyz/2016/01/17/intro_to_kernel_exploitation_part_1.html](http://samdb.xyz/2016/01/17/intro_to_kernel_exploitation_part_1.html) 
+
+[http://samdb.xyz/2016/01/17/intro_to_kernel_exploitation_part_1.html](http://samdb.xyz/2016/01/17/intro_to_kernel_exploitation_part_1.html)
+
 [http://samdb.xyz/2016/01/18/intro_to_kernel_exploitation_part_2.html](http://samdb.xyz/2016/01/18/intro_to_kernel_exploitation_part_2.html)
+
 [http://samdb.xyz/2017/06/22/intro_to_kernel_exploitation_part_3.html](http://samdb.xyz/2017/06/22/intro_to_kernel_exploitation_part_3.html)
 
 [https://sizzop.github.io/2016/07/05/kernel-hacking-with-hevd-part-1.html](https://sizzop.github.io/2016/07/05/kernel-hacking-with-hevd-part-1.html)
@@ -127,22 +130,22 @@ Author
 
 > ashfaq[at]payatu[dot]com
 
-> **[@HackSysTeam](https://twitter.com/HackSysTeam) | [Blog](http://hacksys.vfreaks.com/ "HackSys Team") | [null](http://null.co.in/profile/411-ashfaq-ansari)**
+> **[@HackSysTeam](https://twitter.com/HackSysTeam) | [Blog](http://hacksys.vfreaks.com/ "HackSys Team") | [null](https://null.co.in/profile/411-ashfaq-ansari)**
 
-> ![Payatu Technologies](http://www.payatu.com/wp-content/uploads/2015/04/Payatu_Logo.png "Payatu Technologies Pvt. Ltd.")
+> ![Payatu Technologies](https://www.payatu.com/wp-content/uploads/2015/04/Payatu_Logo.png "Payatu Technologies Pvt. Ltd.")
 
-> [http://www.payatu.com/](http://www.payatu.com/ "Payatu Technologies Pvt. Ltd.")
+> [http://www.payatu.com/](https://www.payatu.com/ "Payatu Technologies Pvt. Ltd.")
 
 
 Screenshots
 -----------
-![Driver Banner](http://www.payatu.com/wp-content/uploads/2015/05/2015-05-27_20h14_33.png "Driver Banner")
+![Driver Banner](https://www.payatu.com/wp-content/uploads/2015/05/2015-05-27_20h14_33.png "Driver Banner")
 
-![Help](http://www.payatu.com/wp-content/uploads/2015/05/2015-06-03_22h27_24.png "Help")
+![Help](https://www.payatu.com/wp-content/uploads/2015/05/2015-06-03_22h27_24.png "Help")
 
-![Exploitation](http://www.payatu.com/wp-content/uploads/2015/05/2015-05-27_20h22_35.png "Exploitation")
+![Exploitation](https://www.payatu.com/wp-content/uploads/2015/05/2015-05-27_20h22_35.png "Exploitation")
 
-![Driver Debug Print](http://www.payatu.com/wp-content/uploads/2015/05/2015-05-27_20h28_07.png "Driver Debug Print")
+![Driver Debug Print](https://www.payatu.com/wp-content/uploads/2015/05/2015-05-27_20h28_07.png "Driver Debug Print")
 
 
 Vulnerabilities Implemented
