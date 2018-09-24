@@ -78,7 +78,7 @@ NTSTATUS TriggerWriteNULL(IN PVOID UserBuffer) {
         // UserBuffer and address pointed by *(UserBuffer) resides in User mode by calling
         // ProbeForRead()/ProbeForWrite() routine before performing the write operation
         ProbeForRead(UserBuffer, sizeof(PVOID), (ULONG)__alignof(PVOID));
-        ProbeForWrite(*(UserBuffer), sizeof(PVOID), (ULONG)__alignof(PVOID));
+        ProbeForWrite(*(PVOID *)UserBuffer, sizeof(PVOID), (ULONG)__alignof(PVOID));
 
         *(PVOID *)UserBuffer = NULL;
 #else
