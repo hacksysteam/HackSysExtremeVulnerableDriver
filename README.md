@@ -13,7 +13,7 @@ HackSys Extreme Vulnerable Driver
 
 **HackSys Extreme Vulnerable Driver** is **intentionally** vulnerable **Windows** driver developed for security enthusiasts to learn and polish their exploitation skills at **Kernel** level. 
 
-**HackSys Extreme Vulnerable Driver** caters wide range of vulnerabilities ranging from simple `Buffer Overflows` to complex `Use After Frees` and `Pool Overflows`. This allows the researchers to explore the exploitation techniques for every implemented vulnerabilities.
+**HackSys Extreme Vulnerable Driver** caters wide range of vulnerabilities ranging from simple `Stack Buffer Overflow` to complex `Use After Free`, `Pool Buffer Overflow` and `Race Condition`. This allows the researchers to explore the exploitation techniques for every implemented vulnerabilities.
 
 
 Black Hat Arsenal 2016 
@@ -65,7 +65,7 @@ External Exploits
 [https://github.com/tekwizz123/HEVD-Exploit-Solutions](https://github.com/tekwizz123/HEVD-Exploit-Solutions)
 
 
-External Researches
+External Blog Posts
 -------------------
 [http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/](http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/)
 
@@ -152,25 +152,35 @@ Vulnerabilities Implemented
 ---------------------------
 * **Write NULL**
 * **Double Fetch**
-* **Pool Overflow**
+* **Buffer Overflow**
+  * **Stack**
+  * **Stack GS**
+  * **NonPagedPool**
+  * **NonPagedPoolNx**
+  * **PagedPoolSession**
 * **Use After Free**
+  * **NonPagedPool**
+  * **NonPagedPoolNx**
 * **Type Confusion**
-* **Stack Overflow**
 * **Integer Overflow**
+  * **Arithmetic Overflow**
 * **Memory Disclosure**
-* **Stack Overflow GS**
+  * **NonPagedPool**
+  * **NonPagedPoolNx**
 * **Arbitrary Overwrite**
 * **Null Pointer Dereference**
-* **Uninitialized Heap Variable**
-* **Uninitialized Stack Variable**
+* **Uninitialized Memory**
+  * **Stack**
+  * **NonPagedPool**
 * **Insecure Kernel Resource Access**
 
 
 Building Driver
 ---------------
-1. [Install Windows Driver Kit](https://www.microsoft.com/en-in/download/details.aspx?id=11800)
-2. Change `%localSymbolServerPath%` in `Build_HEVD_Secure_x86.bat` and `Build_HEVD_Vulnerable_x86.bat` driver builder
-3. Run the appropriate driver builder `Build_HEVD_Secure_x86.bat` or `Build_HEVD_Vulnerable_x86.bat`
+1. [Install Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
+2. [Install Windows Driver Kit](https://docs.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk)
+3. Change `%localSymbolServerPath%` in `Build_HEVD_Secure_x86.bat` and `Build_HEVD_Vulnerable_x86.bat` driver builder
+4. Run the appropriate driver builder `Build_HEVD_Secure_x86.bat` or `Build_HEVD_Vulnerable_x86.bat`
 
 
 Download
@@ -178,7 +188,7 @@ Download
 If you do not want to build **HackSys Extreme Vulnerable Driver** from source, you could download pre-built
 executables for the latest release:
 
-&nbsp;&nbsp;&nbsp;&nbsp;[HEVD.zip](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases/download/v1.20/HEVD.1.20.zip)
+[https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases)
 
 
 Installing Driver
@@ -188,7 +198,7 @@ Use [OSR Driver Loader](https://www.osronline.com/article.cfm?article=157) to in
 
 Testing
 -------
-The **HackSys Extreme Vulnerable Driver** and the respective exploits have been tested on **Windows 7 SP1 x86** 
+The **HackSys Extreme Vulnerable Driver** and the respective exploits have been tested on **Windows 7 SP1 x86** and **Windows 10 x64**  
 
 
 Sessions Conducted
@@ -220,7 +230,7 @@ Please see the file `CONTRIBUTING.md` for contribution guidelines
 
 TODO & Bug Report
 -----------------
-Please file any enhancement request or bug report via GitHub Issue Tracker at the below given address: [https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues)
+Please file any enhancement request or bug report via GitHub issue tracker at the below given address: [https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues)
 
 
 ------------------------------------------------------------------------
