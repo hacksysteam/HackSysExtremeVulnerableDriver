@@ -175,7 +175,12 @@ function(wdk_add_driver _target)
 
     # stampinf.exe Configuration
     set(STAMPINF_PATH "${WDK_ROOT}/bin/${WDK_VERSION}/x86/stampinf.exe")
-    set(STAMPINF_ARGS "-k \"1.9\" -d \"*\" -a \"${HOST_PLATFORM}\" -v \"${HEVD_VERSION}\" -f ")
+
+    if(HOST_ARCH_X86)
+        set(STAMPINF_ARGS "-k \"1.9\" -d \"*\" -a \"x86\" -v \"${HEVD_VERSION}\" -f ")
+    else()
+        set(STAMPINF_ARGS "-k \"1.9\" -d \"*\" -a \"amd64\" -v \"${HEVD_VERSION}\" -f ")
+    endif()
 
     add_custom_command(
       COMMENT "Copying inf to build directory"

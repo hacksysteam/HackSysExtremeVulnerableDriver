@@ -29,22 +29,22 @@ max_jobs: 1
 # Build worker image (VM template)
 image: Visual Studio 2017
 
-# scripts that are called at very beginning, before repo cloning
-init:
-  - git config --global core.autocrlf input
-
 # clone directory
 clone_folder: c:\projects\hevd
 
+# scripts that are called at very beginning, before repo cloning
+init:
+- cmd: git config --global core.autocrlf input
+
 # this is how to allow failing jobs in the matrix
-matrix:
-  fast_finish: true
+# matrix:
+#   fast_finish: true
 
 # script to build the driver
 build_script:
-- cmd: cd c:\projects\hevd\Builder
-- cmd: dir
-- cmd: '%COMSPEC% /c Build_HEVD_All.bat'
+- cmd: >-
+    cd c:\projects\hevd\Builder
+    '%COMSPEC% /c Build_HEVD_All.bat'
 
 # disable test
 test: off
