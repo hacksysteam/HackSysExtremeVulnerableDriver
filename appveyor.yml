@@ -47,7 +47,7 @@ build_script:
 
 # after build
 after_build:
-- cmd: 7z a HEVD.zip c:\projects\hevd\build\*
+- cmd: 7z a c:\projects\hevd\build\HEVD.zip c:\projects\hevd\build\*
 
 # disable test
 test: off
