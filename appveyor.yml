@@ -1,0 +1,51 @@
+# HEVD appveyor configuration
+
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+# version format
+version: 3.0.'{build}'
+
+# branches to build
+branches:
+  # whitelist
+  only:
+  - master
+
+# Do not build on tags (GitHub and BitBucket)
+skip_tags: true
+
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true
+
+# Maximum number of concurrent jobs for the project
+max_jobs: 1
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+# Build worker image (VM template)
+image: Visual Studio 2017
+
+# scripts that are called at very beginning, before repo cloning
+init:
+  - git config --global core.autocrlf input
+
+# clone directory
+clone_folder: c:\projects\hevd
+
+# this is how to allow failing jobs in the matrix
+matrix:
+  fast_finish: true
+
+# script to build the driver
+build_script:
+- cmd: '%COMSPEC% /c c:\projects\hevd\Builder\Build_HEVD_All.bat'
+
+# disable test
+test: off
+
+# disable deployment
+deploy: off
