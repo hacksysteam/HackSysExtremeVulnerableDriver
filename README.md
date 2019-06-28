@@ -179,8 +179,7 @@ Building Driver
 ---------------
 1. [Install Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 2. [Install Windows Driver Kit](https://docs.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk)
-3. Change `%localSymbolServerPath%` in `Build_HEVD_Secure_x86.bat` and `Build_HEVD_Vulnerable_x86.bat` driver builder
-4. Run the appropriate driver builder `Build_HEVD_Secure_x86.bat` or `Build_HEVD_Vulnerable_x86.bat`
+3. Run the appropriate driver builder `Build_HEVD_Vulnerable_x86.bat` or `Build_HEVD_Vulnerable_x64.bat`
 
 
 Download
