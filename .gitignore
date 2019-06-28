@@ -204,3 +204,6 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+# White-list PFX file
+!Driver/HEVD/HEVD.pfx

@@ -35,7 +35,6 @@ clone_folder: c:\projects\hevd
 # scripts that are called at very beginning, before repo cloning
 init:
   - cmd: git config --global core.autocrlf input
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 # this is how to allow failing jobs in the matrix
 # matrix:
