@@ -44,7 +44,7 @@ matrix:
 build_script:
 - cmd: cd c:\projects\hevd\Builder
 - cmd: dir
-- cmd: %COMSPEC% /c Build_HEVD_All.bat
+- cmd: '%COMSPEC% /c Build_HEVD_All.bat'
 
 # disable test
 test: off
