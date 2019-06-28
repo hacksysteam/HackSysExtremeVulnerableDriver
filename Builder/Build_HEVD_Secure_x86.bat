@@ -20,7 +20,7 @@ set PROJECT_DIR=%CURRENT_DIR%\..\Driver\
 rem Get the normalized path 
 for %%i in ("%PROJECT_DIR%") do SET "PROJECT_DIR=%%~fi"
 
-set BUILD_DIR=%PROJECT_DIR%..\build\secure\%BUILD_ARCH%
+set BUILD_DIR=%PROJECT_DIR%..\build\driver\secure\%BUILD_ARCH%
 
 rem VS2017U2 contains vswhere.exe
 if "%VSWHERE%"=="" (
