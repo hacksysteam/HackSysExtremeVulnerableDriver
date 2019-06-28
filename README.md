@@ -11,6 +11,10 @@ HackSys Extreme Vulnerable Driver
 
 ------------------------------------------------------------------------
 
+[![Appveyor build status](https://ci.appveyor.com/api/projects/status/o0i4crgqxjfnqf1s/branch/master?svg=true)](https://ci.appveyor.com/project/hacksysteam/hacksysextremevulnerabledriver/branch/master)
+[![Black Hat Arsenal](https://www.toolswatch.org/badges/arsenal/2016.svg)](https://www.blackhat.com/asia-16/arsenal.html#hacksys-extreme-vulnerable-driver)
+
+
 **HackSys Extreme Vulnerable Driver** is **intentionally** vulnerable **Windows** driver developed for security enthusiasts to learn and polish their exploitation skills at **Kernel** level. 
 
 **HackSys Extreme Vulnerable Driver** caters wide range of vulnerabilities ranging from simple `Stack Buffer Overflow` to complex `Use After Free`, `Pool Buffer Overflow` and `Race Condition`. This allows the researchers to explore the exploitation techniques for every implemented vulnerabilities.
@@ -18,8 +22,6 @@ HackSys Extreme Vulnerable Driver
 
 Black Hat Arsenal 2016 
 ----------------------
-[![Black Hat Arsenal](https://www.toolswatch.org/badges/arsenal/2016.svg)](https://www.blackhat.com/asia-16/arsenal.html#hacksys-extreme-vulnerable-driver)
-
 [Presentation](https://www.blackhat.com/docs/asia-16/materials/arsenal/asia-16-Ansari-HackSys-Extreme-Vulnerable-Driver.pdf)
 
 [White Paper](https://www.blackhat.com/docs/asia-16/materials/arsenal/asia-16-Ansari-HackSys-Extreme-Vulnerable-Driver-wp.pdf)
