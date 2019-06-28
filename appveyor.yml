@@ -34,7 +34,7 @@ clone_folder: c:\projects\hevd
 
 # scripts that are called at very beginning, before repo cloning
 init:
-- cmd: git config --global core.autocrlf input
+  - cmd: git config --global core.autocrlf input
 
 # this is how to allow failing jobs in the matrix
 # matrix:
@@ -42,19 +42,30 @@ init:
 
 # script to build the driver
 build_script:
-- cmd: cd c:\projects\hevd\Builder
-- cmd: '%COMSPEC% /c Build_HEVD_All.bat'
+  - cmd: cd c:\projects\hevd\Builder
+  - cmd: '%COMSPEC% /c Build_HEVD_All.bat'
 
 # after build
 after_build:
-- cmd: 7z a c:\projects\hevd\HEVD.zip c:\projects\hevd\build\*
+  - cmd: 7z a c:\projects\hevd\HEVD.zip c:\projects\hevd\build\*
 
 # disable test
 test: off
 
 # artifacts
 artifacts:
-- path: HEVD.zip
+  - path: HEVD.zip
 
 # disable deployment
 deploy: off
+
+
+# remote desktop debugging
+environment:
+  APPVEYOR_RDP_PASSWORD: test123456!@#
+
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
