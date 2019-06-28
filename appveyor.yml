@@ -45,8 +45,17 @@ build_script:
 - cmd: cd c:\projects\hevd\Builder
 - cmd: '%COMSPEC% /c Build_HEVD_All.bat'
 
+# after build
+after_build:
+- cmd: pwd
+- cmd: 7z a HEVD.3.0.{build}.zip c:\projects\hevd\build\*
+
 # disable test
 test: off
+
+# artifacts
+artifacts:
+- path: c:\projects\hevd\build\HEVD.3.0.{build}.zip
 
 # disable deployment
 deploy: off
