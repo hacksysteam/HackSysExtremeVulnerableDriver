@@ -42,7 +42,7 @@ matrix:
 
 # script to build the driver
 build_script:
-- cmd: '%COMSPEC% /c cd c:\projects\hevd\Builder && Build_HEVD_All.bat'
+- cmd: '%COMSPEC% /c cd c:\projects\hevd\Builder && dir && %COMSPEC% /c Build_HEVD_All.bat'
 
 # disable test
 test: off
