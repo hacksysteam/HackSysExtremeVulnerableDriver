@@ -138,7 +138,7 @@ unset(WDK_LIBRARIES)
 
 
 function(wdk_add_driver _target)
-    cmake_parse_arguments(WDK "" "WDM;WINVER" "" ${ARGN})
+    cmake_parse_arguments(WDK "" "WDM;PFX_FILE;PFX_PASSWORD" "" ${ARGN})
 
     add_executable(${_target} ${WDK_UNPARSED_ARGUMENTS})
 
@@ -168,10 +168,10 @@ function(wdk_add_driver _target)
     endif()
 
     set(PROJECT_INF_PATH "${PROJECT_SOURCE_DIR}\\${CMAKE_PROJECT_NAME}\\${CMAKE_PROJECT_NAME}.inf")
-    set(PROJECT_CRT_PATH "${PROJECT_SOURCE_DIR}\\${CMAKE_PROJECT_NAME}\\${CMAKE_PROJECT_NAME}.crt")
+    set(PROJECT_PFX_PATH "${PROJECT_SOURCE_DIR}\\${CMAKE_PROJECT_NAME}\\${WDK_PFX_FILE}")
 
     message(STATUS "PROJECT_INF_PATH: ${PROJECT_INF_PATH}")
-    message(STATUS "PROJECT_CRT_PATH: ${PROJECT_CRT_PATH}")
+    message(STATUS "PROJECT_PFX_PATH: ${PROJECT_PFX_PATH}")
 
     # stampinf.exe Configuration
     set(STAMPINF_PATH "${WDK_ROOT}/bin/${WDK_VERSION}/x86/stampinf.exe")
@@ -198,10 +198,10 @@ function(wdk_add_driver _target)
     )
 
     # sign the files if certificate is available
-    if(EXISTS ${PROJECT_CRT_PATH})
+    if(EXISTS ${PROJECT_PFX_PATH})
         # signtool.exe Configuration
         set(SIGNTOOL_PATH "${WDK_ROOT}/bin/${WDK_VERSION}/x86/signtool.exe")
-        set(SIGNTOOL_ARGS "sign /f \"${PROJECT_CRT_PATH}\"")
+        set(SIGNTOOL_ARGS "sign /f \"${PROJECT_PFX_PATH}\" /p ${WDK_PFX_PASSWORD}")
 
         add_custom_command(
           COMMENT "Signing driver binary file"

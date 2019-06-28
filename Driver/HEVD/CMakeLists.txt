@@ -8,7 +8,12 @@ endif()
 
 
 wdk_add_driver(HEVD
-    WDM 1.15
+    WDM
+        1.15
+    PFX_FILE
+        HEVD.pfx
+    PFX_PASSWORD
+        Passw0rd!
     HackSysExtremeVulnerableDriver.c
     ArbitraryReadWriteHelperNonPagedPoolNx.c
     ArbitraryWrite.c
