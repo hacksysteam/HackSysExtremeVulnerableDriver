@@ -197,17 +197,8 @@ function(wdk_add_driver _target)
       COMMAND ${STAMPINF_PATH} ${STAMPINF_ARGS} "${CMAKE_CURRENT_BINARY_DIR}\\${CMAKE_PROJECT_NAME}.inf"
     )
 
-    # check if we could do signing
-    set(CERT_AVAILABLE BOOL OFF)
-
+    # sign the files if certificate is available
     if(EXISTS ${PROJECT_CRT_PATH})
-        set(CERT_AVAILABLE BOOL ON)
-    endif()
-
-    # find the sha1 hash of .cer file
-    if(CERT_AVAILABLE)
-        message(STATUS "Certificate path: ${PROJECT_CRT_PATH}")
-
         # signtool.exe Configuration
         set(SIGNTOOL_PATH "${WDK_ROOT}/bin/${WDK_VERSION}/x86/signtool.exe")
         set(SIGNTOOL_ARGS "sign /f \"${PROJECT_CRT_PATH}\"")
