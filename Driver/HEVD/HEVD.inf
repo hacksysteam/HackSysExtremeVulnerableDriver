@@ -1,0 +1,56 @@
+;
+; HEVD.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = System
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider    = %ManufacturerName%
+CatalogFile = HEVD.cat
+DriverVer   = 
+
+[DestinationDirs]
+DefaultDestDir = 10           ; %SystemRoot%
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+HEVD.sys = 1,,
+
+;*****************************************
+; HEVD driver install sections
+;*****************************************
+
+[DefaultInstall]
+OptionDesc = %ServiceDesc%
+CopyFiles  = HEVD.DriverFiles
+
+[HEVD.DriverFiles]
+HEVD.sys,,,0x00000004        ; COPYFLG_NOVERSIONCHECK
+
+;*****************************************
+; HEVD service install sections
+;*****************************************
+
+[DefaultInstall.Services]
+AddService = %ServiceName%,,HEVD.ServiceInstall
+
+[HEVD.ServiceInstall]
+DisplayName   = %ServiceName%
+Description   = %ServiceDesc%
+ServiceBinary = %10%\HEVD.sys
+ServiceType   = 1              ; SERVICE_KERNEL_DRIVER
+StartType     = 3              ; SERVICE_AUTO_START ; SERVICE_DEMAND_START = 3
+ErrorControl  = 1              ; SERVICE_ERROR_NORMAL
+
+;*****************************************
+; Strings Section
+;*****************************************
+
+[Strings]
+ManufacturerName = "HackSys Team"
+DiskName         = "HEVD Installation Disk"
+ServiceName      = "HEVD"
+ServiceDesc      = "HackSys Extreme Vulnerable Driver Service"

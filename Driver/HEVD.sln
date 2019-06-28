@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HackSysExtremeVulnerableDriver", "HEVD\HackSysExtremeVulnerableDriver.vcxproj", "{7C47CF49-817B-452A-8B81-9450F9EF89CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Secure|ARM = Debug Secure|ARM
+		Debug Secure|ARM64 = Debug Secure|ARM64
+		Debug Secure|x64 = Debug Secure|x64
+		Debug Secure|x86 = Debug Secure|x86
+		Debug Vulnerable|ARM = Debug Vulnerable|ARM
+		Debug Vulnerable|ARM64 = Debug Vulnerable|ARM64
+		Debug Vulnerable|x64 = Debug Vulnerable|x64
+		Debug Vulnerable|x86 = Debug Vulnerable|x86
+		Release Secure|ARM = Release Secure|ARM
+		Release Secure|ARM64 = Release Secure|ARM64
+		Release Secure|x64 = Release Secure|x64
+		Release Secure|x86 = Release Secure|x86
+		Release Vulnerable|ARM = Release Vulnerable|ARM
+		Release Vulnerable|ARM64 = Release Vulnerable|ARM64
+		Release Vulnerable|x64 = Release Vulnerable|x64
+		Release Vulnerable|x86 = Release Vulnerable|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|ARM.ActiveCfg = Debug Secure|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|ARM.Build.0 = Debug Secure|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|ARM.Deploy.0 = Debug Secure|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|ARM64.ActiveCfg = Debug Secure|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|ARM64.Build.0 = Debug Secure|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|ARM64.Deploy.0 = Debug Secure|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|x64.ActiveCfg = Debug Secure|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|x64.Build.0 = Debug Secure|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|x64.Deploy.0 = Debug Secure|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|x86.ActiveCfg = Debug Secure|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|x86.Build.0 = Debug Secure|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Secure|x86.Deploy.0 = Debug Secure|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|ARM.ActiveCfg = Debug Vulnerable|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|ARM.Build.0 = Debug Vulnerable|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|ARM.Deploy.0 = Debug Vulnerable|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|ARM64.ActiveCfg = Debug Vulnerable|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|ARM64.Build.0 = Debug Vulnerable|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|ARM64.Deploy.0 = Debug Vulnerable|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|x64.ActiveCfg = Debug Vulnerable|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|x64.Build.0 = Debug Vulnerable|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|x64.Deploy.0 = Debug Vulnerable|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|x86.ActiveCfg = Debug Vulnerable|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|x86.Build.0 = Debug Vulnerable|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Debug Vulnerable|x86.Deploy.0 = Debug Vulnerable|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|ARM.ActiveCfg = Release Secure|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|ARM.Build.0 = Release Secure|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|ARM.Deploy.0 = Release Secure|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|ARM64.ActiveCfg = Release Secure|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|ARM64.Build.0 = Release Secure|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|ARM64.Deploy.0 = Release Secure|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|x64.ActiveCfg = Release Secure|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|x64.Build.0 = Release Secure|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|x64.Deploy.0 = Release Secure|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|x86.ActiveCfg = Release Secure|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|x86.Build.0 = Release Secure|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Secure|x86.Deploy.0 = Release Secure|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|ARM.ActiveCfg = Release Vulnerable|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|ARM.Build.0 = Release Vulnerable|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|ARM.Deploy.0 = Release Vulnerable|ARM
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|ARM64.ActiveCfg = Release Vulnerable|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|ARM64.Build.0 = Release Vulnerable|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|ARM64.Deploy.0 = Release Vulnerable|ARM64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|x64.ActiveCfg = Release Vulnerable|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|x64.Build.0 = Release Vulnerable|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|x64.Deploy.0 = Release Vulnerable|x64
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|x86.ActiveCfg = Release Vulnerable|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|x86.Build.0 = Release Vulnerable|Win32
+		{7C47CF49-817B-452A-8B81-9450F9EF89CA}.Release Vulnerable|x86.Deploy.0 = Release Vulnerable|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF217736-87A5-4A22-B22A-F72D9FB2B477}
+	EndGlobalSection
+EndGlobal

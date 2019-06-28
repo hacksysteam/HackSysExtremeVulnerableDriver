@@ -9,62 +9,96 @@ echo  #     # #    # #    # #   #  #     #   #   #    #    #    #      #    # # 
 echo  #     # #    #  ####  #    #  #####    #    ####     #    ###### #    # #    #
 echo.
 echo                  HackSys Extreme Vulnerable Driver Build Utility
-
-REM store the current directory path
-set currentDir=%cd%
-
-REM store the local symbol server path
-set localSymbolServerPath=C:\Xtra\Symbols\Custom\
-
 echo.
-@call %WDKPATH%\bin\setenv.bat %WDKPATH%\ fre x86 WIN7 no_oacr
 
-cd %currentDir%\..\Driver
+rem Store the current directory path
+set BUILD_ARCH=x86
+set CURRENT_DIR=%cd%
+set PROJECT_NAME=HEVD
+set PROJECT_DIR=%CURRENT_DIR%\..\
 
-echo.
-echo ******************************************
-echo Building HackSys Extreme Vulnerable Driver
-echo                Vulnerable
-echo ******************************************
-echo.
-rmdir /S /Q drv\vulnerable\amd64
-build /cCzg
-echo ******************************************
-echo.
-echo ******************************************
-echo Cleaning The Build Directory
-echo ******************************************
-echo.
-echo Deleting obj%BUILD_ALT_DIR% folder
-rmdir /S /Q obj%BUILD_ALT_DIR%
+rem Get the normalized path 
+for %%i in ("%PROJECT_DIR%") do SET "PROJECT_DIR=%%~fi"
 
-if exist build%BUILD_ALT_DIR%.log (
-	echo Deleting build%BUILD_ALT_DIR%.log
-	del /F build%BUILD_ALT_DIR%.log
+set BUILD_DIR=%PROJECT_DIR%build\vulnerable\%BUILD_ARCH%
+
+rem VS2017U2 contains vswhere.exe
+if "%VSWHERE%"=="" (
+	set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 )
-if exist build%BUILD_ALT_DIR%.wrn (
-	echo Deleting build%BUILD_ALT_DIR%.wrn
-	del /F build%BUILD_ALT_DIR%.wrn
+
+for /f "usebackq tokens=*" %%i in (`"%VSWHERE%" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath`) do (
+  set VS_INSTALL_DIR=%%i
 )
-if exist build%BUILD_ALT_DIR%.err (
-	echo Deleting build%BUILD_ALT_DIR%.err
-	del /F build%BUILD_ALT_DIR%.err
-)
-echo ******************************************
+
+echo [+] Visual Studio Path: %VS_INSTALL_DIR%
+
+set VSDEVCMD_PATH=%VS_INSTALL_DIR%\Common7\Tools\VsDevCmd.bat
+
+echo [+] Executing: %VSDEVCMD_PATH%
 
 echo.
-echo ******************************************
-echo Transferring Driver Symbols to Symbol Store
-echo ******************************************
-cd "C:\Program Files\Debugging Tools for Windows (x86)"
+@call "%VSDEVCMD_PATH%" -arch=%BUILD_ARCH%
 echo.
-symstore.exe add /r /f %currentDir%\..\compile\drv\vulnerable\i386\ /s %localSymbolServerPath% /t "DriverSymbols" /v "1.0"
-echo ******************************************
+
+echo [+] Build target architecture: %BUILD_ARCH%
+echo [+] Host Architecture: %PROCESSOR_ARCHITECTURE%
+echo [+] Build directory: %BUILD_DIR%
+echo [+] Removing build directory
+
+if exist %BUILD_DIR% (
+	rmdir /S /Q %BUILD_DIR%
+)
+
+echo [+] Creating build directory
+
+mkdir %BUILD_DIR%
+cd %BUILD_DIR%
+
+echo [+] Generating build configuration files
+
+cmake.exe -G "Ninja" -DCMAKE_INSTALL_PREFIX:PATH="%BUILD_DIR%" -DCMAKE_BUILD_TYPE="Release" "%PROJECT_DIR%"
+
 echo.
-echo ******************************************
-echo HackSys Extreme Vulnerable Driver Built
-echo              Successfully
-echo ******************************************
+echo [+] Building vulnerable HackSys Extreme Vulnerable Driver
 echo.
-cd %currentDir%
-pause
+
+CMake.exe --build "%BUILD_DIR%" --config Release --clean-first -- "-v"
+echo.
+
+echo [+] Copying built files
+
+echo [*] %PROJECT_NAME%.sys
+move /Y "%BUILD_DIR%\%PROJECT_NAME%\%PROJECT_NAME%.sys" "%BUILD_DIR%"
+
+echo [*] %PROJECT_NAME%.pdb
+move /Y "%BUILD_DIR%\%PROJECT_NAME%\%PROJECT_NAME%.pdb" "%BUILD_DIR%"
+
+echo [*] %PROJECT_NAME%.cat
+move /Y "%BUILD_DIR%\%PROJECT_NAME%\%PROJECT_NAME%.cat" "%BUILD_DIR%"
+
+echo [*] %PROJECT_NAME%.inf
+move /Y "%BUILD_DIR%\%PROJECT_NAME%\%PROJECT_NAME%.inf" "%BUILD_DIR%"
+echo.
+
+
+echo [+] Cleaning build directory
+for /r "%BUILD_DIR%" %%a in (*) do (
+	if not %%~xa==.sys (
+	    if not %%~xa==.pdb (
+	        if not %%~xa==.inf (
+	        	if not %%~xa==.cat (
+	            	del /f /q "%%a"
+	            )
+	        )
+	    )
+	)
+)
+
+rmdir /S /Q "%BUILD_DIR%\%PROJECT_NAME%"
+rmdir /S /Q "%BUILD_DIR%\CMakeFiles"
+echo.
+
+echo [+] Built vulnerable HackSys Extreme Vulnerable Driver successfully
+cd %CURRENT_DIR%
+echo.

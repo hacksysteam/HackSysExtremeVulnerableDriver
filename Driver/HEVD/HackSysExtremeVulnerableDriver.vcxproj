@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug Secure|ARM">
+      <Configuration>Debug Secure</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Secure|ARM64">
+      <Configuration>Debug Secure</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Secure|Win32">
+      <Configuration>Debug Secure</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Secure|x64">
+      <Configuration>Debug Secure</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Vulnerable|Win32">
+      <Configuration>Debug Vulnerable</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Secure|ARM">
+      <Configuration>Release Secure</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Secure|ARM64">
+      <Configuration>Release Secure</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Secure|Win32">
+      <Configuration>Release Secure</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Secure|x64">
+      <Configuration>Release Secure</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Vulnerable|Win32">
+      <Configuration>Release Vulnerable</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Vulnerable|x64">
+      <Configuration>Debug Vulnerable</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Vulnerable|x64">
+      <Configuration>Release Vulnerable</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Vulnerable|ARM">
+      <Configuration>Debug Vulnerable</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Vulnerable|ARM">
+      <Configuration>Release Vulnerable</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Vulnerable|ARM64">
+      <Configuration>Debug Vulnerable</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Vulnerable|ARM64">
+      <Configuration>Release Vulnerable</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7C47CF49-817B-452A-8B81-9450F9EF89CA}</ProjectGuid>
+    <TemplateGuid>{dd38f7fc-d7bd-488b-9242-7d8754cde80d}</TemplateGuid>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <Configuration>Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">Win32</Platform>
+    <RootNamespace>HackSysExtremeVulnerableDriver</RootNamespace>
+    <TargetVersion>Windows7</TargetVersion>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>Driver</ConfigurationType>
+    <DriverType>WDM</DriverType>
+    <TestCertificate>HEVD.crt</TestCertificate>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|Win32'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|Win32'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|Win32'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|Win32'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|ARM64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|ARM64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|ARM64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|ARM64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <TargetName>HEVD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|Win32'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|Win32'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|Win32'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|Win32'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|x64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|x64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|x64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|x64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|ARM'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|ARM'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|ARM'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|ARM'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|ARM64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|ARM64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|ARM64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|ARM64'">
+    <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|x64'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|x64'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <PreprocessorDefinitions>SECURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|ARM'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|ARM'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <PreprocessorDefinitions>SECURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Vulnerable|Win32'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Secure|Win32'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <PreprocessorDefinitions>SECURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|x64'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|x64'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <PreprocessorDefinitions>SECURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|ARM'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|ARM'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <PreprocessorDefinitions>SECURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Vulnerable|Win32'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Secure|Win32'">
+    <Inf>
+      <TimeStamp>3.00</TimeStamp>
+    </Inf>
+    <ClCompile>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <PreprocessorDefinitions>SECURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Inf Include="HEVD.inf" />
+  </ItemGroup>
+  <ItemGroup>
+    <FilesToPackage Include="$(TargetPath)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ArbitraryReadWriteHelperNonPagedPoolNx.h" />
+    <ClInclude Include="ArbitraryWrite.h" />
+    <ClInclude Include="BufferOverflowNonPagedPool.h" />
+    <ClInclude Include="BufferOverflowNonPagedPoolNx.h" />
+    <ClInclude Include="BufferOverflowPagedPoolSession.h" />
+    <ClInclude Include="BufferOverflowStack.h" />
+    <ClInclude Include="BufferOverflowStackGS.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="DoubleFetch.h" />
+    <ClInclude Include="HackSysExtremeVulnerableDriver.h" />
+    <ClInclude Include="InsecureKernelResourceAccess.h" />
+    <ClInclude Include="IntegerOverflow.h" />
+    <ClInclude Include="MemoryDisclosureNonPagedPool.h" />
+    <ClInclude Include="MemoryDisclosureNonPagedPoolNx.h" />
+    <ClInclude Include="NullPointerDereference.h" />
+    <ClInclude Include="TypeConfusion.h" />
+    <ClInclude Include="UninitializedMemoryPagedPool.h" />
+    <ClInclude Include="UninitializedMemoryStack.h" />
+    <ClInclude Include="UseAfterFreeNonPagedPool.h" />
+    <ClInclude Include="UseAfterFreeNonPagedPoolNx.h" />
+    <ClInclude Include="WriteNULL.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ArbitraryReadWriteHelperNonPagedPoolNx.c" />
+    <ClCompile Include="ArbitraryWrite.c" />
+    <ClCompile Include="BufferOverflowNonPagedPool.c" />
+    <ClCompile Include="BufferOverflowNonPagedPoolNx.c" />
+    <ClCompile Include="BufferOverflowPagedPoolSession.c" />
+    <ClCompile Include="BufferOverflowStack.c" />
+    <ClCompile Include="BufferOverflowStackGS.c" />
+    <ClCompile Include="DoubleFetch.c" />
+    <ClCompile Include="HackSysExtremeVulnerableDriver.c" />
+    <ClCompile Include="InsecureKernelResourceAccess.c" />
+    <ClCompile Include="IntegerOverflow.c" />
+    <ClCompile Include="MemoryDisclosureNonPagedPool.c" />
+    <ClCompile Include="MemoryDisclosureNonPagedPoolNx.c" />
+    <ClCompile Include="NullPointerDereference.c" />
+    <ClCompile Include="TypeConfusion.c" />
+    <ClCompile Include="UninitializedMemoryPagedPool.c" />
+    <ClCompile Include="UninitializedMemoryStack.c" />
+    <ClCompile Include="UseAfterFreeNonPagedPool.c" />
+    <ClCompile Include="UseAfterFreeNonPagedPoolNx.c" />
+    <ClCompile Include="WriteNULL.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
