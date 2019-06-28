@@ -15,12 +15,12 @@ rem Store the current directory path
 set BUILD_ARCH=x64
 set CURRENT_DIR=%cd%
 set PROJECT_NAME=HEVD
-set PROJECT_DIR=%CURRENT_DIR%\..\
+set PROJECT_DIR=%CURRENT_DIR%\..\Driver\
 
 rem Get the normalized path 
 for %%i in ("%PROJECT_DIR%") do SET "PROJECT_DIR=%%~fi"
 
-set BUILD_DIR=%PROJECT_DIR%build\vulnerable\%BUILD_ARCH%
+set BUILD_DIR=%PROJECT_DIR%..\build\vulnerable\%BUILD_ARCH%
 
 rem VS2017U2 contains vswhere.exe
 if "%VSWHERE%"=="" (
