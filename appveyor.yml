@@ -42,9 +42,8 @@ init:
 
 # script to build the driver
 build_script:
-- cmd: >-
-    cd c:\projects\hevd\Builder
-    '%COMSPEC% /c Build_HEVD_All.bat'
+- cmd: cd c:\projects\hevd\Builder
+- cmd: '%COMSPEC% /c Build_HEVD_All.bat'
 
 # disable test
 test: off
