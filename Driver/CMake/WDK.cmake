@@ -206,13 +206,11 @@ function(wdk_add_driver _target)
 
     # find the sha1 hash of .cer file
     if(CERT_AVAILABLE)
-        file(SHA1 ${PROJECT_CRT_PATH} CERT_SHA1_HASH)
-
-        message(STATUS "Certificate sha1 hash: ${CERT_SHA1_HASH}")
+        message(STATUS "Certificate path: ${PROJECT_CRT_PATH}")
 
         # signtool.exe Configuration
         set(SIGNTOOL_PATH "${WDK_ROOT}/bin/${WDK_VERSION}/x86/signtool.exe")
-        set(SIGNTOOL_ARGS "sign /ph /sha1 \"${CERT_SHA1_HASH}\"")
+        set(SIGNTOOL_ARGS "sign /f \"${PROJECT_CRT_PATH}\"")
 
         add_custom_command(
           COMMENT "Signing driver binary file"
