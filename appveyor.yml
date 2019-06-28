@@ -5,7 +5,7 @@
 #---------------------------------#
 
 # version format
-version: 3.0.'{build}'
+version: 3.0.{build}
 
 # branches to build
 branches:
@@ -42,7 +42,7 @@ matrix:
 
 # script to build the driver
 build_script:
-- cmd: '%COMSPEC% /c c:\projects\hevd\Builder\Build_HEVD_All.bat'
+- cmd: '%COMSPEC% /c cd c:\projects\hevd\Builder && Build_HEVD_All.bat'
 
 # disable test
 test: off
