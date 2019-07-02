@@ -3,7 +3,7 @@ if(SECURE)
     add_definitions(-DSECURE)
     message("Generating secure HEVD build configuration")
 else()
-    message("Generating secure HEVD build configuration")
+    message("Generating vulnerable HEVD build configuration")
 endif()
 
 
