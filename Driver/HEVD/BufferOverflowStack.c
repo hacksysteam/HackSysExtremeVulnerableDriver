@@ -123,7 +123,8 @@ TriggerBufferOverflowStack(
 /// <param name="Irp">The pointer to IRP</param>
 /// <param name="IrpSp">The pointer to IO_STACK_LOCATION structure</param>
 /// <returns>NTSTATUS</returns>
-NTSTATUS BufferOverflowStackIoctlHandler(
+NTSTATUS
+BufferOverflowStackIoctlHandler(
     _In_ PIRP Irp,
     _In_ PIO_STACK_LOCATION IrpSp
 )
