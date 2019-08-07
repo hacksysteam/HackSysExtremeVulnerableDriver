@@ -67,7 +67,7 @@ Abstract:
 
 #define DbgPrint(Format, ...) DbgPrintEx(DPFLTR_IHVDRIVER_ID, DPFLTR_INFO_LEVEL, Format, __VA_ARGS__)
 
-typedef void(*FunctionPointer)();
+typedef void (*FunctionPointer)(void);
 
 
 //
