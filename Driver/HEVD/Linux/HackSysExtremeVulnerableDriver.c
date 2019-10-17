@@ -73,7 +73,7 @@ static struct miscdevice hevd_device = {
 
 /**
  * Driver initialization routine
- * 
+ *
  * @return status code
  */
 static int __init hevd_init(void)
@@ -126,8 +126,12 @@ static long hevd_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 	{
 	case HEVD_IOCTL_BUFFER_OVERFLOW_STACK:
 		INFO("****** HEVD_IOCTL_BUFFER_OVERFLOW_STACK ******\n");
-        status = buffer_overflow_stack_ioctl_handler(arg_user);
-        INFO("****** HEVD_IOCTL_BUFFER_OVERFLOW_STACK ******\n");
+		status = buffer_overflow_stack_ioctl_handler(arg_user);
+		INFO("****** HEVD_IOCTL_BUFFER_OVERFLOW_STACK ******\n");
+	case HEVD_IOCTL_INTEGER_OVERFLOW:
+		INFO("****** HEVD_IOCTL_INTEGER_OVERFLOW ******\n");
+		status = integer_overflow_ioctl_handler(arg_user);
+		INFO("****** HEVD_IOCTL_INTEGER_OVERFLOW ******\n");
 		break;
 	default:
 		WARNING("[-] Invalid IOCTL Code: 0x%X\n", cmd);

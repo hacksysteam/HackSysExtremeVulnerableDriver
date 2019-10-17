@@ -39,62 +39,27 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 See the file 'LICENSE' for complete copying permission.
 
 Module Name:
-    Common.h
+    IntegerOverflow.h
 
 Abstract:
-    This module implements the data structures which
-    are common to the driver modules.
+    This module implements the data structures for
+    integer overflow module.
 
 --*/
 
 #pragma once
 
-#ifndef __COMMON_H__
-#define __COMMON_H__
+#ifndef __INTEGER_OVERFLOW_H__
+#define __INTEGER_OVERFLOW_H__
 
-#include <linux/fs.h>
-#include <linux/init.h>
-#include <linux/kernel.h>
-#include <linux/module.h>
-#include <linux/uaccess.h>
-#include <linux/miscdevice.h>
-
-
-/**
- * Defines
- */
-
-#define BUFFER_SIZE 512
-
-#define _STRINGIFY(value) #value
-#define STRINGIFY(value) _STRINGIFY(value)
-
-#define PRINTK(level, fmt, ...) printk(KERN_##level "%s: " fmt, THIS_MODULE->name, ##__VA_ARGS__)
-
-#define ERR(fmt, ...) PRINTK(ERR, fmt, ##__VA_ARGS__)
-#define INFO(fmt, ...) PRINTK(INFO, fmt, ##__VA_ARGS__)
-#define WARNING(fmt, ...) PRINTK(WARNING, fmt, ##__VA_ARGS__)
-
-typedef void (*FunctionPointer)(void);
-
-
-/**
- * Structures
- */
-
-struct hevd_io {
-    void *input_buffer;
-    size_t input_buffer_length;
-    void *output_buffer;
-    size_t output_buffer_length;
-};
+#include "Common.h"
 
 
 /**
  * Function Definitions
  */
 
-int buffer_overflow_stack_ioctl_handler(struct hevd_io *io);
-int integer_overflow_ioctl_handler(struct hevd_io *io);
+int trigger_integer_overflow(void *user_buffer, size_t size);
 
-#endif // !__COMMON_H__
+#endif
+
