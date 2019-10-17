@@ -76,7 +76,7 @@ int trigger_buffer_overflow_stack(void *user_buffer, size_t size)
 
     copy_from_user(kernel_buffer, user_buffer, sizeof(kernel_buffer));
 #else
-    DbgPrint("[+] Triggering Buffer Overflow in Stack\n");
+    INFO("[+] Triggering Buffer Overflow in Stack\n");
 
     /**
      * Vulnerability Note: This is a vanilla Stack based Overflow vulnerability
