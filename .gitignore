@@ -206,4 +206,4 @@ FakesAssemblies/
 *.opt
 
 # White-list PFX file
-!Driver/HEVD/HEVD.pfx
+!Driver/HEVD/Windows/HEVD.pfx
