@@ -18,12 +18,11 @@ message(
 "
 )
 
-project("HEVD")
+project("HEVD" C)
 
 set(HEVD_VERSION "3.0")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake")
 
-# Detect OS
 message("Detecting OS and Architecture")
 include(DetectOS)
 
@@ -50,6 +49,9 @@ endif()
 if(HOST_OS_WINDOWS)
     message("Locating Windows Driver Kit")
     include(WDK)
+elseif(HOST_OS_LINUX)
+    message("Locating Linux Kernel Module Builder")
+    include(LKM)
 endif()
 
 add_subdirectory("HEVD")
