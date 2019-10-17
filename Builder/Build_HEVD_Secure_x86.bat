@@ -20,7 +20,7 @@ set PROJECT_DIR=%CURRENT_DIR%\..\Driver\
 rem Get the normalized path 
 for %%i in ("%PROJECT_DIR%") do SET "PROJECT_DIR=%%~fi"
 
-set BUILD_DIR=%PROJECT_DIR%..\build\driver\secure\%BUILD_ARCH%
+set BUILD_DIR=%PROJECT_DIR%..\build\driver\windows\secure\%BUILD_ARCH%
 
 rem VS2017U2 contains vswhere.exe
 if "%VSWHERE%"=="" (
@@ -69,16 +69,16 @@ echo.
 echo [+] Copying built files
 
 echo [*] %PROJECT_NAME%.sys
-move /Y "%BUILD_DIR%\%PROJECT_NAME%\%PROJECT_NAME%.sys" "%BUILD_DIR%"
+move /Y "%BUILD_DIR%\%PROJECT_NAME%\Windows\%PROJECT_NAME%.sys" "%BUILD_DIR%"
 
 echo [*] %PROJECT_NAME%.pdb
-move /Y "%BUILD_DIR%\%PROJECT_NAME%\%PROJECT_NAME%.pdb" "%BUILD_DIR%"
+move /Y "%BUILD_DIR%\%PROJECT_NAME%\Windows\%PROJECT_NAME%.pdb" "%BUILD_DIR%"
 
 echo [*] %PROJECT_NAME%.cat
-move /Y "%BUILD_DIR%\%PROJECT_NAME%\%PROJECT_NAME%.cat" "%BUILD_DIR%"
+move /Y "%BUILD_DIR%\%PROJECT_NAME%\Windows\%PROJECT_NAME%.cat" "%BUILD_DIR%"
 
 echo [*] %PROJECT_NAME%.inf
-move /Y "%BUILD_DIR%\%PROJECT_NAME%\%PROJECT_NAME%.inf" "%BUILD_DIR%"
+move /Y "%BUILD_DIR%\%PROJECT_NAME%\Windows\%PROJECT_NAME%.inf" "%BUILD_DIR%"
 echo.
 
 
