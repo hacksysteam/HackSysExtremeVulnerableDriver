@@ -16,8 +16,8 @@ function(lkm_add_driver)
     if(NOT LKM_NAME)
         message(FATAL_ERROR "You should give a name to the module")
         return()
-	else()
-		string(TOLOWER ${LKM_NAME} MODULE_NAME)
+    else()
+        string(TOLOWER ${LKM_NAME} MODULE_NAME)
     endif()
 
     # set the Kbuild command and file path
@@ -50,7 +50,7 @@ function(lkm_add_driver)
     message(STATUS "Wrote new Kbuild: ${KBUILD_FILE_PATH}")
 
     # set the output module path
-	set(MODULE_BIN_FILE "${CMAKE_BINARY_DIR}/${MODULE_NAME}.ko")
+    set(MODULE_BIN_FILE "${CMAKE_BINARY_DIR}/${MODULE_NAME}.ko")
     
     add_custom_target(
         ${MODULE_NAME}
