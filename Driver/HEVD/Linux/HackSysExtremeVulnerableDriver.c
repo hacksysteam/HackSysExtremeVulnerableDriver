@@ -49,27 +49,22 @@ Abstract:
 
 #include "HackSysExtremeVulnerableDriver.h"
 
-
 /**
  * File Operations
  */
 
 struct file_operations hevd_fops = {
-	.owner = THIS_MODULE,
-	.unlocked_ioctl = hevd_ioctl
-};
-
+    .owner = THIS_MODULE,
+    .unlocked_ioctl = hevd_ioctl};
 
 /**
  * Miscellaneous Device
  */
 
 static struct miscdevice hevd_device = {
-	.minor = MISC_DYNAMIC_MINOR,
-	.name = "HackSysExtremeVulnerableDriver",
-	.fops = &hevd_fops
-};
-
+    .minor = MISC_DYNAMIC_MINOR,
+    .name = "HackSysExtremeVulnerableDriver",
+    .fops = &hevd_fops};
 
 /**
  * Driver initialization routine
@@ -78,70 +73,67 @@ static struct miscdevice hevd_device = {
  */
 static int __init hevd_init(void)
 {
-	int status = 0;
+    int status = 0;
 
-	/**
+    /**
      * Register the device
      */
 
-	status = misc_register(&hevd_device);
+    status = misc_register(&hevd_device);
 
-	if (status < 0)
-	{
-		ERR("[-] Error Initializing HackSys Extreme Vulnerable Driver\n");
-		return status;
-	}
+    if (status < 0)
+    {
+        ERR("[-] Error Initializing HackSys Extreme Vulnerable Driver\n");
+        return status;
+    }
 
-	INFO(BANNER);
-	INFO("[+] HackSys Extreme Vulnerable Driver Loaded\n");
+    INFO(BANNER);
+    INFO("[+] HackSys Extreme Vulnerable Driver Loaded\n");
 
-	return status;
+    return status;
 }
-
 
 /**
  * Driver cleanup routine
  */
 static void __exit hevd_exit(void)
 {
-	/**
+    /**
      * Deregister the device
      */
 
-	misc_deregister(&hevd_device);
+    misc_deregister(&hevd_device);
 
-	INFO("[-] HackSys Extreme Vulnerable Driver Unloaded\n");
+    INFO("[-] HackSys Extreme Vulnerable Driver Unloaded\n");
 }
-
 
 /**
  * Driver IOCTL handler
  */
 static long hevd_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
-	int status = -EINVAL;
-	void __user *arg_user = (void __user *)arg;
+    int status = -EINVAL;
+    void __user *arg_user = (void __user *)arg;
 
-	switch (cmd)
-	{
-	case HEVD_IOCTL_BUFFER_OVERFLOW_STACK:
-		INFO("****** HEVD_IOCTL_BUFFER_OVERFLOW_STACK ******\n");
-		status = buffer_overflow_stack_ioctl_handler(arg_user);
-		INFO("****** HEVD_IOCTL_BUFFER_OVERFLOW_STACK ******\n");
-	case HEVD_IOCTL_INTEGER_OVERFLOW:
-		INFO("****** HEVD_IOCTL_INTEGER_OVERFLOW ******\n");
-		status = integer_overflow_ioctl_handler(arg_user);
-		INFO("****** HEVD_IOCTL_INTEGER_OVERFLOW ******\n");
-		break;
-	default:
-		WARNING("[-] Invalid IOCTL Code: 0x%X\n", cmd);
-		status = -ENOIOCTLCMD;
-		break;
-	}
+    switch (cmd)
+    {
+    case HEVD_IOCTL_BUFFER_OVERFLOW_STACK:
+        INFO("****** HEVD_IOCTL_BUFFER_OVERFLOW_STACK ******\n");
+        status = buffer_overflow_stack_ioctl_handler(arg_user);
+        INFO("****** HEVD_IOCTL_BUFFER_OVERFLOW_STACK ******\n");
+    case HEVD_IOCTL_INTEGER_OVERFLOW:
+        INFO("****** HEVD_IOCTL_INTEGER_OVERFLOW ******\n");
+        status = integer_overflow_ioctl_handler(arg_user);
+        INFO("****** HEVD_IOCTL_INTEGER_OVERFLOW ******\n");
+        break;
+    default:
+        WARNING("[-] Invalid IOCTL Code: 0x%X\n", cmd);
+        status = -ENOIOCTLCMD;
+        break;
+    }
 
-	return status;
+    return status;
 }
-
 
 /**
  * Set initialization and cleanup routines
@@ -149,7 +141,6 @@ static long hevd_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 
 module_init(hevd_init);
 module_exit(hevd_exit);
-
 
 /**
  * Module information

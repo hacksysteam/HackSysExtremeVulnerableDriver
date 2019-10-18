@@ -54,7 +54,6 @@ Abstract:
 
 #include "Common.h"
 
-
 /**
  * Function Definitions
  */
@@ -62,4 +61,3 @@ Abstract:
 int trigger_integer_overflow(void *user_buffer, size_t size);
 
 #endif
-

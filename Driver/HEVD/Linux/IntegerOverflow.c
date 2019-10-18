@@ -1,12 +1,12 @@
 /*++
 
-          ##     ## ######## ##     ## ########
-          ##     ## ##       ##     ## ##     ##
-          ##     ## ##       ##     ## ##     ##
-          ######### ######   ##     ## ##     ##
-          ##     ## ##        ##   ##  ##     ##
-          ##     ## ##         ## ##   ##     ##
-          ##     ## ########    ###    ########
+        ##     ## ######## ##     ## ########
+        ##     ## ##       ##     ## ##     ##
+        ##     ## ##       ##     ## ##     ##
+        ######### ######   ##     ## ##     ##
+        ##     ## ##        ##   ##  ##     ##
+        ##     ## ##         ## ##   ##     ##
+        ##     ## ########    ###    ########
 
             HackSys Extreme Vulnerable Driver
 
@@ -49,7 +49,6 @@ Abstract:
 
 #include "IntegerOverflow.h"
 
-
 /**
  * @param user_buffer the pointer to user mode buffer
  * @param size size of the user mode buffer
@@ -58,7 +57,7 @@ int trigger_integer_overflow(void *user_buffer, size_t size)
 {
     int status = -EINVAL;
     unsigned int count = 0;
-    unsigned int kernel_buffer[BUFFER_SIZE] = { 0 };
+    unsigned int kernel_buffer[BUFFER_SIZE] = {0};
     unsigned int kernel_buffer_terminator = 0xBAD0B0B0;
     unsigned int terminator_size = sizeof(kernel_buffer_terminator);
 
@@ -74,7 +73,8 @@ int trigger_integer_overflow(void *user_buffer, size_t size)
     // UINT i.e. 4 on x86 from the size of KernelBuffer. Hence, integer overflow will
     // not occur and this check will not fail
     //
-    if (size > (sizeof(kernel_buffer) - terminator_size)) {
+    if (size > (sizeof(kernel_buffer) - terminator_size))
+    {
         ERR("[-] Invalid user buffer size: 0x%zX\n", size);
         return status;
     }
@@ -86,26 +86,26 @@ int trigger_integer_overflow(void *user_buffer, size_t size)
     // 'Size' is 0xFFFFFFFF and we do an addition with size of ULONG i.e. 4 on x86, the
     // integer will wrap down and will finally cause this check to fail
     //
-    if ((size + terminator_size) > sizeof(kernel_buffer)) {
+    if ((size + terminator_size) > sizeof(kernel_buffer))
+    {
         ERR("[-] Invalid user buffer size: 0x%zX\n", size);
         return status;
     }
 #endif
 
-    while (count < (size / sizeof(unsigned int))) {
+    while (count < (size / sizeof(unsigned int)))
+    {
         unsigned int n;
 
-        copy_from_user((void*) &n, user_buffer + count, sizeof(n));
+        copy_from_user((void *)&n, user_buffer + count, sizeof(n));
         if (n == kernel_buffer_terminator)
-                break;
+            break;
 
         kernel_buffer[count++] = n;
     }
 
-
     return status;
 }
-
 
 /**
  * @param[in] io user space buffer
