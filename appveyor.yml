@@ -17,7 +17,7 @@ branches:
 skip_tags: true
 
 # Do not build feature branch with open Pull Requests
-skip_branch_with_pr: true
+# skip_branch_with_pr: true
 
 # Maximum number of concurrent jobs for the project
 max_jobs: 1
@@ -27,27 +27,50 @@ max_jobs: 1
 #---------------------------------#
 
 # Build worker image (VM template)
-image: Visual Studio 2017
+image:
+  - Visual Studio 2017
+  - Ubuntu
 
-# clone directory
-clone_folder: c:\projects\hevd
+# fetch repository as zip archive
+# default is "false"
+shallow_clone: true
 
-# scripts that are called at very beginning, before repo cloning
-init:
-  - cmd: git config --global core.autocrlf input
+# set clone depth
+# clone entire repository history if not defined
+clone_depth: 1
 
 # this is how to allow failing jobs in the matrix
-# matrix:
-#   fast_finish: true
+# environment:
+#   matrix:
+#   - job_name: Build HEVD for Windows
+#   - job_name: Build HEVD for Linux
+#     job_depends_on: Build HEVD for Windows
+#   - job_name: Package HEVD
+#     job_depends_on: Build HEVD for Linux
 
-# script to build the driver
-build_script:
-  - cmd: cd c:\projects\hevd\Builder
-  - cmd: '%COMSPEC% /c Build_HEVD_All.bat'
+matrix:
+  fast_finish: true
 
-# after build
-after_build:
-  - cmd: 7z a c:\projects\hevd\HEVD.zip c:\projects\hevd\build\*
+for:
+  - matrix:
+      only:
+        - image: Visual Studio 2017
+    clone_folder: c:\projects\hevd
+    build_script:
+      - cmd: cd c:\projects\hevd\Builder
+      - cmd: Build_HEVD_All.bat
+    after_build:
+      - cmd: 7z a c:\projects\hevd\HEVD.zip c:\projects\hevd\build\*
+  
+  - matrix:
+      only:
+        - image: Ubuntu
+    clone_folder: /home/appveyor/projects/hevd
+    build_script:
+      - sh: cd /home/appveyor/projects/hevd/Builder
+      - sh: sh Build_HEVD_All.sh
+    after_build:
+      - sh: 7z a /home/appveyor/projects/hevd/HEVD.zip /home/appveyor/projects/hevd/build/*
 
 # disable test
 test: off
