@@ -56,10 +56,10 @@ Abstract:
 int trigger_integer_overflow(void *user_buffer, size_t size)
 {
     int status = -EINVAL;
-    unsigned int count = 0;
-    unsigned int kernel_buffer[BUFFER_SIZE] = {0};
-    unsigned int kernel_buffer_terminator = 0xBAD0B0B0;
-    unsigned int terminator_size = sizeof(kernel_buffer_terminator);
+    unsigned long count = 0;
+    unsigned long kernel_buffer[BUFFER_SIZE] = {0};
+    unsigned long kernel_buffer_terminator = 0xBAD0B0B0;
+    size_t terminator_size = sizeof(kernel_buffer_terminator);
 
     INFO("[+] user_buffer: 0x%p\n", user_buffer);
     INFO("[+] user_buffer size: 0x%zX\n", size);
@@ -93,9 +93,9 @@ int trigger_integer_overflow(void *user_buffer, size_t size)
     }
 #endif
 
-    while (count < (size / sizeof(unsigned int)))
+    while (count < (size / sizeof(unsigned long)))
     {
-        unsigned int n;
+        unsigned long n;
 
         copy_from_user((void *)&n, user_buffer + count, sizeof(n));
         if (n == kernel_buffer_terminator)
