@@ -55,7 +55,8 @@ Abstract:
 
 struct file_operations hevd_fops = {
     .owner = THIS_MODULE,
-    .unlocked_ioctl = hevd_ioctl};
+    .unlocked_ioctl = hevd_ioctl
+};
 
 /**
  * Miscellaneous Device
@@ -64,7 +65,8 @@ struct file_operations hevd_fops = {
 static struct miscdevice hevd_device = {
     .minor = MISC_DYNAMIC_MINOR,
     .name = "HackSysExtremeVulnerableDriver",
-    .fops = &hevd_fops};
+    .fops = &hevd_fops
+};
 
 /**
  * Driver initialization routine
