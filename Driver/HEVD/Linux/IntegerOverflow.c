@@ -92,7 +92,7 @@ int trigger_integer_overflow(void *user_buffer, size_t size)
     }
 #endif
 
-    while (count < (size / sizeof(unsigned long))) {
+    while (count < (size / sizeof(unsigned int))) {
         unsigned int n;
 
         copy_from_user((void*) &n, user_buffer + count, sizeof(n));
