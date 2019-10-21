@@ -77,8 +77,8 @@ int trigger_arbitrary_write(void *user_buffer, size_t size)
     // Secure Note: This is secure because the developer is properly validating if address
     // pointed by 'Where' and 'What' value resides in User mode
     //
-    if (!access_ok(VERIFY_READ, params.What, sizeof(void*) ||
-        !access_ok(VERIFY_WRITE, params.Where, sizeof(void*)))) {
+    if (!access_ok(VERIFY_READ, params.What, sizeof(void*)) ||
+        !access_ok(VERIFY_WRITE, params.Where, sizeof(void*))) {
         
         ERR("[-] Invalid parameters");
         
