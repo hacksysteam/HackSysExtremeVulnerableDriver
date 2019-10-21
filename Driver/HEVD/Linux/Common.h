@@ -58,7 +58,8 @@ Abstract:
 #include <linux/module.h>
 #include <linux/uaccess.h>
 #include <linux/miscdevice.h>
-
+#include <linux/uaccess.h>
+#include <linux/version.h>
 
 /**
  * Defines
@@ -74,6 +75,18 @@ Abstract:
 #define ERR(fmt, ...) PRINTK(ERR, fmt, ##__VA_ARGS__)
 #define INFO(fmt, ...) PRINTK(INFO, fmt, ##__VA_ARGS__)
 #define WARNING(fmt, ...) PRINTK(WARNING, fmt, ##__VA_ARGS__)
+
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0))
+
+#define VERIFY_READ     0
+#define VERIFY_WRITE    1
+#define x_access_ok(type, addr, size) access_ok(addr, size)
+
+#else /* LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0) */
+
+#define x_access_ok(type, addr, size) access_ok(type, addr, size)
+
+#endif /* LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0) */
 
 typedef void (*FunctionPointer)(void);
 

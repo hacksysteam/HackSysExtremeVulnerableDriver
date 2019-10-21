@@ -63,7 +63,7 @@ int trigger_arbitrary_write(void *user_buffer, size_t size)
     INFO("[+] params structure: 0x%p\n", &params);
     INFO("[+] params structure size: 0x%zX\n", sizeof(params));
 
-    if(!access_ok(VERIFY_READ, user_buffer, sizeof(params))) {
+    if(!x_access_ok(VERIFY_READ, user_buffer, sizeof(params))) {
         ERR("[+] Cannot read params from user space");
         
         status = -EINVAL;
@@ -77,8 +77,8 @@ int trigger_arbitrary_write(void *user_buffer, size_t size)
     // Secure Note: This is secure because the developer is properly validating if address
     // pointed by 'Where' and 'What' value resides in User mode
     //
-    if (!access_ok(VERIFY_READ, params.What, sizeof(void*)) ||
-        !access_ok(VERIFY_WRITE, params.Where, sizeof(void*))) {
+    if (!x_access_ok(VERIFY_READ, params.What, sizeof(void*)) ||
+        !x_access_ok(VERIFY_WRITE, params.Where, sizeof(void*))) {
         
         ERR("[-] Invalid parameters");
         
