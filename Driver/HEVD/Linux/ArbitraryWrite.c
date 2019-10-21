@@ -55,7 +55,6 @@ Abstract:
  */
 int trigger_arbitrary_write(void *user_buffer, size_t size)
 {
-    int status = 0;
     WRITE_WHAT_WHERE params = { 0 };
 
     INFO("[+] user_buffer: 0x%p\n", user_buffer);
@@ -74,9 +73,7 @@ int trigger_arbitrary_write(void *user_buffer, size_t size)
         !x_access_ok(VERIFY_WRITE, params.Where, sizeof(void*))) {
         
         ERR("[-] Invalid parameters");
-        
-        status = -EINVAL;
-        goto out;
+        return -EINVAL;
     }
 
 #endif
@@ -93,9 +90,7 @@ int trigger_arbitrary_write(void *user_buffer, size_t size)
     //
 
     *((void**) params.Where) = *((void**) params.What);
-
-out:
-    return status;
+    return 0;
 }
 
 /**

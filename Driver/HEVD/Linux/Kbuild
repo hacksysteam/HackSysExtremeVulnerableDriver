@@ -1,0 +1,7 @@
+hevd-m += HackSysExtremeVulnerableDriver.o
+hevd-m += BufferOverflowStack.o
+hevd-m += IntegerOverflow.o
+hevd-m += ArbitraryWrite.o
+obj-m += hevd.o
+ccflags-y := -Wframe-larger-than=65535
+ccflags-y += -DSECURE
