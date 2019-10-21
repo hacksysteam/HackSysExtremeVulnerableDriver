@@ -63,13 +63,6 @@ int trigger_arbitrary_write(void *user_buffer, size_t size)
     INFO("[+] params structure: 0x%p\n", &params);
     INFO("[+] params structure size: 0x%zX\n", sizeof(params));
 
-    if(!x_access_ok(VERIFY_READ, user_buffer, sizeof(params))) {
-        ERR("[+] Cannot read params from user space");
-        
-        status = -EINVAL;
-        goto out;
-    }
-
     copy_from_user(&params, user_buffer, sizeof(params));
 
 #ifdef SECURE
