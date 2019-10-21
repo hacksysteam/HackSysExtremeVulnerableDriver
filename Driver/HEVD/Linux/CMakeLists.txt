@@ -11,4 +11,5 @@ lkm_add_driver(
     HackSysExtremeVulnerableDriver.c
     BufferOverflowStack.c
     IntegerOverflow.c
+    ArbitraryWrite.c
 )

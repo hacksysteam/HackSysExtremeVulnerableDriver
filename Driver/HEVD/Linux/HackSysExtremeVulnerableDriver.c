@@ -128,6 +128,11 @@ static long hevd_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
         status = integer_overflow_ioctl_handler(arg_user);
         INFO("****** HEVD_IOCTL_INTEGER_OVERFLOW ******\n");
         break;
+    case HEVD_IOCTL_ARBITRARY_WRITE:
+        INFO("****** HEVD_IOCTL_ARBITRARY_WRITE ******\n");
+        status = arbitrary_write_ioctl_handler(arg_user);
+        INFO("****** HEVD_IOCTL_ARBITRARY_WRITE ******\n");
+        break;
     default:
         WARNING("[-] Invalid IOCTL Code: 0x%X\n", cmd);
         status = -ENOIOCTLCMD;
