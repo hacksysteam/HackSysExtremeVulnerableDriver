@@ -67,7 +67,7 @@ typedef struct _USE_AFTER_FREE_NON_PAGED_POOL
 
 typedef struct _FAKE_OBJECT_NON_PAGED_POOL
 {
-    CHAR Buffer[0x58];
+    CHAR Buffer[0x54 + sizeof(PVOID)];
 } FAKE_OBJECT_NON_PAGED_POOL, *PFAKE_OBJECT_NON_PAGED_POOL;
 
 
