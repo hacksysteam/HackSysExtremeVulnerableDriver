@@ -64,7 +64,7 @@ int trigger_arbitrary_write(PWRITE_WHAT_WHERE user_write_what_where)
     {
         ERR("[-] Invalid parameters");
 
-        status = -EINVAL
+        status = -EINVAL;
         return status;
     }
 
@@ -102,7 +102,7 @@ int trigger_arbitrary_write(PWRITE_WHAT_WHERE user_write_what_where)
      * and 'What' resides in User mode
      */
 
-    *(where) = *(what);
+    *((void **) where) = *((void **) what);
     
     return status;
 }
