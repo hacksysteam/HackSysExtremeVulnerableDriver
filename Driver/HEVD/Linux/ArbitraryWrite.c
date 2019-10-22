@@ -82,12 +82,12 @@ int trigger_arbitrary_write(PWRITE_WHAT_WHERE user_write_what_where)
      * pointed by 'Where' and 'What' value resides in User mode
      */
 
-    if (!x_access_ok(VERIFY_READ, What, sizeof(void *)) ||
-        !x_access_ok(VERIFY_WRITE, Where, sizeof(void *)))
+    if (!x_access_ok(VERIFY_READ, what, sizeof(void *)) ||
+        !x_access_ok(VERIFY_WRITE, where, sizeof(void *)))
     {
         ERR("[-] Invalid parameters");
 
-        status = -EINVAL
+        status = -EINVAL;
         return status;
     }
 
