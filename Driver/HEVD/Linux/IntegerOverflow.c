@@ -49,14 +49,16 @@ Abstract:
 
 #include "IntegerOverflow.h"
 
+
 /**
- * @param user_buffer the pointer to user mode buffer
- * @param size size of the user mode buffer
+ * @param[in] user_buffer the pointer to user mode buffer
+ * @param[in] size size of the user mode buffer
+ * @return status code
  */
 int trigger_integer_overflow(void *user_buffer, size_t size)
 {
-    int status = -EINVAL;
     unsigned long count = 0;
+    int status = STATUS_SUCCESS;
     unsigned long kernel_buffer[BUFFER_SIZE] = {0};
     unsigned long kernel_buffer_terminator = 0xBAD0B0B0;
     size_t terminator_size = sizeof(kernel_buffer_terminator);
@@ -67,28 +69,35 @@ int trigger_integer_overflow(void *user_buffer, size_t size)
     INFO("[+] kernel_buffer size: 0x%zX\n", sizeof(kernel_buffer));
 
 #ifdef SECURE
-    //
-    // Secure Note: This is secure because the developer is not doing any arithmetic
-    // on the user supplied value. Instead, the developer is subtracting the size of
-    // UINT i.e. 4 on x86 from the size of KernelBuffer. Hence, integer overflow will
-    // not occur and this check will not fail
-    //
+    /**
+     * Secure Note: This is secure because the developer is not doing any arithmetic
+     * on the user supplied value. Instead, the developer is subtracting the size of
+     * UINT i.e. 4 on x86 from the size of KernelBuffer. Hence, integer overflow will
+     * not occur and this check will not fail
+     */
+
     if (size > (sizeof(kernel_buffer) - terminator_size))
     {
         ERR("[-] Invalid user buffer size: 0x%zX\n", size);
+
+        status = -EINVAL;
         return status;
     }
 
 #else
     INFO("[+] Triggering Integer Overflow\n");
-    //
-    // Vulnerability Note: This is a vanilla Integer Overflow vulnerability because if
-    // 'Size' is 0xFFFFFFFF and we do an addition with size of ULONG i.e. 4 on x86, the
-    // integer will wrap down and will finally cause this check to fail
-    //
+
+    /**
+     * Vulnerability Note: This is a vanilla Integer Overflow vulnerability because if
+     * 'Size' is 0xFFFFFFFF and we do an addition with size of ULONG i.e. 4 on x86, the
+     * integer will wrap down and will finally cause this check to fail
+     */
+
     if ((size + terminator_size) > sizeof(kernel_buffer))
     {
         ERR("[-] Invalid user buffer size: 0x%zX\n", size);
+
+        status = -EINVAL;
         return status;
     }
 #endif
@@ -106,6 +115,7 @@ int trigger_integer_overflow(void *user_buffer, size_t size)
 
     return status;
 }
+
 
 /**
  * @param[in] io user space buffer

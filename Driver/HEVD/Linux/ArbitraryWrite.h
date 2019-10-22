@@ -63,7 +63,7 @@ typedef struct _WRITE_WHAT_WHERE
 {
     void *What;
     void *Where;
-} __attribute__((packed)) WRITE_WHAT_WHERE, *PWRITE_WHAT_WHERE;
+} WRITE_WHAT_WHERE, *PWRITE_WHAT_WHERE;
 
 
 //

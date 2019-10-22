@@ -49,49 +49,64 @@ Abstract:
 
 #include "ArbitraryWrite.h"
 
+
 /**
- * @param user_buffer the pointer to user mode buffer
- * @param size size of the user mode buffer
+ * @param[in] user_write_what_where the pointer to WRITE_WHAT_WHERE structure
+ * @return status code
  */
-int trigger_arbitrary_write(void *user_buffer, size_t size)
+int trigger_arbitrary_write(PWRITE_WHAT_WHERE user_write_what_where)
 {
-    WRITE_WHAT_WHERE params = { 0 };
+    void *what = NULL;
+    void *where = NULL;
+    int status = STATUS_SUCCESS;
 
-    INFO("[+] user_buffer: 0x%p\n", user_buffer);
-    INFO("[+] user_buffer size: 0x%zX\n", size);
-    INFO("[+] params structure: 0x%p\n", &params);
-    INFO("[+] params structure size: 0x%zX\n", sizeof(params));
+    if (!x_access_ok(VERIFY_READ, user_write_what_where, sizeof(WRITE_WHAT_WHERE)))
+    {
+        ERR("[-] Invalid parameters");
 
-    copy_from_user(&params, user_buffer, sizeof(params));
+        status = -EINVAL
+        return status;
+    }
+
+    what = user_write_what_where->What;
+    where = user_write_what_where->Where;
+
+    INFO("[+] user_write_what_where: 0x%p\n", user_write_what_where);
+    INFO("[+] WRITE_WHAT_WHERE size: 0x%zX\n", sizeof(WRITE_WHAT_WHERE));
+    INFO("[+] user_write_what_where->What: 0x%p\n", what);
+    INFO("[+] user_write_what_where->Where: 0x%p\n", where);
 
 #ifdef SECURE
-    //
-    // Secure Note: This is secure because the developer is properly validating if address
-    // pointed by 'Where' and 'What' value resides in User mode
-    //
-    if (!x_access_ok(VERIFY_READ, params.What, sizeof(void*)) ||
-        !x_access_ok(VERIFY_WRITE, params.Where, sizeof(void*))) {
-        
+    /**
+     * Secure Note: This is secure because the developer is properly validating if address
+     * pointed by 'Where' and 'What' value resides in User mode
+     */
+
+    if (!x_access_ok(VERIFY_READ, What, sizeof(void *)) ||
+        !x_access_ok(VERIFY_WRITE, Where, sizeof(void *)))
+    {
         ERR("[-] Invalid parameters");
-        return -EINVAL;
+
+        status = -EINVAL
+        return status;
     }
 
 #endif
 
-    INFO("[+] Triggering Write What Where\n");
-    INFO("[+] WHAT: 0x%p\n", params.What);
-    INFO("[+] WHERE: 0x%p\n", params.Where);
+    INFO("[+] Triggering Arbitrary Write\n");
 
-    //
-    // Vulnerability Note: This is a vanilla Arbitrary Memory Overwrite vulnerability
-    // because the developer is writing the value pointed by 'What' to memory location
-    // pointed by 'Where' without properly validating if the values pointed by 'Where'
-    // and 'What' resides in User mode
-    //
+    /**
+     * Vulnerability Note: This is a vanilla Arbitrary Memory Overwrite vulnerability
+     * because the developer is writing the value pointed by 'What' to memory location
+     * pointed by 'Where' without properly validating if the values pointed by 'Where'
+     * and 'What' resides in User mode
+     */
 
-    *((void**) params.Where) = *((void**) params.What);
-    return 0;
+    *(where) = *(what);
+    
+    return status;
 }
+
 
 /**
  * @param[in] io user space buffer
@@ -99,16 +114,14 @@ int trigger_arbitrary_write(void *user_buffer, size_t size)
  */
 int arbitrary_write_ioctl_handler(struct hevd_io *io)
 {
-    size_t size = 0;
-    void *user_buffer = NULL;
     int status = -EINVAL;
+    PWRITE_WHAT_WHERE user_write_what_where = NULL;
 
-    user_buffer = io->input_buffer;
-    size = io->input_buffer_length;
+    user_write_what_where = (PWRITE_WHAT_WHERE)io->input_buffer;
 
-    if (user_buffer)
+    if (user_write_what_where)
     {
-        status = trigger_arbitrary_write(user_buffer, size);
+        status = trigger_arbitrary_write(user_write_what_where);
     }
 
     return status;

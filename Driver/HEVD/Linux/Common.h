@@ -67,6 +67,8 @@ Abstract:
 
 #define BUFFER_SIZE 512
 
+#define STATUS_SUCCESS      0x0
+
 #define _STRINGIFY(value) #value
 #define STRINGIFY(value) _STRINGIFY(value)
 
