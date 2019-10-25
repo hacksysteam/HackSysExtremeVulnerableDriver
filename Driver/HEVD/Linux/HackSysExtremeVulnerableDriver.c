@@ -133,6 +133,11 @@ static long hevd_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
         status = arbitrary_write_ioctl_handler(arg_user);
         INFO("****** HEVD_IOCTL_ARBITRARY_WRITE ******\n");
         break;
+    case HEVD_IOCTL_UNINITIALIZED_MEMORY_STACK:
+        INFO("****** HEVD_IOCTL_UNINITIALIZED_MEMORY_STACK ******\n");
+        status = uninitialized_memory_stack_ioctl_handler(arg_user);
+        INFO("****** HEVD_IOCTL_UNINITIALIZED_MEMORY_STACK ******\n");
+        break;
     default:
         WARNING("[-] Invalid IOCTL Code: 0x%X\n", cmd);
         status = -ENOIOCTLCMD;
