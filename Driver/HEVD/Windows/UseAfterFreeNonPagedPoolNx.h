@@ -62,12 +62,12 @@ Abstract:
 typedef struct _USE_AFTER_FREE_NON_PAGED_POOL_NX
 {
     FunctionPointer Callback;
-    CHAR Buffer[0x54];
+    CHAR Buffer[0x68];
 } USE_AFTER_FREE_NON_PAGED_POOL_NX, *PUSE_AFTER_FREE_NON_PAGED_POOL_NX;
 
 typedef struct _FAKE_OBJECT_NON_PAGED_POOL_NX
 {
-    CHAR Buffer[0x54 + sizeof(PVOID)];
+    CHAR Buffer[0x68 + sizeof(PVOID)];
 } FAKE_OBJECT_NON_PAGED_POOL_NX, *PFAKE_OBJECT_NON_PAGED_POOL_NX;
 
 

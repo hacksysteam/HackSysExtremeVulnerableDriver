@@ -59,7 +59,7 @@ Abstract:
 // Defines
 //
 
-#define POOL_BUFFER_SIZE 504
+#define POOL_BUFFER_SIZE 0x70
 
 
 //

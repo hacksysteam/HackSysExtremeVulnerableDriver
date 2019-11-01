@@ -60,7 +60,8 @@ Abstract:
 //
 
 #ifdef _WIN64
-#define POOL_BUFFER_SIZE 496
+//#define POOL_BUFFER_SIZE 496
+#define POOL_BUFFER_SIZE 16
 #else
 #define POOL_BUFFER_SIZE 504
 #endif
