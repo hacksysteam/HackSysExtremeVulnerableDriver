@@ -12,4 +12,5 @@ lkm_add_driver(
     BufferOverflowStack.c
     IntegerOverflow.c
     ArbitraryWrite.c
+    UninitializedMemoryStack.c
 )
