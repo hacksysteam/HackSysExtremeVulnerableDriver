@@ -71,7 +71,7 @@ Abstract:
          "   HackSys Extreme Vulnerable Driver    \n" \
          "             Version: 4.00              \n"
 
-#define IOCTL(Function) _IOWR('h', Function, int *)
+#define IOCTL(NUM) _IOWR('h', NUM, struct hevd_io)
 
 
 /**

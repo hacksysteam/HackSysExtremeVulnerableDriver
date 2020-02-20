@@ -84,7 +84,7 @@ Abstract:
 #define VERIFY_WRITE    1
 #define x_access_ok(type, addr, size) access_ok(addr, size)
 
-#else /* LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0) */
+#else /* LINUX_VERSION_CODE < KERNEL_VERSION(5,0,0) */
 
 #define x_access_ok(type, addr, size) access_ok(type, addr, size)
 
