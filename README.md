@@ -34,9 +34,6 @@ Blog Post
 
 External Exploits
 -----------------
-
-[https://github.com/FULLSHADE/Windows-Kernel-Exploitation-HEVD](https://github.com/FULLSHADE/Windows-Kernel-Exploitation-HEVD)
-
 [https://github.com/sam-b/HackSysDriverExploits](https://github.com/sam-b/HackSysDriverExploits)
 
 [https://github.com/sizzop/HEVD-Exploits](https://github.com/sizzop/HEVD-Exploits)
@@ -68,6 +65,8 @@ External Exploits
 [https://github.com/mgeeky/HEVD_Kernel_Exploit](https://github.com/mgeeky/HEVD_Kernel_Exploit)
 
 [https://github.com/tekwizz123/HEVD-Exploit-Solutions](https://github.com/tekwizz123/HEVD-Exploit-Solutions)
+
+[https://github.com/FULLSHADE/Windows-Kernel-Exploitation-HEVD](https://github.com/FULLSHADE/Windows-Kernel-Exploitation-HEVD)
 
 
 External Blog Posts
