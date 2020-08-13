@@ -77,8 +77,14 @@ TriggerWriteNULL(
 
         ProbeForRead(UserBuffer, sizeof(PVOID), (ULONG)__alignof(PVOID));
 
+        //
+        // Grab the user pointer to nullify to avoid race condition
+        //
+
+        PVOID UserPointerToNullify = *(PVOID *)UserBuffer;
+
         DbgPrint("[+] UserBuffer: 0x%p\n", UserBuffer);
-        DbgPrint("[+] *(UserBuffer): 0x%p\n", *(PVOID *)UserBuffer);
+        DbgPrint("[+] UserPointerToNullify: 0x%p\n", UserPointerToNullify);
 
 #ifdef SECURE
 
@@ -87,7 +93,7 @@ TriggerWriteNULL(
         // '*(UserBuffer)' resides in User mode by calling ProbeForWrite() routine before
         // performing the write operation
         //
-		PVOID * UserPointerToNullify = *(PVOID *)UserBuffer; 
+
         ProbeForWrite(UserPointerToNullify, sizeof(PVOID), (ULONG)__alignof(PVOID));
 
         *(PVOID *)UserPointerToNullify = NULL;
@@ -100,7 +106,7 @@ TriggerWriteNULL(
         // without properly validating if it resides in User mode
         //
 
-        **(PVOID **)UserBuffer = NULL;
+        *(PVOID *)UserPointerToNullify = NULL;
 #endif
     }
     __except (EXCEPTION_EXECUTE_HANDLER)
