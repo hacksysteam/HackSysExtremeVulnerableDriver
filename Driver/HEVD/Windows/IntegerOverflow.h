@@ -62,7 +62,7 @@ Abstract:
 NTSTATUS
 TriggerIntegerOverflow(
     _In_ PVOID UserBuffer,
-    _In_ SIZE_T Size
+    _In_ ULONG Size
 );
 
 #endif  // !__INTEGER_OVERFLOW_H__

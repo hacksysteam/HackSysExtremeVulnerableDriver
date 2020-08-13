@@ -65,14 +65,14 @@ __declspec(safebuffers)
 NTSTATUS
 TriggerIntegerOverflow(
     _In_ PVOID UserBuffer,
-    _In_ SIZE_T Size
+    _In_ ULONG Size
 )
 {
     ULONG Count = 0;
     NTSTATUS Status = STATUS_SUCCESS;
     ULONG BufferTerminator = 0xBAD0B0B0;
     ULONG KernelBuffer[BUFFER_SIZE] = { 0 };
-    SIZE_T TerminatorSize = sizeof(BufferTerminator);
+    ULONG TerminatorSize = sizeof(BufferTerminator);
 
     PAGED_CODE();
 
@@ -163,7 +163,7 @@ IntegerOverflowIoctlHandler(
 )
 {
     PVOID UserBuffer = NULL;
-    SIZE_T Size = 0;
+    ULONG Size = 0;
     NTSTATUS Status = STATUS_UNSUCCESSFUL;
 
     UNREFERENCED_PARAMETER(Irp);
