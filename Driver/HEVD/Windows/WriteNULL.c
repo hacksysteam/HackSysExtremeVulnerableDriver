@@ -87,10 +87,10 @@ TriggerWriteNULL(
         // '*(UserBuffer)' resides in User mode by calling ProbeForWrite() routine before
         // performing the write operation
         //
+		PVOID * UserPointerToNullify = *(PVOID *)UserBuffer; 
+        ProbeForWrite(UserPointerToNullify, sizeof(PVOID), (ULONG)__alignof(PVOID));
 
-        ProbeForWrite(*(PVOID *)UserBuffer, sizeof(PVOID), (ULONG)__alignof(PVOID));
-
-        **(PVOID **)UserBuffer = NULL;
+        *(PVOID *)UserPointerToNullify = NULL;
 #else
         DbgPrint("[+] Triggering Arbitrary NULL Write\n");
 
