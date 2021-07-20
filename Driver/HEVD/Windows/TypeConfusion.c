@@ -149,13 +149,13 @@ TriggerTypeConfusion(
         {
             DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
             DbgPrint("[+] Pool Type: %s\n", STRINGIFY(NonPagedPool));
-            DbgPrint("[+] Pool Size: 0x%X\n", sizeof(KERNEL_TYPE_CONFUSION_OBJECT));
+            DbgPrint("[+] Pool Size: 0x%zX\n", sizeof(KERNEL_TYPE_CONFUSION_OBJECT));
             DbgPrint("[+] Pool Chunk: 0x%p\n", KernelTypeConfusionObject);
         }
 
         DbgPrint("[+] UserTypeConfusionObject: 0x%p\n", UserTypeConfusionObject);
         DbgPrint("[+] KernelTypeConfusionObject: 0x%p\n", KernelTypeConfusionObject);
-        DbgPrint("[+] KernelTypeConfusionObject Size: 0x%X\n", sizeof(KERNEL_TYPE_CONFUSION_OBJECT));
+        DbgPrint("[+] KernelTypeConfusionObject Size: 0x%zX\n", sizeof(KERNEL_TYPE_CONFUSION_OBJECT));
 
         KernelTypeConfusionObject->ObjectID = UserTypeConfusionObject->ObjectID;
         KernelTypeConfusionObject->ObjectType = UserTypeConfusionObject->ObjectType;

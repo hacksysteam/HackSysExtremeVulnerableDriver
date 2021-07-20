@@ -83,7 +83,7 @@ TriggerArbitraryWrite(
         Where = UserWriteWhatWhere->Where;
 
         DbgPrint("[+] UserWriteWhatWhere: 0x%p\n", UserWriteWhatWhere);
-        DbgPrint("[+] WRITE_WHAT_WHERE Size: 0x%X\n", sizeof(WRITE_WHAT_WHERE));
+        DbgPrint("[+] WRITE_WHAT_WHERE Size: 0x%zX\n", sizeof(WRITE_WHAT_WHERE));
         DbgPrint("[+] UserWriteWhatWhere->What: 0x%p\n", What);
         DbgPrint("[+] UserWriteWhatWhere->Where: 0x%p\n", Where);
 

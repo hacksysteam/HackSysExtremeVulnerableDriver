@@ -120,7 +120,7 @@ TriggerUninitializedMemoryPagedPool(
         {
             DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
             DbgPrint("[+] Pool Type: %s\n", STRINGIFY(PagedPool));
-            DbgPrint("[+] Pool Size: 0x%X\n", sizeof(UNINITIALIZED_MEMORY_POOL));
+            DbgPrint("[+] Pool Size: 0x%zX\n", sizeof(UNINITIALIZED_MEMORY_POOL));
             DbgPrint("[+] Pool Chunk: 0x%p\n", UninitializedMemory);
         }
 

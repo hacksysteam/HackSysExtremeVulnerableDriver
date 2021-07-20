@@ -82,9 +82,9 @@ TriggerBufferOverflowStack(
         ProbeForRead(UserBuffer, sizeof(KernelBuffer), (ULONG)__alignof(UCHAR));
 
         DbgPrint("[+] UserBuffer: 0x%p\n", UserBuffer);
-        DbgPrint("[+] UserBuffer Size: 0x%X\n", Size);
+        DbgPrint("[+] UserBuffer Size: 0x%zX\n", Size);
         DbgPrint("[+] KernelBuffer: 0x%p\n", &KernelBuffer);
-        DbgPrint("[+] KernelBuffer Size: 0x%X\n", sizeof(KernelBuffer));
+        DbgPrint("[+] KernelBuffer Size: 0x%zX\n", sizeof(KernelBuffer));
 
 #ifdef SECURE
         //

@@ -152,7 +152,7 @@ CreateArbitraryReadWriteHelperObjectNonPagedPoolNx(
 
         Length = HelperObjectIo->Length;
 
-        DbgPrint("[+] Name Length: 0x%X\n", Length);
+        DbgPrint("[+] Name Length: 0x%zX\n", Length);
 
         //
         // Get a free index
@@ -203,7 +203,7 @@ CreateArbitraryReadWriteHelperObjectNonPagedPoolNx(
         {
             DbgPrint("[+] ARWHelperObject Pool Tag: %s\n", STRINGIFY(POOL_TAG));
             DbgPrint("[+] ARWHelperObject Pool Type: %s\n", STRINGIFY(NonPagedPoolNx));
-            DbgPrint("[+] ARWHelperObject Pool Size: 0x%X\n", sizeof(ARW_HELPER_OBJECT_NON_PAGED_POOL_NX));
+            DbgPrint("[+] ARWHelperObject Pool Size: 0x%zX\n", sizeof(ARW_HELPER_OBJECT_NON_PAGED_POOL_NX));
             DbgPrint("[+] ARWHelperObject Pool Chunk: 0x%p\n", ARWHelperObject);
         }
 
@@ -230,7 +230,7 @@ CreateArbitraryReadWriteHelperObjectNonPagedPoolNx(
         {
             DbgPrint("[+] Name Pool Tag: %s\n", STRINGIFY(POOL_TAG));
             DbgPrint("[+] Name Pool Type: %s\n", STRINGIFY(NonPagedPoolNx));
-            DbgPrint("[+] Name Pool Size: 0x%X\n", Length);
+            DbgPrint("[+] Name Pool Size: 0x%zX\n", Length);
             DbgPrint("[+] Name Pool Chunk: 0x%p\n", Name);
         }
 
@@ -248,7 +248,7 @@ CreateArbitraryReadWriteHelperObjectNonPagedPoolNx(
         ARWHelperObject->Length = Length;
 
         DbgPrint("[+] ARWHelperObject->Name: 0x%p\n", ARWHelperObject->Name);
-        DbgPrint("[+] ARWHelperObject->Length: 0x%X\n", ARWHelperObject->Length);
+        DbgPrint("[+] ARWHelperObject->Length: 0x%zX\n", ARWHelperObject->Length);
 
         g_ARWHelperObjectNonPagedPoolNx[FreeIndex] = ARWHelperObject;
 
@@ -348,7 +348,7 @@ SetArbitraryReadWriteHelperObjecNameNonPagedPoolNx(
             //
 
             DbgPrint(
-                "[+] Copying src: 0x%p dst: 0x%p len: 0x%X\n",
+                "[+] Copying src: 0x%p dst: 0x%p len: 0x%zX\n",
                 Name,
                 g_ARWHelperObjectNonPagedPoolNx[Index]->Name,
                 g_ARWHelperObjectNonPagedPoolNx[Index]->Length
@@ -443,7 +443,7 @@ GetArbitraryReadWriteHelperObjecNameNonPagedPoolNx(
             //
 
             DbgPrint(
-                "[+] Copying src: 0x%p dst: 0x%p len: 0x%X\n",
+                "[+] Copying src: 0x%p dst: 0x%p len: 0x%zX\n",
                 g_ARWHelperObjectNonPagedPoolNx[Index]->Name,
                 Name,
                 g_ARWHelperObjectNonPagedPoolNx[Index]->Length
