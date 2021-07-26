@@ -171,6 +171,7 @@ Vulnerabilities Implemented
 * **Memory Disclosure**
   * **NonPagedPool**
   * **NonPagedPoolNx**
+* **Arbitrary Increment**
 * **Arbitrary Overwrite**
 * **Null Pointer Dereference**
 * **Uninitialized Memory**
