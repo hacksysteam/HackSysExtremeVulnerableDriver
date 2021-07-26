@@ -297,6 +297,7 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArbitraryIncrement.h" />
     <ClInclude Include="ArbitraryReadWriteHelperNonPagedPoolNx.h" />
     <ClInclude Include="ArbitraryWrite.h" />
     <ClInclude Include="BufferOverflowNonPagedPool.h" />
@@ -320,6 +321,7 @@
     <ClInclude Include="WriteNULL.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArbitraryIncrement.c" />
     <ClCompile Include="ArbitraryReadWriteHelperNonPagedPoolNx.c" />
     <ClCompile Include="ArbitraryWrite.c" />
     <ClCompile Include="BufferOverflowNonPagedPool.c" />

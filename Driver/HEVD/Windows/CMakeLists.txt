@@ -34,4 +34,5 @@ wdk_add_driver(HEVD
     UseAfterFreeNonPagedPool.c
     UseAfterFreeNonPagedPoolNx.c
     WriteNULL.c
+    ArbitraryIncrement.c
 )

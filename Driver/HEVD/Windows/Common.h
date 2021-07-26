@@ -242,4 +242,10 @@ DeleteArbitraryReadWriteHelperObjecNonPagedPoolNxIoctlHandler(
     _In_ PIO_STACK_LOCATION IrpSp
 );
 
+NTSTATUS
+ArbitraryIncrementIoctlHandler(
+    _In_ PIRP Irp,
+    _In_ PIO_STACK_LOCATION IrpSp
+);
+
 #endif // !__COMMON_H__

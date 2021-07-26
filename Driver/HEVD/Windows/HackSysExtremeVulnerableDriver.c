@@ -166,7 +166,7 @@ DriverEntry(
 NTSTATUS
 IrpCreateCloseHandler(
     _In_ PDEVICE_OBJECT DeviceObject,
-    _In_ PIRP Irp
+    _Inout_ PIRP Irp
 )
 {
     Irp->IoStatus.Information = 0;
@@ -226,7 +226,7 @@ DriverUnloadHandler(
 NTSTATUS
 IrpNotImplementedHandler(
     _In_ PDEVICE_OBJECT DeviceObject,
-    _In_ PIRP Irp
+    _Inout_ PIRP Irp
 )
 {
     Irp->IoStatus.Information = 0;
@@ -254,7 +254,7 @@ IrpNotImplementedHandler(
 NTSTATUS
 IrpDeviceIoCtlHandler(
     _In_ PDEVICE_OBJECT DeviceObject,
-    _In_ PIRP Irp
+    _Inout_ PIRP Irp
 )
 {
     ULONG IoControlCode = 0;
@@ -265,10 +265,11 @@ IrpDeviceIoCtlHandler(
     PAGED_CODE();
 
     IrpSp = IoGetCurrentIrpStackLocation(Irp);
-    IoControlCode = IrpSp->Parameters.DeviceIoControl.IoControlCode;
 
     if (IrpSp)
     {
+        IoControlCode = IrpSp->Parameters.DeviceIoControl.IoControlCode;
+
         switch (IoControlCode)
         {
         case HEVD_IOCTL_BUFFER_OVERFLOW_STACK:
@@ -410,6 +411,11 @@ IrpDeviceIoCtlHandler(
             DbgPrint("****** HEVD_IOCTL_DELETE_ARW_HELPER_OBJECT_NON_PAGED_POOL_NX ******\n");
             Status = DeleteArbitraryReadWriteHelperObjecNonPagedPoolNxIoctlHandler(Irp, IrpSp);
             DbgPrint("****** HEVD_IOCTL_DELETE_ARW_HELPER_OBJECT_NON_PAGED_POOL_NX ******\n");
+            break;
+        case HEVD_IOCTL_ARBITRARY_INCREMENT:
+            DbgPrint("****** HEVD_IOCTL_ARBITRARY_INCREMENT ******\n");
+            Status = ArbitraryIncrementIoctlHandler(Irp, IrpSp);
+            DbgPrint("****** HEVD_IOCTL_ARBITRARY_INCREMENT ******\n");
             break;
         default:
             DbgPrint("[-] Invalid IOCTL Code: 0x%X\n", IoControlCode);
