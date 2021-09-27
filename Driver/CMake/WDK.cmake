@@ -52,7 +52,6 @@ get_filename_component(WDK_ROOT ${WDK_ROOT} DIRECTORY)
 message(STATUS "WDK_ROOT: ${WDK_ROOT}")
 message(STATUS "WDK_VERSION: ${WDK_VERSION}")
 
-
 # location of warning.h
 set(WDK_WARNING_H_FILE "${WDK_ROOT}/Include/${WDK_VERSION}/shared/warning.h")
 set(WDK_COMPILE_FLAGS
@@ -73,7 +72,6 @@ set(WDK_COMPILE_FLAGS
     "/Zc:forScope"
     "/Zc:inline"
     "/GR-"
-    "/Gz"
     "/wd4603"
     "/wd4627"
     "/wd4986"
@@ -94,12 +92,16 @@ set(WDK_WINVER "0x0601" CACHE STRING "Default WINVER for WDK targets")
 set(WDK_COMPILE_DEFINITIONS "WINNT=1;NTDDI_VERSION=0x06010000;WINVER=${WDK_WINVER}")
 set(WDK_COMPILE_DEFINITIONS_DEBUG "MSC_NOOPT;DEPRECATE_DDK_FUNCTIONS=1;DBG=1")
 
-# adjust the comile definitions depending on the compile target architecture  
+# adjust the comile definitions depending on the compile target architecture
 if(HOST_ARCH_X86)
-    list(APPEND WDK_COMPILE_DEFINITIONS "_X86_=1;i386=1;STD_CALL")
+    list(APPEND WDK_COMPILE_FLAGS "/Gz")
+    list(APPEND WDK_COMPILE_DEFINITIONS "_X86_=1;i386=1;STD_CALL;")
 elseif(HOST_ARCH_X64)
+    list(APPEND WDK_COMPILE_FLAGS "/Gz")
     list(APPEND WDK_COMPILE_FLAGS "-d2epilogunwind")
-    list(APPEND WDK_COMPILE_DEFINITIONS "_WIN64;_AMD64_;AMD64")
+    list(APPEND WDK_COMPILE_DEFINITIONS "_WIN64;_AMD64_;AMD64;")
+elseif(HOST_ARCH_ARM64)
+    list(APPEND WDK_COMPILE_DEFINITIONS "_ARM64_;ARM64;_USE_DECLSPECS_FOR_SAL=1;STD_CALL;")
 else()
     message(FATAL_ERROR "Unsupported architecture")
     return()
@@ -127,17 +129,25 @@ string(CONCAT WDK_LINK_FLAGS
 )
 
 # Generate imported targets for WDK lib files
-file(GLOB WDK_LIBRARIES "${WDK_ROOT}/Lib/${WDK_VERSION}/km/${HOST_PLATFORM}/*.lib") 
+file(GLOB WDK_KM_LIBS "${WDK_ROOT}/Lib/${WDK_VERSION}/km/${HOST_PLATFORM}/*.lib")
+file(GLOB WDK_UM_LIBS "${WDK_ROOT}/Lib/${WDK_VERSION}/um/${HOST_PLATFORM}/*.lib")
 
-foreach(LIBRARY IN LISTS WDK_LIBRARIES)
-    get_filename_component(LIBRARY_NAME ${LIBRARY} NAME_WE)
+foreach(LIBRARY IN LISTS WDK_KM_LIBS)
+    get_filename_component(LIBRARY_NAME ${LIBRARY} NAME_WLE)
     string(TOUPPER ${LIBRARY_NAME} LIBRARY_NAME)
-    add_library(WDK::${LIBRARY_NAME} INTERFACE IMPORTED)
-    set_property(TARGET WDK::${LIBRARY_NAME} PROPERTY INTERFACE_LINK_LIBRARIES  ${LIBRARY})
+    add_library(WDK_KM::${LIBRARY_NAME} INTERFACE IMPORTED)
+    set_property(TARGET WDK_KM::${LIBRARY_NAME} PROPERTY INTERFACE_LINK_LIBRARIES ${LIBRARY})
 endforeach(LIBRARY)
 
-unset(WDK_LIBRARIES)
+foreach(LIBRARY IN LISTS WDK_UM_LIBS)
+    get_filename_component(LIBRARY_NAME ${LIBRARY} NAME_WLE)
+    string(TOUPPER ${LIBRARY_NAME} LIBRARY_NAME)
+    add_library(WDK_UM::${LIBRARY_NAME} INTERFACE IMPORTED)
+    set_property(TARGET WDK_UM::${LIBRARY_NAME} PROPERTY INTERFACE_LINK_LIBRARIES ${LIBRARY})
+endforeach(LIBRARY)
 
+unset(WDK_KM_LIBS)
+unset(WDK_UM_LIBS)
 
 function(wdk_add_driver _target)
     cmake_parse_arguments(WDK "" "WDM;PFX_FILE;PFX_PASSWORD" "" ${ARGN})
@@ -157,16 +167,25 @@ function(wdk_add_driver _target)
         "${WDK_ROOT}/Include/${WDK_VERSION}/km"
     )
 
-    target_link_libraries(${_target} WDK::NTOSKRNL WDK::HAL WDK::BUFFEROVERFLOWK WDK::WMILIB)
+    target_link_libraries(${_target} WDK_KM::NTOSKRNL WDK_KM::HAL WDK_KM::WMILIB)
 
     if(HOST_ARCH_X86)
-        target_link_libraries(${_target} WDK::MEMCMP)
+        target_link_libraries(${_target} WDK_KM::BUFFEROVERFLOWK WDK_KM::MEMCMP)
+    elseif(HOST_ARCH_X64)
+        target_link_libraries(${_target} WDK_KM::BUFFEROVERFLOWK)
+    elseif(HOST_ARCH_ARM64)
+        target_link_libraries(${_target} WDK_KM::BUFFEROVERFLOWFASTFAILK WDK_UM::ARM64RT)
     endif()
 
     if(HOST_ARCH_X86)
         set_property(TARGET ${_target} APPEND_STRING PROPERTY LINK_FLAGS "/ENTRY:GsDriverEntry@8")
     elseif(HOST_ARCH_X64)
         set_property(TARGET ${_target} APPEND_STRING PROPERTY LINK_FLAGS "/ENTRY:GsDriverEntry")
+    elseif(HOST_ARCH_ARM64)
+        set_property(TARGET ${_target} APPEND_STRING PROPERTY LINK_FLAGS "/ENTRY:GsDriverEntry")
+    else()
+        message(FATAL_ERROR "Unsupported architecture")
+        return()
     endif()
 
     set(PROJECT_INF_PATH "${PROJECT_SOURCE_DIR}\\${CMAKE_PROJECT_NAME}\\${CMAKE_SYSTEM_NAME}\\${CMAKE_PROJECT_NAME}.inf")
@@ -180,8 +199,10 @@ function(wdk_add_driver _target)
 
     if(HOST_ARCH_X86)
         set(STAMPINF_ARGS "-k \"1.9\" -d \"*\" -a \"x86\" -v \"${HEVD_VERSION}\" -f ")
-    else()
+    elseif(HOST_ARCH_X64)
         set(STAMPINF_ARGS "-k \"1.9\" -d \"*\" -a \"amd64\" -v \"${HEVD_VERSION}\" -f ")
+    elseif(HOST_ARCH_ARM64)
+        set(STAMPINF_ARGS "-k \"1.9\" -d \"*\" -a \"arm64\" -v \"${HEVD_VERSION}\" -f ")
     endif()
 
     add_custom_command(
@@ -214,7 +235,12 @@ function(wdk_add_driver _target)
     
         # inf2cat Configuration
         set(INF2CAT_PATH "${WDK_ROOT}/bin/${WDK_VERSION}/x86/inf2cat.exe")
-        set(INF2CAT_ARGS "/os:\"7_${HOST_PLATFORM}\" /driver:\"${CMAKE_CURRENT_BINARY_DIR}\"")
+
+        if(HOST_ARCH_ARM64)
+            set(INF2CAT_ARGS "/os:\"10_RS3_ARM64\" /driver:\"${CMAKE_CURRENT_BINARY_DIR}\"")
+        else()
+            set(INF2CAT_ARGS "/os:\"7_${HOST_PLATFORM}\" /driver:\"${CMAKE_CURRENT_BINARY_DIR}\"")
+        endif()
 
         add_custom_command(
           COMMENT "Creating catalog file"
