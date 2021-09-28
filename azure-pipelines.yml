@@ -70,5 +70,6 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'gitTag'
+    tagPattern: 'v[0-9]*'
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
