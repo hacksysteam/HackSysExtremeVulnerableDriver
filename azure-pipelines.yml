@@ -19,6 +19,20 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
+- task: CmdLine@2
+  inputs:
+    script: |
+      @echo off
+      echo Hello World from %AGENT_NAME%.
+      echo My ID is %AGENT_ID%.
+      echo AGENT_WORKFOLDER contents:
+      @dir %AGENT_WORKFOLDER%
+      echo AGENT_BUILDDIRECTORY contents:
+      @dir %AGENT_BUILDDIRECTORY%
+      echo BUILD_SOURCESDIRECTORY contents:
+      @dir %BUILD_SOURCESDIRECTORY%
+      echo Over and out.
+
 - task: BatchScript@1
   inputs:
     filename: '/Builder/Build_HEVD_All.bat'
