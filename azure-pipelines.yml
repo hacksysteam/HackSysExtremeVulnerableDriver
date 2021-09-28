@@ -65,6 +65,7 @@ steps:
 
 - task: GitHubRelease@1
   inputs:
+    gitHubConnection: 'github.com_AntiRootkit'
     repositoryName: '$(Build.Repository.Name)'
     action: 'create'
     target: '$(Build.SourceVersion)'
