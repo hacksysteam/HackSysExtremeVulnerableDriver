@@ -36,6 +36,7 @@ steps:
 - task: BatchScript@1
   inputs:
     filename: '$(build.sourcesdirectory)/Builder/Build_HEVD_All.bat'
+    workingFolder: '$(build.sourcesdirectory)/Builder'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
