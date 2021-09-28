@@ -122,7 +122,7 @@ AllocateUaFObjectNonPagedPool(
         {
             DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
             DbgPrint("[+] Pool Type: %s\n", STRINGIFY(NonPagedPool));
-            DbgPrint("[+] Pool Size: 0x%zX\n", sizeof(USE_AFTER_FREE_NON_PAGED_POOL));
+            DbgPrint("[+] Pool Size: 0x%X\n", sizeof(USE_AFTER_FREE_NON_PAGED_POOL));
             DbgPrint("[+] Pool Chunk: 0x%p\n", UseAfterFree);
         }
 
@@ -306,7 +306,7 @@ AllocateFakeObjectNonPagedPool(
         {
             DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
             DbgPrint("[+] Pool Type: %s\n", STRINGIFY(NonPagedPool));
-            DbgPrint("[+] Pool Size: 0x%zX\n", sizeof(FAKE_OBJECT_NON_PAGED_POOL));
+            DbgPrint("[+] Pool Size: 0x%X\n", sizeof(FAKE_OBJECT_NON_PAGED_POOL));
             DbgPrint("[+] Pool Chunk: 0x%p\n", KernelFakeObject);
         }
 

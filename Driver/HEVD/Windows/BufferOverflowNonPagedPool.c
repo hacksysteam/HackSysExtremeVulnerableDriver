@@ -101,7 +101,7 @@ TriggerBufferOverflowNonPagedPool(
         {
             DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
             DbgPrint("[+] Pool Type: %s\n", STRINGIFY(NonPagedPool));
-            DbgPrint("[+] Pool Size: 0x%zX\n", (SIZE_T)POOL_BUFFER_SIZE);
+            DbgPrint("[+] Pool Size: 0x%X\n", (SIZE_T)POOL_BUFFER_SIZE);
             DbgPrint("[+] Pool Chunk: 0x%p\n", KernelBuffer);
         }
 
@@ -112,9 +112,9 @@ TriggerBufferOverflowNonPagedPool(
         ProbeForRead(UserBuffer, (SIZE_T)POOL_BUFFER_SIZE, (ULONG)__alignof(UCHAR));
 
         DbgPrint("[+] UserBuffer: 0x%p\n", UserBuffer);
-        DbgPrint("[+] UserBuffer Size: 0x%zX\n", Size);
+        DbgPrint("[+] UserBuffer Size: 0x%X\n", Size);
         DbgPrint("[+] KernelBuffer: 0x%p\n", KernelBuffer);
-        DbgPrint("[+] KernelBuffer Size: 0x%zX\n", (SIZE_T)POOL_BUFFER_SIZE);
+        DbgPrint("[+] KernelBuffer Size: 0x%X\n", (SIZE_T)POOL_BUFFER_SIZE);
 
 #ifdef SECURE
         //

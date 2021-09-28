@@ -106,7 +106,6 @@ Abstract:
 #define HEVD_IOCTL_SET_ARW_HELPER_OBJECT_NAME_NON_PAGED_POOL_NX  IOCTL(0x819)
 #define HEVD_IOCTL_GET_ARW_HELPER_OBJECT_NAME_NON_PAGED_POOL_NX  IOCTL(0x81A)
 #define HEVD_IOCTL_DELETE_ARW_HELPER_OBJECT_NON_PAGED_POOL_NX    IOCTL(0x81B)
-#define HEVD_IOCTL_ARBITRARY_INCREMENT                           IOCTL(0x81C)
 
 
 //
@@ -146,19 +145,19 @@ DriverUnloadHandler(
 NTSTATUS
 IrpCreateCloseHandler(
     _In_ PDEVICE_OBJECT DeviceObject,
-    _Inout_ PIRP Irp
+    _In_ PIRP Irp
 );
 
 NTSTATUS
 IrpDeviceIoCtlHandler(
     _In_ PDEVICE_OBJECT DeviceObject,
-    _Inout_ PIRP Irp
+    _In_ PIRP Irp
 );
 
 NTSTATUS
 IrpNotImplementedHandler(
     _In_ PDEVICE_OBJECT DeviceObject,
-    _Inout_ PIRP Irp
+    _In_ PIRP Irp
 );
 
 #endif  // !__HACKSYS_EXTREME_VULNERABLE_DRIVER_H__

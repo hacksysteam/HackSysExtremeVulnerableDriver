@@ -127,10 +127,6 @@ External Blog Posts
 
 [https://glennmcgui.re/introduction-to-windows-kernel-driver-exploitation-pt-2/](https://glennmcgui.re/introduction-to-windows-kernel-driver-exploitation-pt-2/)
 
-[https://kristal-g.github.io/2021/02/07/HEVD_StackOverflowGS_Windows_10_RS5_x64.html](https://kristal-g.github.io/2021/02/07/HEVD_StackOverflowGS_Windows_10_RS5_x64.html)
-
-[https://kristal-g.github.io/2021/02/20/HEVD_Type_Confusion_Windows_10_RS5_x64.html](https://kristal-g.github.io/2021/02/20/HEVD_Type_Confusion_Windows_10_RS5_x64.html)
-
 
 Author
 ------
@@ -175,7 +171,6 @@ Vulnerabilities Implemented
 * **Memory Disclosure**
   * **NonPagedPool**
   * **NonPagedPoolNx**
-* **Arbitrary Increment**
 * **Arbitrary Overwrite**
 * **Null Pointer Dereference**
 * **Uninitialized Memory**

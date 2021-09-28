@@ -87,9 +87,6 @@
     <ClInclude Include="ArbitraryReadWriteHelperNonPagedPoolNx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ArbitraryIncrement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArbitraryWrite.c">
@@ -150,9 +147,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ArbitraryReadWriteHelperNonPagedPoolNx.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ArbitraryIncrement.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

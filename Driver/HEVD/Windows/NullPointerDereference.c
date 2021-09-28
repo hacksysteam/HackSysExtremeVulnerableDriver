@@ -120,7 +120,7 @@ TriggerNullPointerDereference(
         {
             DbgPrint("[+] Pool Tag: %s\n", STRINGIFY(POOL_TAG));
             DbgPrint("[+] Pool Type: %s\n", STRINGIFY(NonPagedPool));
-            DbgPrint("[+] Pool Size: 0x%zX\n", sizeof(NULL_POINTER_DEREFERENCE));
+            DbgPrint("[+] Pool Size: 0x%X\n", sizeof(NULL_POINTER_DEREFERENCE));
             DbgPrint("[+] Pool Chunk: 0x%p\n", NullPointerDereference);
         }
 

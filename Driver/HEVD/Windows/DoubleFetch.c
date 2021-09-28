@@ -66,11 +66,11 @@ TriggerDoubleFetch(
     _In_ PDOUBLE_FETCH UserDoubleFetch
 )
 {
-    PVOID UserBuffer = NULL;
     NTSTATUS Status = STATUS_SUCCESS;
     ULONG KernelBuffer[BUFFER_SIZE] = { 0 };
 
 #ifdef SECURE
+    PVOID UserBuffer = NULL;
     SIZE_T UserBufferSize = 0;
 #endif
 
@@ -86,24 +86,18 @@ TriggerDoubleFetch(
 
         DbgPrint("[+] UserDoubleFetch: 0x%p\n", UserDoubleFetch);
         DbgPrint("[+] KernelBuffer: 0x%p\n", &KernelBuffer);
-        DbgPrint("[+] KernelBuffer Size: 0x%zX\n", sizeof(KernelBuffer));
+        DbgPrint("[+] KernelBuffer Size: 0x%X\n", sizeof(KernelBuffer));
 
 #ifdef SECURE
         UserBuffer = UserDoubleFetch->Buffer;
         UserBufferSize = UserDoubleFetch->Size;
 
-        //
-        // Verify if the 'UserDoubleFetch->Buffer' resides in user mode
-        //
-
-        ProbeForRead(UserBuffer, sizeof(KernelBuffer), (ULONG)__alignof(UCHAR));
-
         DbgPrint("[+] UserDoubleFetch->Buffer: 0x%p\n", UserBuffer);
-        DbgPrint("[+] UserDoubleFetch->Size: 0x%zX\n", UserBufferSize);
+        DbgPrint("[+] UserDoubleFetch->Size: 0x%X\n", UserBufferSize);
 
         if (UserBufferSize > sizeof(KernelBuffer))
         {
-            DbgPrint("[-] Invalid Buffer Size: 0x%zX\n", UserBufferSize);
+            DbgPrint("[-] Invalid Buffer Size: 0x%X\n", UserBufferSize);
 
             Status = STATUS_INVALID_PARAMETER;
             return Status;
@@ -119,19 +113,12 @@ TriggerDoubleFetch(
 
         RtlCopyMemory((PVOID)KernelBuffer, UserBuffer, UserBufferSize);
 #else
-        UserBuffer = UserDoubleFetch->Buffer;
-        DbgPrint("[+] UserDoubleFetch->Buffer: 0x%p\n", UserBuffer);
-        DbgPrint("[+] UserDoubleFetch->Size: 0x%zX\n", UserDoubleFetch->Size);
-
-        //
-        // Verify if the 'UserDoubleFetch->Buffer' resides in user mode
-        //
-
-        ProbeForRead(UserBuffer, sizeof(KernelBuffer), (ULONG)__alignof(UCHAR));
+        DbgPrint("[+] UserDoubleFetch->Buffer: 0x%p\n", UserDoubleFetch->Buffer);
+        DbgPrint("[+] UserDoubleFetch->Size: 0x%X\n", UserDoubleFetch->Size);
 
         if (UserDoubleFetch->Size > sizeof(KernelBuffer))
         {
-            DbgPrint("[-] Invalid Buffer Size: 0x%zX\n", UserDoubleFetch->Size);
+            DbgPrint("[-] Invalid Buffer Size: 0x%X\n", UserDoubleFetch->Size);
 
             Status = STATUS_INVALID_PARAMETER;
             return Status;
@@ -141,13 +128,13 @@ TriggerDoubleFetch(
 
         //
         // Vulnerability Note: This is a vanilla Double Fetch vulnerability because the
-        // developer is fetching 'UserDoubleFetch->Size' from user mode twice and the 
-        // double fetched values are passed to RtlCopyMemory()/memcpy().
+        // developer is fetching 'UserDoubleFetch->Buffer' and 'UserDoubleFetch->Size'
+        // from user mode twice and the double fetched values are passed to RtlCopyMemory()/memcpy().
         // This creates a race condition and the size check could be bypassed which will later
         // cause stack based buffer overflow
         //
 
-        RtlCopyMemory((PVOID)KernelBuffer, UserBuffer, UserDoubleFetch->Size);
+        RtlCopyMemory((PVOID)KernelBuffer, UserDoubleFetch->Buffer, UserDoubleFetch->Size);
 #endif
     }
     __except (EXCEPTION_EXECUTE_HANDLER)
