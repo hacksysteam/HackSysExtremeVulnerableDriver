@@ -19,6 +19,14 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
+- task: DevEnvBuild@2
+  inputs:
+    solution: 'Exploit\HackSysEVDExploit.sln'
+    project: 'HackSysEVDExploit'
+    buildCfg: '$buildConfiguration'
+    buildPlatform: '$buildPlatform'
+    vsVersion: 'latest'
+
 - task: CmdLine@2
   inputs:
     script: |
