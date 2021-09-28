@@ -39,7 +39,7 @@ steps:
     project: 'HackSysEVDExploit'
     buildCfg: '$(buildConfiguration)'
     buildPlatform: 'Win32'
-    vsVersion: 'latest'
+    vsVersion: '11.0'
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)/Exploit'
