@@ -21,7 +21,7 @@ steps:
 
 - task: BatchScript@1
   inputs:
-    filename: '*/Builder/Build_HEVD_All.bat'
+    filename: '/Builder/Build_HEVD_All.bat'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
