@@ -37,7 +37,7 @@ steps:
   inputs:
     solution: 'Exploit\HackSysEVDExploit.sln'
     project: 'HackSysEVDExploit'
-    buildCfg: '$buildConfiguration'
+    buildCfg: '$(buildConfiguration)'
     buildPlatform: 'Win32'
     vsVersion: 'latest'
 - task: CopyFiles@2
