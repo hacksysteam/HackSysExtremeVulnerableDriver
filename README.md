@@ -68,6 +68,7 @@ External Exploits
 
 [https://github.com/FULLSHADE/Windows-Kernel-Exploitation-HEVD](https://github.com/FULLSHADE/Windows-Kernel-Exploitation-HEVD)
 
+[https://github.com/w4fz5uck5/3XPL01t5/tree/master/OSEE_Training](https://github.com/w4fz5uck5/3XPL01t5/tree/master/OSEE_Training)
 
 External Blog Posts
 -------------------
@@ -131,6 +132,7 @@ External Blog Posts
 
 [https://kristal-g.github.io/2021/02/20/HEVD_Type_Confusion_Windows_10_RS5_x64.html](https://kristal-g.github.io/2021/02/20/HEVD_Type_Confusion_Windows_10_RS5_x64.html)
 
+[https://wafzsucks.medium.com/hacksys-extreme-vulnerable-driver-arbitrary-write-null-new-solution-7d45bfe6d116](https://wafzsucks.medium.com/hacksys-extreme-vulnerable-driver-arbitrary-write-null-new-solution-7d45bfe6d116)
 
 Author
 ------
