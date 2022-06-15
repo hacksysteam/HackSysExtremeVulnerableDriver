@@ -81,7 +81,7 @@ TriggerArbitraryIncrement(
         // Grab the user pointer
         //
 
-        PULONG_PTR UserPointerToIncrementValue = *(PULONG_PTR*)UserBuffer;
+        PCHAR UserPointerToIncrementValue = *(PCHAR*)UserBuffer;
 
         DbgPrint("[+] UserBuffer: 0x%p\n", UserBuffer);
         DbgPrint("[+] UserPointerToIncrementValue: 0x%p\n", UserPointerToIncrementValue);
@@ -95,9 +95,9 @@ TriggerArbitraryIncrement(
         // performing the increment operation
         //
 
-        ProbeForWrite(UserPointerToIncrementValue, sizeof(PULONG_PTR), (ULONG)__alignof(PULONG_PTR));
+        ProbeForWrite(UserPointerToIncrementValue, sizeof(PCHAR), (ULONG)__alignof(CHAR));
 
-        (*(PULONG_PTR*)UserPointerToIncrementValue)++;
+        (*(PCHAR)UserPointerToIncrementValue)++;
 #else
         DbgPrint("[+] Triggering Arbitrary Increment\n");
 
@@ -107,7 +107,7 @@ TriggerArbitraryIncrement(
         // without properly validating if it resides in User mode
         //
 
-        (*(PULONG_PTR*)UserPointerToIncrementValue)++;
+        (*(PCHAR)UserPointerToIncrementValue)++;
 #endif
 
         DbgPrint("[+] Value after increment: 0x%zX\n", *UserPointerToIncrementValue);
