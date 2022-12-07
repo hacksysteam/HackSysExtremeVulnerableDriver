@@ -1,4 +1,4 @@
-﻿
+
 if(SECURE)
     add_definitions(-DSECURE)
     message("Generating secure HEVD build configuration")

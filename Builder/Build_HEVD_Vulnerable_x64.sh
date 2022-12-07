@@ -29,11 +29,11 @@ echo "[+] Binary directory: ${BINARY_DIR}"
 echo "[+] Removing build & binary directory"
 
 if [ -d "${BUILD_DIR}" ]; then
-	rm -rfd ${BUILD_DIR}
+    rm -rfd ${BUILD_DIR}
 fi
 
 if [ -d "${BINARY_DIR}" ]; then
-	rm -rfd ${BINARY_DIR}
+    rm -rfd ${BINARY_DIR}
 fi
 
 echo "[+] Creating build directory"

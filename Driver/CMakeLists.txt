@@ -1,4 +1,4 @@
-﻿#
+#
 # HEVD CMake Script
 #
 

@@ -24,11 +24,11 @@ set BUILD_DIR=%PROJECT_DIR%..\build\driver\windows\secure\%BUILD_ARCH%
 
 rem VS2017U2 contains vswhere.exe
 if "%VSWHERE%"=="" (
-	set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+    set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 )
 
 for /f "usebackq tokens=*" %%i in (`"%VSWHERE%" -latest -products * -requires Microsoft.Component.MSBuild -property installationPath`) do (
-  set VS_INSTALL_DIR=%%i
+    set VS_INSTALL_DIR=%%i
 )
 
 echo [+] Visual Studio Path: %VS_INSTALL_DIR%
@@ -47,7 +47,7 @@ echo [+] Build directory: %BUILD_DIR%
 echo [+] Removing build directory
 
 if exist %BUILD_DIR% (
-	rmdir /S /Q %BUILD_DIR%
+    rmdir /S /Q %BUILD_DIR%
 )
 
 echo [+] Creating build directory
@@ -84,15 +84,15 @@ echo.
 
 echo [+] Cleaning build directory
 for /r "%BUILD_DIR%" %%a in (*) do (
-	if not %%~xa==.sys (
-	    if not %%~xa==.pdb (
-	        if not %%~xa==.inf (
-	        	if not %%~xa==.cat (
-	            	del /f /q "%%a"
-	            )
-	        )
-	    )
-	)
+    if not %%~xa==.sys (
+        if not %%~xa==.pdb (
+            if not %%~xa==.inf (
+                if not %%~xa==.cat (
+                    del /f /q "%%a"
+                )
+            )
+        )
+    )
 )
 
 rmdir /S /Q "%BUILD_DIR%\%PROJECT_NAME%"
