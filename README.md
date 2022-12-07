@@ -12,9 +12,9 @@
 
 [![Black Hat Arsenal](https://www.toolswatch.org/badges/arsenal/2016.svg)](https://www.blackhat.com/asia-16/arsenal.html#hacksys-extreme-vulnerable-driver)
 [![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/o0i4crgqxjfnqf1s/branch/master?svg=true)](https://ci.appveyor.com/project/hacksysteam/hacksysextremevulnerabledriver/branch/master)
-![GitHub all Releases](https://img.shields.io/github/downloads/hacksysteam/HackSysExtremeVulnerableDriver/total)
-![Twitter Follow](https://img.shields.io/twitter/follow/HackSysTeam?style=social)
-![Mastodon Follow](https://img.shields.io/mastodon/follow/109291325205105061?domain=https%3A%2F%2Finfosec.exchange&style=social)
+[![GitHub all Releases](https://img.shields.io/github/downloads/hacksysteam/HackSysExtremeVulnerableDriver/total)](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases)
+[![Twitter Follow](https://img.shields.io/twitter/follow/HackSysTeam?style=social)](https://twitter.com/HackSysTeam)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109291325205105061?domain=https%3A%2F%2Finfosec.exchange&style=social)](https://infosec.exchange/@hacksysteam)
 
 The **HackSys Extreme Vulnerable Driver (HEVD)** is a **Windows Kernel** driver that is intentionally vulnerable. It has been developed for **security researchers** and **enthusiasts** to improve their skills in **kernel-level** exploitation.
 
