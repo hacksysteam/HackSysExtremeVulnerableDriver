@@ -1,5 +1,4 @@
-HackSys Extreme Vulnerable Driver
-=================================
+# HackSys Extreme Vulnerable Driver
 
                ooooo   ooooo oooooooooooo oooooo     oooo oooooooooo.   
                `888'   `888' `888'     `8  `888.     .8'  `888'   `Y8b  
@@ -11,29 +10,31 @@ HackSys Extreme Vulnerable Driver
 
 ------------------------------------------------------------------------
 
-[![Appveyor build status](https://ci.appveyor.com/api/projects/status/o0i4crgqxjfnqf1s/branch/master?svg=true)](https://ci.appveyor.com/project/hacksysteam/hacksysextremevulnerabledriver/branch/master)
 [![Black Hat Arsenal](https://www.toolswatch.org/badges/arsenal/2016.svg)](https://www.blackhat.com/asia-16/arsenal.html#hacksys-extreme-vulnerable-driver)
+[![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/o0i4crgqxjfnqf1s/branch/master?svg=true)](https://ci.appveyor.com/project/hacksysteam/hacksysextremevulnerabledriver/branch/master)
+![GitHub all Releases](https://img.shields.io/github/downloads/hacksysteam/HackSysExtremeVulnerableDriver/total)
+![Twitter Follow](https://img.shields.io/twitter/follow/HackSysTeam?style=social)
+![Mastodon Follow](https://img.shields.io/mastodon/follow/109291325205105061?domain=https%3A%2F%2Finfosec.exchange&style=social)
+
+The **HackSys Extreme Vulnerable Driver (HEVD)** is a **Windows Kernel** driver that is intentionally vulnerable. It has been developed for **security researchers** and **enthusiasts** to improve their skills in **kernel-level** exploitation.
+
+**HEVD** offers a range of vulnerabilities, from simple **stack buffer overflows** to more complex issues such as **use-after-free**, **pool buffer overflows**, and **race conditions**. This allows researchers to explore exploitation techniques for each implemented vulnerability.
 
 
-**HackSys Extreme Vulnerable Driver** is **intentionally** vulnerable **Windows** driver developed for security enthusiasts to learn and polish their exploitation skills at **Kernel** level. 
+## Black Hat Arsenal 2016
 
-**HackSys Extreme Vulnerable Driver** caters wide range of vulnerabilities ranging from simple `Stack Buffer Overflow` to complex `Use After Free`, `Pool Buffer Overflow` and `Race Condition`. This allows the researchers to explore the exploitation techniques for every implemented vulnerabilities.
-
-
-Black Hat Arsenal 2016 
-----------------------
 [Presentation](https://www.blackhat.com/docs/asia-16/materials/arsenal/asia-16-Ansari-HackSys-Extreme-Vulnerable-Driver.pdf)
 
 [White Paper](https://www.blackhat.com/docs/asia-16/materials/arsenal/asia-16-Ansari-HackSys-Extreme-Vulnerable-Driver-wp.pdf)
 
 
-Blog Post
----------
+## Blog Post
+
 [http://www.payatu.com/hacksys-extreme-vulnerable-driver/](http://www.payatu.com/hacksys-extreme-vulnerable-driver/)
 
 
-External Exploits
------------------
+## External Exploits
+
 [https://github.com/sam-b/HackSysDriverExploits](https://github.com/sam-b/HackSysDriverExploits)
 
 [https://github.com/sizzop/HEVD-Exploits](https://github.com/sizzop/HEVD-Exploits)
@@ -70,8 +71,9 @@ External Exploits
 
 [https://github.com/w4fz5uck5/3XPL01t5/tree/master/OSEE_Training](https://github.com/w4fz5uck5/3XPL01t5/tree/master/OSEE_Training)
 
-External Blog Posts
--------------------
+
+## External Blog Posts
+
 [http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/](http://niiconsulting.com/checkmate/2016/01/windows-kernel-exploitation/)
 
 [http://samdb.xyz/2016/01/16/intro_to_kernel_exploitation_part_0.html](http://samdb.xyz/2016/01/16/intro_to_kernel_exploitation_part_0.html)
@@ -134,32 +136,33 @@ External Blog Posts
 
 [https://wafzsucks.medium.com/hacksys-extreme-vulnerable-driver-arbitrary-write-null-new-solution-7d45bfe6d116](https://wafzsucks.medium.com/hacksys-extreme-vulnerable-driver-arbitrary-write-null-new-solution-7d45bfe6d116)
 
-Author
-------
+
+## Author
+
 > **Ashfaq Ansari**
 
-> ashfaq[at]payatu[dot]com
+> ashfaq[at]hacksys[dot]io
 
-> **[@HackSysTeam](https://twitter.com/HackSysTeam) | [Blog](http://hacksys.vfreaks.com/ "HackSys Team") | [null](https://null.co.in/profile/411-ashfaq-ansari)**
+> **[Blog](https://hacksys.io/ "HackSys Team") | [@HackSysTeam](https://twitter.com/HackSysTeam)**
 
-> ![Payatu Technologies](https://www.payatu.com/wp-content/uploads/2015/04/Payatu_Logo.png "Payatu Technologies Pvt. Ltd.")
+> [![HackSys Inc](https://hacksys.io/android-chrome-192x192.png "HackSys Inc")](https://hacksys.io)
 
-> [http://www.payatu.com/](https://www.payatu.com/ "Payatu Technologies Pvt. Ltd.")
-
-
-Screenshots
------------
-![Driver Banner](https://www.payatu.com/wp-content/uploads/2015/05/2015-05-27_20h14_33.png "Driver Banner")
-
-![Help](https://www.payatu.com/wp-content/uploads/2015/05/2015-06-03_22h27_24.png "Help")
-
-![Exploitation](https://www.payatu.com/wp-content/uploads/2015/05/2015-05-27_20h22_35.png "Exploitation")
-
-![Driver Debug Print](https://www.payatu.com/wp-content/uploads/2015/05/2015-05-27_20h28_07.png "Driver Debug Print")
+> [https://hacksys.io/](https://hacksys.io/ "HackSys Inc")
 
 
-Vulnerabilities Implemented
----------------------------
+## Screenshots
+
+![Driver Banner](Screenshots/hevd-banner.png "Driver Banner")
+
+![Help](Screenshots/hevd-help.png "Help")
+
+![Exploitation](Screenshots/hevd-exploitation.png "Exploitation")
+
+![Driver Debug Print](Screenshots/hevd-debug-print.png "Driver Debug Print")
+
+
+## Vulnerabilities Implemented
+
 * **Write NULL**
 * **Double Fetch**
 * **Buffer Overflow**
@@ -186,33 +189,33 @@ Vulnerabilities Implemented
 * **Insecure Kernel Resource Access**
 
 
-Building Driver
----------------
+## Building the driver
+
 1. [Install Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
 2. [Install Windows Driver Kit](https://docs.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk)
 3. Run the appropriate driver builder `Build_HEVD_Vulnerable_x86.bat` or `Build_HEVD_Vulnerable_x64.bat`
 
 
-Download
---------
+## Download
+
 If you do not want to build **HackSys Extreme Vulnerable Driver** from source, you could download pre-built
 executables for the latest release:
 
 [https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases)
 
 
-Installing Driver
------------------
+## Installing the driver
+
 Use [OSR Driver Loader](https://www.osronline.com/article.cfm?article=157) to install **HackSys Extreme Vulnerable Driver**
 
 
-Testing
--------
+## Testing
+
 The **HackSys Extreme Vulnerable Driver** and the respective exploits have been tested on **Windows 7 SP1 x86** and **Windows 10 x64**  
 
 
-Sessions Conducted
-------------------
+## Sessions Conducted
+
 * [Windows Kernel Exploitation 1](http://null.co.in/event_sessions/156-windows-kernel-exploitation)
 * [Windows Kernel Exploitation 2](http://null.co.in/event_sessions/186-windows-kernel-exploitation-2)
 * [Windows Kernel Exploitation 3](http://null.co.in/event_sessions/226-windows-kernel-exploitation-3)
@@ -222,28 +225,27 @@ Sessions Conducted
 * [Windows Kernel Exploitation 7](https://null.co.in/event_sessions/845-windows-kernel-exploitation-7)
 
 
-Workshops Conducted
--------------------
+## Workshops Conducted
+
 * [Windows Kernel Exploitation Humla Pune](http://null.co.in/event_sessions/280-windows-kernel-exploitation)
 * [Windows Kernel Exploitation Humla Mumbai](http://null.co.in/event_sessions/327-windows-kernel-exploitation)
 
 
-License
--------
+## License
+
 Please see the file `LICENSE` for copying permission
 
 
-Contribution Guidelines
------------------------
+## Contribution Guidelines
+
 Please see the file `CONTRIBUTING.md` for contribution guidelines
 
 
-TODO & Bug Report
------------------
-Please file any enhancement request or bug report via GitHub issue tracker at the below given address: [https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues)
+## TODO & Bug Reports
+
+Please file any enhancement request or bug report via **GitHub** issue tracker at the below-given address: [https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues)
 
 
 ------------------------------------------------------------------------
-[http://hacksys.vfreaks.com](http://hacksys.vfreaks.com)
 
-![HackSys Team](http://hacksys.vfreaks.com/wp-content/themes/Polished/images/logo.png)
+[![HackSys Inc](https://hacksys.io/android-chrome-192x192.png "HackSys Inc")](https://hacksys.io)
