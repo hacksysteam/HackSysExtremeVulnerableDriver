@@ -246,6 +246,14 @@ Please see the file `CONTRIBUTING.md` for contribution guidelines
 Please file any enhancement request or bug report via **GitHub** issue tracker at the below-given address: [https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues)
 
 
+## Acknowledgments
+
+Thanks go to these wonderful people: 🎉
+
+<a href="https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=hacksysteam/HackSysExtremeVulnerableDriver" />
+</a>
+
 ------------------------------------------------------------------------
 
 [![HackSys Inc](https://hacksys.io/android-chrome-192x192.png "HackSys Inc")](https://hacksys.io)
