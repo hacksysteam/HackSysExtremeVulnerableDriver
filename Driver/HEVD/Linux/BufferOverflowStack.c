@@ -72,7 +72,7 @@ int trigger_buffer_overflow_stack(void *user_buffer, size_t size)
 #ifdef SECURE
     /**
      * Secure Note: This is secure because the developer is passing a size
-     * equal to size of kernel_buffer to copy_from_user()/memcpy(). Hence,
+     * equal to size of kernel_buffer to `copy_from_user()`. Hence,
      * there will be no overflow
      */
 
@@ -86,11 +86,11 @@ int trigger_buffer_overflow_stack(void *user_buffer, size_t size)
     /**
      * Vulnerability Note: This is a vanilla Stack based Overflow vulnerability
      * because the developer is passing the user supplied size directly to
-     * copy_from_user()/memcpy() without validating if the size is greater or
+     * `__copy_from_user()` without validating if the size is greater or
      * equal to the size of kernel_buffer
      */
 
-    if (copy_from_user(kernel_buffer, user_buffer, size))
+    if (__copy_from_user(kernel_buffer, user_buffer, size))
     {
         status = -EFAULT;
     }
