@@ -136,6 +136,7 @@ The **HackSys Extreme Vulnerable Driver (HEVD)** is a **Windows Kernel** driver 
 
 [https://wafzsucks.medium.com/hacksys-extreme-vulnerable-driver-arbitrary-write-null-new-solution-7d45bfe6d116](https://wafzsucks.medium.com/hacksys-extreme-vulnerable-driver-arbitrary-write-null-new-solution-7d45bfe6d116)
 
+[https://wafzsucks.medium.com/how-a-simple-k-typeconfusion-took-me-3-months-long-to-create-a-exploit-f643c94d445f](https://wafzsucks.medium.com/how-a-simple-k-typeconfusion-took-me-3-months-long-to-create-a-exploit-f643c94d445f)
 
 ## Author
 
@@ -243,7 +244,7 @@ Please see the file `CONTRIBUTING.md` for contribution guidelines
 
 ## TODO & Bug Reports
 
-Please file any enhancement request or bug report via **GitHub** issue tracker at the below-given address: [https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues)
+Please file any enhancement request or bug report via the **GitHub** issue tracker at the below-given address: [https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/issues)
 
 
 ## Acknowledgments
