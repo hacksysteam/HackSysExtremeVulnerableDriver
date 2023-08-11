@@ -51,7 +51,6 @@ Abstract:
 #include "BufferOverflowStack.h"
 
 
-//__declspec(safebuffers)
 /**
  * Trigger the buffer overflow in Stack Vulnerability
  * 
@@ -59,6 +58,7 @@ Abstract:
  * @param[in] size size of the user mode buffer
  * @return status code
  */
+__attribute__((optimize("-fno-stack-protector")))
 int trigger_buffer_overflow_stack(void *user_buffer, size_t size)
 {
     int status = STATUS_SUCCESS;
@@ -76,7 +76,10 @@ int trigger_buffer_overflow_stack(void *user_buffer, size_t size)
      * there will be no overflow
      */
 
-    copy_from_user(kernel_buffer, user_buffer, sizeof(kernel_buffer));
+    if (copy_from_user(kernel_buffer, user_buffer, sizeof(kernel_buffer)))
+    {
+        status = -EFAULT;
+    }
 #else
     INFO("[+] Triggering Buffer Overflow in Stack\n");
 
@@ -87,7 +90,10 @@ int trigger_buffer_overflow_stack(void *user_buffer, size_t size)
      * equal to the size of kernel_buffer
      */
 
-    copy_from_user(kernel_buffer, user_buffer, size);
+    if (copy_from_user(kernel_buffer, user_buffer, size))
+    {
+        status = -EFAULT;
+    }
 #endif
     
     return status;

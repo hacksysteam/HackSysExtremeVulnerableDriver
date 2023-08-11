@@ -116,28 +116,33 @@ static void __exit hevd_exit(void)
 static long hevd_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
     int status = -EINVAL;
-    void __user *arg_user = (void __user *)arg;
+    struct hevd_io user_hevd_io = {0};
+
+    if (copy_from_user(&user_hevd_io, (struct hevd_io __user *)arg, sizeof(user_hevd_io)))
+    {
+        return -EFAULT;
+    }
 
     switch (cmd)
     {
     case HEVD_IOCTL_BUFFER_OVERFLOW_STACK:
         INFO("****** HEVD_IOCTL_BUFFER_OVERFLOW_STACK ******\n");
-        status = buffer_overflow_stack_ioctl_handler(arg_user);
+        status = buffer_overflow_stack_ioctl_handler(&user_hevd_io);
         INFO("****** HEVD_IOCTL_BUFFER_OVERFLOW_STACK ******\n");
-	break;
+        break;
     case HEVD_IOCTL_INTEGER_OVERFLOW:
         INFO("****** HEVD_IOCTL_INTEGER_OVERFLOW ******\n");
-        status = integer_overflow_ioctl_handler(arg_user);
+        status = integer_overflow_ioctl_handler(&user_hevd_io);
         INFO("****** HEVD_IOCTL_INTEGER_OVERFLOW ******\n");
         break;
     case HEVD_IOCTL_ARBITRARY_WRITE:
         INFO("****** HEVD_IOCTL_ARBITRARY_WRITE ******\n");
-        status = arbitrary_write_ioctl_handler(arg_user);
+        status = arbitrary_write_ioctl_handler(&user_hevd_io);
         INFO("****** HEVD_IOCTL_ARBITRARY_WRITE ******\n");
         break;
     case HEVD_IOCTL_UNINITIALIZED_MEMORY_STACK:
         INFO("****** HEVD_IOCTL_UNINITIALIZED_MEMORY_STACK ******\n");
-        status = uninitialized_memory_stack_ioctl_handler(arg_user);
+        status = uninitialized_memory_stack_ioctl_handler(&user_hevd_io);
         INFO("****** HEVD_IOCTL_UNINITIALIZED_MEMORY_STACK ******\n");
         break;
     default:

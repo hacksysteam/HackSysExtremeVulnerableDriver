@@ -107,9 +107,16 @@ int trigger_integer_overflow(void *user_buffer, size_t size)
     {
         unsigned long n;
 
-        copy_from_user((void *)&n, user_buffer + count, sizeof(n));
-        if (n == kernel_buffer_terminator)
+        if (copy_from_user((void *)&n, user_buffer + count, sizeof(n)))
+        {
+            status = -EFAULT;
             break;
+        }
+
+        if (n == kernel_buffer_terminator)
+        {
+            break;
+        }
 
         kernel_buffer[count++] = n;
     }
