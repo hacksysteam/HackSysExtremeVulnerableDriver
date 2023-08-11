@@ -11,9 +11,10 @@
             HackSys Extreme Vulnerable Driver
 
 Author : Ashfaq Ansari
-Contact: ashfaq[at]payatu[dot]com
-Website: http://www.payatu.com/
+Contact: ashfaq[at]hacksys[dot]io
+Website: https://hacksys.io/
 
+Copyright (C) 2021-2023 HackSys Inc. All rights reserved.
 Copyright (C) 2015-2020 Payatu Software Labs LLP. All rights reserved.
 
 This program is free software: you can redistribute it and/or modify it under the terms of
