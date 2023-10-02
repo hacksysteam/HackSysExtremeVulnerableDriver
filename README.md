@@ -15,7 +15,7 @@
 [![GitHub all Releases](https://img.shields.io/github/downloads/hacksysteam/HackSysExtremeVulnerableDriver/total)](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver/releases)
 [![Twitter Follow](https://img.shields.io/twitter/follow/HackSysTeam?style=social)](https://twitter.com/HackSysTeam)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109291325205105061?domain=https%3A%2F%2Finfosec.exchange&style=social)](https://infosec.exchange/@hacksysteam)
-[![Discord Server](https://dcbadge.vercel.app/api/server/ns32uNhaq7?style=flat)](https://dcbadge.vercel.app/api/server/ns32uNhaq7?style=flat)
+[![Discord Server](https://dcbadge.vercel.app/api/server/ns32uNhaq7?style=flat)](https://discord.com/invite/ns32uNhaq7)
 
 The **HackSys Extreme Vulnerable Driver (HEVD)** is a **Windows Kernel** driver that is intentionally vulnerable. It has been developed for **security researchers** and **enthusiasts** to improve their skills in **kernel-level** exploitation.
 
