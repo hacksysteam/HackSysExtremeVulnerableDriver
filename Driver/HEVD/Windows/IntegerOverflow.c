@@ -114,7 +114,7 @@ TriggerIntegerOverflow(
         // integer will wrap down and will finally cause this check to fail
         //
 
-        if ((UINT32)(Size + TerminatorSize) > (UINT32)sizeof(KernelBuffer)))
+        if ((ULONG)(Size + TerminatorSize) > (ULONG)sizeof(KernelBuffer)))
         {
             DbgPrint("[-] Invalid UserBuffer Size: 0x%X\n", Size);
 
