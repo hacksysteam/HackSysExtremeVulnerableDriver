@@ -224,7 +224,7 @@ function(wdk_add_driver _target)
     if(EXISTS ${PROJECT_PFX_PATH})
         # signtool.exe Configuration
         set(SIGNTOOL_PATH "${WDK_ROOT}/bin/${WDK_VERSION}/x86/signtool.exe")
-        set(SIGNTOOL_ARGS "sign /f \"${PROJECT_PFX_PATH}\" /p ${WDK_PFX_PASSWORD}")
+        set(SIGNTOOL_ARGS "sign /fd sha1 /f \"${PROJECT_PFX_PATH}\" /p ${WDK_PFX_PASSWORD}")
 
         add_custom_command(
           COMMENT "Signing driver binary file"
