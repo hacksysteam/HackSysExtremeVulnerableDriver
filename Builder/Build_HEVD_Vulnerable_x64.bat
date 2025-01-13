@@ -47,12 +47,12 @@ echo [+] Build directory: %BUILD_DIR%
 echo [+] Removing build directory
 
 if exist %BUILD_DIR% (
-    rmdir /S /Q %BUILD_DIR%
+    rmdir /S /Q "%BUILD_DIR%"
 )
 
 echo [+] Creating build directory
 
-mkdir %BUILD_DIR%
+mkdir "%BUILD_DIR%"
 cd %BUILD_DIR%
 
 echo [+] Generating build configuration files
